@@ -1,0 +1,98 @@
+.admin-sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 30;
+    display: flex;
+    width: 280px;
+    min-height: 100vh;
+    flex-direction: column;
+    background: #1e293b;
+    color: #f8fafc;
+    box-shadow: 12px 0 30px rgba(2, 6, 23, 0.18);
+}
+
+.admin-sidebar__brand {
+    padding: 28px 24px 34px;
+}
+
+.admin-sidebar__title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.admin-sidebar__navigation {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.admin-sidebar__link {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 0 24px;
+    color: #cbd5e1;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 160ms ease, color 160ms ease;
+}
+
+.admin-sidebar__link:hover,
+.admin-sidebar__link--active {
+    background: #334155;
+    color: #ffffff;
+}
+
+.admin-sidebar__footer {
+    padding: 24px;
+}
+
+.admin-sidebar__logout-button {
+    display: inline-flex;
+    width: 100%;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 6px;
+    background: #dc2626;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 700;
+    transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.admin-sidebar__logout-button:hover {
+    background: #b91c1c;
+}
+
+.admin-sidebar__logout-button:focus-visible {
+    outline: 3px solid rgba(96, 165, 250, 0.7);
+    outline-offset: 3px;
+}
+
+@media (max-width: 900px) {
+    .admin-sidebar {
+        width: 230px;
+    }
+}
+
+@media (max-width: 700px) {
+    .admin-sidebar {
+        width: 210px;
+        min-height: 100vh;
+    }
+
+    .admin-sidebar__brand {
+        padding: 22px 20px 18px;
+    }
+
+    .admin-sidebar__footer {
+        padding: 16px 20px 20px;
+    }
+}

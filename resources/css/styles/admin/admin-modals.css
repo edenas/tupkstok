@@ -1,0 +1,77 @@
+.admin-hidden-form {
+    display: none;
+}
+
+.admin-modal[hidden] {
+    display: none !important;
+}
+
+.admin-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: none;
+    place-items: center;
+    padding: 24px;
+}
+
+.admin-modal--is-open {
+    display: grid;
+}
+
+.admin-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(2, 6, 23, 0.72);
+}
+
+.admin-modal__dialog {
+    position: relative;
+    width: min(100%, 460px);
+    border: 1px solid rgba(148, 163, 184, 0.24);
+    border-radius: 8px;
+    background: #1e293b;
+    box-shadow: 0 28px 80px rgba(2, 6, 23, 0.48);
+    padding: 28px;
+}
+
+.admin-modal__title {
+    margin: 0 0 12px;
+    color: #f8fafc;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.admin-modal__message {
+    margin: 0;
+    color: #cbd5e1;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.admin-modal__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.admin-button--danger {
+    background: #dc2626;
+    color: #ffffff;
+}
+
+.admin-button--danger:hover {
+    background: #b91c1c;
+}
+
+.admin-modal-open {
+    overflow: hidden;
+}
+
+@media (max-width: 700px) {
+    .admin-modal__actions {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,17 @@
+<div class="admin-modal" data-delete-confirmation-modal aria-hidden="true" hidden>
+    <div class="admin-modal__backdrop" data-delete-confirmation-cancel></div>
+
+    <section class="admin-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="delete-user-modal-title">
+        <h2 id="delete-user-modal-title" class="admin-modal__title">Delete user</h2>
+        <p class="admin-modal__message">Are you sure you want to delete this user?</p>
+
+        <div class="admin-modal__actions">
+            <button type="button" class="admin-button admin-button--danger" data-delete-confirmation-submit>
+                Yes, delete
+            </button>
+            <button type="button" class="admin-button admin-button--secondary" data-delete-confirmation-cancel>
+                No, cancel
+            </button>
+        </div>
+    </section>
+</div>

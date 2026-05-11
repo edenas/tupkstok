@@ -1,0 +1,96 @@
+.admin-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    min-width: 760px;
+    border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 20px 24px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.admin-table th {
+    background: #334155;
+    color: #e2e8f0;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
+
+.admin-table td {
+    border-top: 1px solid rgba(148, 163, 184, 0.18);
+    color: #cbd5e1;
+    font-size: 15px;
+}
+
+.admin-table tbody tr {
+    transition: background-color 160ms ease;
+}
+
+.admin-table tbody tr:hover {
+    background: rgba(51, 65, 85, 0.56);
+}
+
+.admin-table__actions-heading {
+    width: 150px;
+}
+
+.admin-table__actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.admin-icon-button {
+    display: inline-flex;
+    width: 36px;
+    height: 36px;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    cursor: pointer;
+    transition: background-color 160ms ease, color 160ms ease;
+}
+
+.admin-icon-button svg {
+    width: 18px;
+    height: 18px;
+}
+
+.admin-icon-button--edit {
+    color: #38bdf8;
+}
+
+.admin-icon-button--edit:hover {
+    background: rgba(14, 165, 233, 0.14);
+    color: #7dd3fc;
+}
+
+.admin-icon-button--delete {
+    color: #f87171;
+}
+
+.admin-icon-button--delete:hover {
+    background: rgba(248, 113, 113, 0.12);
+    color: #fca5a5;
+}
+
+.admin-icon-button:disabled {
+    cursor: default;
+    opacity: 1;
+}
+
+.admin-icon-button:focus-visible {
+    outline: 3px solid rgba(14, 165, 233, 0.6);
+    outline-offset: 2px;
+}
