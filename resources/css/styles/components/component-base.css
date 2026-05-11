@@ -1,0 +1,8 @@
+/* Reusable component classes and design tokens. */
+.button-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s ease;
+}

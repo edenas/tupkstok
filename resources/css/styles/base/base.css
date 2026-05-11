@@ -1,0 +1,14 @@
+/* Global base styles and utility tokens */
+:root {
+    color-scheme: light;
+    font-family: var(--font-sans, ui-sans-serif, system-ui, sans-serif);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--background, #ffffff);
+}

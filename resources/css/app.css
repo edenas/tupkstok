@@ -1,5 +1,11 @@
 @import 'tailwindcss';
 
+@import './styles/base/base.css';
+@import './styles/layouts/layout-base.css';
+@import './styles/components/component-base.css';
+@import './styles/pages/page-home.css';
+@import './styles/sections/section-hero.css';
+
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';

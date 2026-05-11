@@ -1,0 +1,4 @@
+/* Page-specific styles for the home page or welcome page */
+.page-welcome {
+    min-height: calc(100vh - 8rem);
+}

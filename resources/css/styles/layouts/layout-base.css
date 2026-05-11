@@ -1,0 +1,8 @@
+/* Layout-specific styling for headers, footers and page wrappers */
+.site-header {
+    min-height: 4rem;
+}
+
+.site-footer {
+    min-height: 3rem;
+}
