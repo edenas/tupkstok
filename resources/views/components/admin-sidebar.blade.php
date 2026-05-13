@@ -10,6 +10,9 @@
         <a href="{{ route('admin.users') }}" class="admin-sidebar__link {{ request()->routeIs('admin.users*') ? 'admin-sidebar__link--active' : '' }}">
             Users
         </a>
+        <a href="{{ route('admin.portfolio') }}" class="admin-sidebar__link {{ request()->routeIs('admin.portfolio*') ? 'admin-sidebar__link--active' : '' }}">
+            Portfolio
+        </a>
     </nav>
 
     <div class="admin-sidebar__footer">

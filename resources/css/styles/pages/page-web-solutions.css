@@ -1,0 +1,202 @@
+.web-solutions-page {
+    background: #f8fafc;
+    color: #1e293b;
+    padding: 88px 24px 104px;
+}
+
+.web-solutions-page__container {
+    width: min(100%, 1180px);
+    margin: 0 auto;
+}
+
+.web-solutions-page__hero {
+    max-width: 920px;
+    margin-bottom: 44px;
+}
+
+.web-solutions-page__eyebrow {
+    margin: 0 0 18px;
+    color: #0284c7;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.web-solutions-page__title {
+    margin: 0;
+    color: #0f172a;
+    font-size: clamp(42px, 7vw, 76px);
+    font-weight: 600;
+    line-height: 1.08;
+}
+
+.web-solutions-page__lead {
+    max-width: 780px;
+    margin: 28px 0 0;
+    color: #526174;
+    font-size: clamp(18px, 2vw, 22px);
+    line-height: 1.72;
+}
+
+.web-solutions-page__section {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+    padding: 34px;
+}
+
+.web-solutions-page__section + .web-solutions-page__section {
+    margin-top: 28px;
+}
+
+.web-solutions-page__section-header {
+    max-width: 720px;
+    margin-bottom: 26px;
+}
+
+.web-solutions-page__section-header h2 {
+    margin: 0 0 12px;
+    color: #0f172a;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.web-solutions-page__section-header p {
+    margin: 0;
+    color: #526174;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.web-solutions-page__services-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.web-solutions-page__service-card,
+.web-solutions-page__project-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: #f8fafc;
+    transition: border-color 180ms ease, transform 180ms ease, background-color 180ms ease;
+}
+
+.web-solutions-page__service-card {
+    min-height: 116px;
+    padding: 18px;
+}
+
+.web-solutions-page__service-card h3 {
+    margin: 0;
+    color: #1e3a5f;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.45;
+}
+
+.web-solutions-page__service-card:hover,
+.web-solutions-page__project-card:hover {
+    border-color: rgba(14, 165, 233, 0.34);
+    background: #ffffff;
+    transform: translateY(-2px);
+}
+
+.web-solutions-page__projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.web-solutions-page__project-card {
+    display: grid;
+    gap: 18px;
+    padding: 18px;
+}
+
+.web-solutions-page__logo-placeholder {
+    min-height: 104px;
+    border: 1px dashed #cbd5e1;
+    border-radius: 8px;
+    background: #f1f5f9;
+}
+
+.web-solutions-page__project-content h3 {
+    margin: 0 0 10px;
+    color: #0f172a;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.web-solutions-page__project-description {
+    min-height: 64px;
+    color: #526174;
+    font-size: 15px;
+    line-height: 1.65;
+}
+
+.web-solutions-page__project-description p {
+    margin: 0;
+}
+
+.web-solutions-page__project-link {
+    display: inline-flex;
+    min-height: 42px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background: #0284c7;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 180ms ease;
+}
+
+.web-solutions-page__project-link:hover {
+    background: #0369a1;
+}
+
+.web-solutions-page__project-link:focus-visible {
+    outline: 3px solid rgba(14, 165, 233, 0.6);
+    outline-offset: 3px;
+}
+
+@media (max-width: 1100px) {
+    .web-solutions-page__services-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .web-solutions-page__projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 760px) {
+    .web-solutions-page {
+        padding: 70px 20px 86px;
+    }
+
+    .web-solutions-page__services-grid,
+    .web-solutions-page__projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .web-solutions-page {
+        padding: 52px 16px 68px;
+    }
+
+    .web-solutions-page__hero {
+        margin-bottom: 32px;
+    }
+
+    .web-solutions-page__section {
+        padding: 22px;
+    }
+}

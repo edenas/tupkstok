@@ -7,13 +7,21 @@ export function initializeDeleteConfirmationModal() {
     }
 
     const submitButton = modal.querySelector('[data-delete-confirmation-submit]');
+    const title = modal.querySelector('[data-delete-confirmation-title]');
+    const message = modal.querySelector('[data-delete-confirmation-message]');
     const cancelButtons = modal.querySelectorAll('[data-delete-confirmation-cancel]');
+    const defaultTitle = title?.textContent ?? '';
+    const defaultMessage = message?.textContent ?? '';
+    const defaultSubmitLabel = submitButton?.textContent ?? '';
     let selectedDeleteForm = null;
 
     deleteButtons.forEach((deleteButton) => {
         deleteButton.addEventListener('click', () => {
             const deleteFormId = deleteButton.dataset.deleteFormId;
             selectedDeleteForm = document.getElementById(deleteFormId);
+            title.textContent = deleteButton.dataset.deleteConfirmationTitle || defaultTitle;
+            message.textContent = deleteButton.dataset.deleteConfirmationMessage || defaultMessage;
+            submitButton.textContent = deleteButton.dataset.deleteConfirmationSubmitLabel || defaultSubmitLabel;
             openDeleteConfirmationModal(modal, submitButton);
         });
     });
@@ -21,6 +29,7 @@ export function initializeDeleteConfirmationModal() {
     cancelButtons.forEach((cancelButton) => {
         cancelButton.addEventListener('click', () => {
             selectedDeleteForm = null;
+            resetDeleteConfirmationModalContent(title, message, submitButton, defaultTitle, defaultMessage, defaultSubmitLabel);
             closeDeleteConfirmationModal(modal);
         });
     });
@@ -34,6 +43,7 @@ export function initializeDeleteConfirmationModal() {
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape' && isDeleteConfirmationModalOpen(modal)) {
             selectedDeleteForm = null;
+            resetDeleteConfirmationModalContent(title, message, submitButton, defaultTitle, defaultMessage, defaultSubmitLabel);
             closeDeleteConfirmationModal(modal);
         }
     });
@@ -56,4 +66,10 @@ function closeDeleteConfirmationModal(modal) {
 
 function isDeleteConfirmationModalOpen(modal) {
     return modal.classList.contains('admin-modal--is-open');
+}
+
+function resetDeleteConfirmationModalContent(title, message, submitButton, defaultTitle, defaultMessage, defaultSubmitLabel) {
+    title.textContent = defaultTitle;
+    message.textContent = defaultMessage;
+    submitButton.textContent = defaultSubmitLabel;
 }

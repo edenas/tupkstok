@@ -43,10 +43,43 @@
     width: 150px;
 }
 
+.admin-table__title-link {
+    color: #e2e8f0;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 160ms ease, text-decoration-color 160ms ease;
+}
+
+.admin-table__title-link:hover {
+    color: #7dd3fc;
+    text-decoration: underline;
+    text-decoration-color: rgba(125, 211, 252, 0.7);
+    text-underline-offset: 4px;
+}
+
+.admin-table__title-link:focus-visible {
+    border-radius: 4px;
+    outline: 3px solid rgba(14, 165, 233, 0.6);
+    outline-offset: 3px;
+}
+
 .admin-table__actions {
     display: flex;
     align-items: center;
     gap: 12px;
+}
+
+.admin-table__position-controls {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.admin-table__position-number {
+    min-width: 2ch;
+    color: #e2e8f0;
+    font-weight: 700;
 }
 
 .admin-icon-button {
@@ -85,9 +118,19 @@
     color: #fca5a5;
 }
 
+.admin-icon-button--position {
+    color: #93c5fd;
+}
+
+.admin-icon-button--position:hover {
+    background: rgba(59, 130, 246, 0.14);
+    color: #bfdbfe;
+}
+
 .admin-icon-button:disabled {
     cursor: default;
-    opacity: 1;
+    color: #64748b;
+    opacity: 0.45;
 }
 
 .admin-icon-button:focus-visible {

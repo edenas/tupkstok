@@ -11,6 +11,11 @@
 @import './styles/admin/admin-modals.css';
 @import './styles/components/component-base.css';
 @import './styles/pages/page-home.css';
+@import './styles/pages/page-about.css';
+@import './styles/pages/page-web-solutions.css';
+@import './styles/pages/page-mobile-apps.css';
+@import './styles/pages/page-animations.css';
+@import './styles/pages/page-contact.css';
 @import './styles/sections/section-hero.css';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';

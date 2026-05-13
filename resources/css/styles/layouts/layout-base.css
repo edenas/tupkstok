@@ -1,8 +1,129 @@
-/* Layout-specific styling for headers, footers and page wrappers */
+/* Public layout styling for headers, footers and page wrappers. */
+.public-body {
+    min-height: 100vh;
+    background: #f8fafc;
+    color: #0f172a;
+    font-family: 'Manrope', var(--font-sans, ui-sans-serif, system-ui, sans-serif);
+    line-height: 1.6;
+}
+
+.public-shell {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.public-shell > main {
+    flex: 1;
+}
+
 .site-header {
-    min-height: 4rem;
+    min-height: 78px;
+    border-bottom: 1px solid #e2e8f0;
+    background: rgba(255, 255, 255, 0.96);
+}
+
+.site-header__inner {
+    display: flex;
+    width: min(100%, 1200px);
+    align-items: center;
+    justify-content: space-between;
+    gap: 56px;
+    margin: 0 auto;
+    padding: 20px 32px;
+}
+
+.site-header__brand {
+    display: inline-flex;
+    align-items: center;
+    flex: 0 0 auto;
+    color: #0f172a;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none;
+}
+
+.site-header__logo {
+    display: block;
+    width: auto;
+    height: 36px;
+}
+
+.site-header__nav-list {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin: 0;
+    padding: 0;
+    color: #334155;
+    font-size: 14.5px;
+    font-weight: 500;
+    line-height: 1;
+    list-style: none;
+}
+
+.site-header__nav-list a {
+    color: inherit;
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    text-decoration: none;
+    transition: color 160ms ease;
+}
+
+.site-header__nav-list a:hover,
+.site-header__nav-list a:focus-visible {
+    color: #0284c7;
+}
+
+.site-header__nav-list a:focus-visible {
+    border-radius: 4px;
+    outline: 3px solid rgba(14, 165, 233, 0.28);
+    outline-offset: 4px;
 }
 
 .site-footer {
     min-height: 3rem;
+    border-top: 1px solid #e2e8f0;
+    background: #ffffff;
+    color: #64748b;
+    font-size: 14px;
+    padding: 24px;
+}
+
+.site-footer__inner {
+    width: min(100%, 1180px);
+    margin: 0 auto;
+    text-align: center;
+}
+
+.site-footer p {
+    margin: 0;
+}
+
+@media (max-width: 760px) {
+    .site-header__inner {
+        align-items: center;
+        flex-direction: column;
+        gap: 14px;
+        padding: 18px 20px 20px;
+    }
+
+    .site-header__logo {
+        height: 34px;
+    }
+
+    .site-header__nav-list {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px 18px;
+        font-size: 14px;
+        line-height: 1.2;
+        text-align: center;
+    }
+
+    .site-header__nav-list a {
+        min-height: 32px;
+    }
 }
