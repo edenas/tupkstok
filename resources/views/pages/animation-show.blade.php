@@ -5,7 +5,7 @@
 
 <section class="animation-post-page">
     <div class="animation-post-page__container">
-        <a href="{{ route('animations') }}" class="animation-post-page__back-link">Back to Animations</a>
+        <a href="{{ route('graphics') }}" class="animation-post-page__back-link">Back to Graphics</a>
 
         <header class="animation-post-page__hero">
             <p class="animation-post-page__category">{{ $portfolioPost->category }}</p>

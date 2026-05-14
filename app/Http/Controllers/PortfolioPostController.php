@@ -7,14 +7,15 @@ use App\Models\PortfolioPost;
 class PortfolioPostController extends Controller
 {
     /**
-     * Display the public animations portfolio listing.
+     * Display the public graphics portfolio listing.
      */
     public function index()
     {
         $portfolioPosts = PortfolioPost::query()
             ->orderBy('position')
             ->orderByDesc('created_at')
-            ->get();
+            ->paginate(12)
+            ->withPath(route('graphics'));
 
         return view('pages.animations', compact('portfolioPosts'));
     }

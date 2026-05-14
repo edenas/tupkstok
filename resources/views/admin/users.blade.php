@@ -39,10 +39,18 @@
                 <tbody>
                     @foreach ($users as $user)
                         <tr>
-                            <td>{{ $user->name }}</td>
+                            <td>
+                                <a href="{{ route('admin.users.edit', $user->id) }}" class="admin-table__title-link">
+                                    {{ $user->name }}
+                                </a>
+                            </td>
                             <td>{{ $user->email }}</td>
                             <td>{{ ucfirst($user->role) }}</td>
-                            <td>{{ $user->created_at->format('Y-m-d H:i') }}</td>
+                            <td>
+                                <time data-local-timestamp="{{ $user->created_at->toIso8601String() }}" datetime="{{ $user->created_at->toIso8601String() }}">
+                                    {{ $user->created_at->format('Y-m-d H:i') }}
+                                </time>
+                            </td>
                             <td>
                                 <div class="admin-table__actions">
                                     <a href="{{ route('admin.users.edit', $user->id) }}" title="Edit user" aria-label="Edit {{ $user->name }}" class="admin-icon-button admin-icon-button--edit">
@@ -73,6 +81,8 @@
                 </tbody>
             </table>
         </div>
+
+        {{ $users->onEachSide(1)->links('pagination.admin') }}
     </section>
 
     <x-admin-delete-confirmation-modal />

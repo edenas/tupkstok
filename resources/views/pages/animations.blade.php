@@ -26,10 +26,12 @@
                             <p class="animations-page__description">{{ str($post->short_description)->limit(140) }}</p>
                         </div>
 
-                        <a href="{{ route('animations.show', $post) }}" class="animations-page__button">View Project</a>
+                        <a href="{{ route('graphics.show', $post) }}" class="animations-page__button">View Project</a>
                     </article>
                 @endforeach
             </div>
+
+            {{ $portfolioPosts->onEachSide(1)->links('pagination.animations') }}
         @else
             <div class="animations-page__empty">
                 <p>Portfolio posts will appear here soon.</p>

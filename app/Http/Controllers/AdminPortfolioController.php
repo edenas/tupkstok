@@ -18,11 +18,15 @@ class AdminPortfolioController extends Controller
     public function index()
     {
         $portfolioPosts = PortfolioPost::query()
-            ->orderBy('position')
             ->orderByDesc('created_at')
-            ->get();
+            ->paginate(12)
+            ->withPath(route('admin.portfolio'));
 
-        return view('admin.portfolio', compact('portfolioPosts'));
+        return view('admin.portfolio', [
+            'maxPosition' => (int) PortfolioPost::max('position'),
+            'minPosition' => (int) PortfolioPost::min('position'),
+            'portfolioPosts' => $portfolioPosts,
+        ]);
     }
 
     /**

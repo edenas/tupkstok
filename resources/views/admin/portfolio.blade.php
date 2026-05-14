@@ -45,7 +45,11 @@
                                 </a>
                             </td>
                             <td>{{ $portfolioPost->category }}</td>
-                            <td>{{ $portfolioPost->created_at->format('Y-m-d H:i') }}</td>
+                            <td>
+                                <time data-local-timestamp="{{ $portfolioPost->created_at->toIso8601String() }}" datetime="{{ $portfolioPost->created_at->toIso8601String() }}">
+                                    {{ $portfolioPost->created_at->format('Y-m-d H:i') }}
+                                </time>
+                            </td>
                             <td>
                                 <div class="admin-table__position-controls">
                                     <span class="admin-table__position-number">{{ $portfolioPost->position }}</span>
@@ -58,7 +62,7 @@
                                             title="Move up"
                                             aria-label="Move {{ $portfolioPost->title }} up"
                                             class="admin-icon-button admin-icon-button--position"
-                                            @if ($loop->first) disabled @endif
+                                            @if ($portfolioPost->position === $minPosition) disabled @endif
                                         >
                                             <svg viewBox="0 0 20 20" focusable="false">
                                                 <path fill="currentColor" fill-rule="evenodd" d="M10 4.5a1 1 0 0 1 .71.29l5 5a1 1 0 1 1-1.42 1.42L11 7.91V15a1 1 0 1 1-2 0V7.91l-3.29 3.3a1 1 0 0 1-1.42-1.42l5-5A1 1 0 0 1 10 4.5Z" clip-rule="evenodd" />
@@ -74,7 +78,7 @@
                                             title="Move down"
                                             aria-label="Move {{ $portfolioPost->title }} down"
                                             class="admin-icon-button admin-icon-button--position"
-                                            @if ($loop->last) disabled @endif
+                                            @if ($portfolioPost->position === $maxPosition) disabled @endif
                                         >
                                             <svg viewBox="0 0 20 20" focusable="false">
                                                 <path fill="currentColor" fill-rule="evenodd" d="M10 15.5a1 1 0 0 1-.71-.29l-5-5a1 1 0 1 1 1.42-1.42L9 12.09V5a1 1 0 1 1 2 0v7.09l3.29-3.3a1 1 0 0 1 1.42 1.42l-5 5a1 1 0 0 1-.71.29Z" clip-rule="evenodd" />
@@ -117,6 +121,8 @@
                 </tbody>
             </table>
         </div>
+
+        {{ $portfolioPosts->onEachSide(1)->links('pagination.admin') }}
     </section>
 
     <x-admin-delete-confirmation-modal title="Delete post" message="Are you sure you want to delete this portfolio post?" />

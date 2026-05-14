@@ -9,7 +9,7 @@
                 <li><a href="{{ route('about-me') }}">About me</a></li>
                 <li><a href="{{ route('web-solutions') }}">Web Solutions</a></li>
                 <li><a href="{{ route('mobile-apps') }}">Mobile Apps</a></li>
-                <li><a href="{{ route('animations') }}">Animations</a></li>
+                <li><a href="{{ route('graphics') }}">Graphics</a></li>
                 <li><a href="{{ route('contact') }}">Contact</a></li>
             </ul>
         </nav>

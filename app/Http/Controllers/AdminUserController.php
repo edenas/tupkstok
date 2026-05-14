@@ -20,7 +20,10 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::query()
+            ->orderByDesc('created_at')
+            ->paginate(12)
+            ->withPath(route('admin.users'));
 
         return view('admin.users', compact('users'));
     }

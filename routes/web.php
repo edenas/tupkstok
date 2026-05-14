@@ -4,6 +4,8 @@ use App\Http\Controllers\AdminPortfolioController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PortfolioPostController;
+use App\Models\PortfolioPost;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -26,8 +28,14 @@ Route::get('/mobile-apps', function () {
     return view('pages.mobile-apps');
 })->name('mobile-apps');
 
-Route::get('/animations', [PortfolioPostController::class, 'index'])->name('animations');
-Route::get('/animations/{portfolioPost}', [PortfolioPostController::class, 'show'])->name('animations.show');
+Route::get('/graphics', [PortfolioPostController::class, 'index'])->name('graphics');
+Route::get('/graphics/{portfolioPost}', [PortfolioPostController::class, 'show'])->name('graphics.show');
+Route::get('/animations', function (Request $request) {
+    return redirect()->route('graphics', $request->query(), 301);
+});
+Route::get('/animations/{portfolioPost}', function (Request $request, PortfolioPost $portfolioPost) {
+    return redirect()->route('graphics.show', ['portfolioPost' => $portfolioPost] + $request->query(), 301);
+});
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');

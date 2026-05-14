@@ -137,3 +137,57 @@
     outline: 3px solid rgba(14, 165, 233, 0.6);
     outline-offset: 2px;
 }
+
+.admin-pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    border-top: 1px solid rgba(148, 163, 184, 0.18);
+    padding: 18px 24px 20px;
+}
+
+.admin-pagination__link,
+.admin-pagination__ellipsis {
+    display: inline-flex;
+    min-width: 38px;
+    min-height: 38px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(148, 163, 184, 0.26);
+    border-radius: 6px;
+    background: rgba(15, 23, 42, 0.18);
+    color: #cbd5e1;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+}
+
+.admin-pagination__link {
+    transition: border-color 160ms ease, background-color 160ms ease, color 160ms ease;
+}
+
+.admin-pagination__link:hover,
+.admin-pagination__link:focus-visible {
+    border-color: rgba(56, 189, 248, 0.54);
+    background: rgba(14, 165, 233, 0.14);
+    color: #7dd3fc;
+}
+
+.admin-pagination__link:focus-visible {
+    outline: 3px solid rgba(14, 165, 233, 0.6);
+    outline-offset: 2px;
+}
+
+.admin-pagination__link--active {
+    border-color: #38bdf8;
+    background: #0ea5e9;
+    color: #062033;
+}
+
+.admin-pagination__ellipsis {
+    border-color: transparent;
+    background: transparent;
+    color: #64748b;
+}
