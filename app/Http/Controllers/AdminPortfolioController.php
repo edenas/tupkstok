@@ -44,6 +44,7 @@ class AdminPortfolioController extends Controller
     {
         $validated = $request->validate($this->validationRules());
         $validated['project_details'] = $this->normalizeProjectDetails($validated['project_details'] ?? []);
+        $validated['project_details_en'] = $this->normalizeProjectDetails($validated['project_details_en'] ?? []);
         $validated['thumbnail'] = $this->storeThumbnail($request);
         $validated['position'] = ((int) PortfolioPost::max('position')) + 1;
 
@@ -71,6 +72,7 @@ class AdminPortfolioController extends Controller
     {
         $validated = $request->validate($this->validationRules(false));
         $validated['project_details'] = $this->normalizeProjectDetails($validated['project_details'] ?? []);
+        $validated['project_details_en'] = $this->normalizeProjectDetails($validated['project_details_en'] ?? []);
 
         if ($request->hasFile('thumbnail')) {
             if ($portfolioPost->thumbnail) {
@@ -191,12 +193,19 @@ class AdminPortfolioController extends Controller
     {
         return [
             'title' => 'required|string|max:255',
+            'title_en' => 'nullable|string|max:255',
             'category' => 'required|string|max:120',
+            'category_en' => 'nullable|string|max:120',
             'short_description' => 'nullable|string|max:1000',
+            'short_description_en' => 'nullable|string|max:1000',
             'content_heading' => 'nullable|string|max:255',
+            'content_heading_en' => 'nullable|string|max:255',
             'description' => 'nullable|string|max:10000',
+            'description_en' => 'nullable|string|max:10000',
             'project_details' => 'nullable|array',
             'project_details.*' => 'nullable|string|max:255',
+            'project_details_en' => 'nullable|array',
+            'project_details_en.*' => 'nullable|string|max:255',
             'thumbnail' => [
                 $isThumbnailRequired ? 'required' : 'nullable',
                 'image',

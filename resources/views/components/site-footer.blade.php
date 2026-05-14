@@ -1,5 +1,5 @@
 <footer class="site-footer">
     <div class="site-footer__inner">
-        <p>epgalerija</p>
+        <p>{{ __('messages.footer') }}</p>
     </div>
 </footer>

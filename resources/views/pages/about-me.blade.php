@@ -13,10 +13,10 @@
             </figure>
 
             <div class="about-page__intro-copy">
-            <p class="about-page__eyebrow">WEB ir mobiliųjų aplikacijų kūrimas</p>
-                <h1 class="about-page__title">Apie mane</h1>
+            <p class="about-page__eyebrow">{{ __('messages.about.eyebrow') }}</p>
+                <h1 class="about-page__title">{{ __('messages.about.title') }}</h1>
                 <p class="about-page__lead">
-                Aš esu Edenas Pocius – WEB, mobiliųjų aplikacijų ir skaitmeninių sprendimų kūrėjas, turintis ilgametę patirtį IT, dizaino ir kūrybinių projektų srityse.
+                {{ __('messages.about.lead') }}
                 </p>
             </div>
         </div>
@@ -42,47 +42,32 @@
             ];
 
             $aboutServiceItems = [
-                ['label' => 'Interneto svetainių kūrimas', 'icon' => 'globe'],
-                ['label' => 'WEB aplikacijų kūrimas', 'icon' => 'app-window'],
-                ['label' => 'Android mobiliųjų aplikacijų kūrimas', 'icon' => 'smartphone'],
-                ['label' => 'UI/UX dizainas', 'icon' => 'pen-tool'],
-                ['label' => 'Front-End development', 'icon' => 'code'],
-                ['label' => 'Responsive dizainas', 'icon' => 'monitor-smartphone'],
-                ['label' => '2D ir 3D animacijų kūrimas', 'icon' => 'play'],
-                ['label' => 'Motion graphics ir vizualizacijos', 'icon' => 'clapperboard'],
-                ['label' => 'Socialinių tinklų vizualinis turinys', 'icon' => 'share-2'],
-                ['label' => 'Reklamos dizainas', 'icon' => 'megaphone'],
-                ['label' => 'Prekių ženklų vizualinis identitetas', 'icon' => 'palette'],
-                ['label' => 'AI sprendimų integracija kūrybiniuose ir WEB projektuose', 'icon' => 'brain-circuit'],
+                ['key' => 'website_development', 'icon' => 'globe'],
+                ['key' => 'web_application_development', 'icon' => 'app-window'],
+                ['key' => 'android_mobile_application_development', 'icon' => 'smartphone'],
+                ['key' => 'ui_ux_design', 'icon' => 'pen-tool'],
+                ['key' => 'front_end_development', 'icon' => 'code'],
+                ['key' => 'responsive_design', 'icon' => 'monitor-smartphone'],
+                ['key' => 'animation_production', 'icon' => 'play'],
+                ['key' => 'motion_graphics', 'icon' => 'clapperboard'],
+                ['key' => 'social_media_visual_content', 'icon' => 'share-2'],
+                ['key' => 'advertising_design', 'icon' => 'megaphone'],
+                ['key' => 'brand_visual_identity', 'icon' => 'palette'],
+                ['key' => 'ai_solutions_integration', 'icon' => 'brain-circuit'],
             ];
         @endphp
 
         <div class="about-page__content-grid">
             <div class="about-page__content-main">
             <article class="about-page__text-panel">
-                <p>
-                    Specializuojuosi interneto svetainių, vartotojo sąsajų (UI/UX), mobiliųjų aplikacijų bei vizualinių sprendimų kūrime, apjungiant dizainą, programavimą ir šiuolaikines technologijas.
-                </p>
-                <p>
-                    Kuriu modernias, funkcionalias ir estetiškai išbaigtas interneto svetaines bei aplikacijas, orientuotas į vartotojo patirtį, našumą ir vizualinį identitetą.
-                </p>
-                <p>
-                    Dirbu tiek su WEB projektais, tiek su Android mobiliųjų aplikacijų vystymu, naudodamas modernias technologijas ir AI įrankius kūrybiniams bei techniniams procesams optimizuoti.
-                </p>
-                <p>
-                    Taip pat turiu stiprią patirtį grafikos dizaino, animacijos ir vizualinio turinio kūrimo srityse.
-                </p>
-                <p>
-                    Mano darbai apima ne tik programavimą, bet ir prekių ženklų vizualinį identitetą, reklaminį turinį, judančią grafiką bei kūrybinius sprendimus skaitmeninėje erdvėje.
-                </p>
-                <p>
-                    Šiuo metu aktyviai vystau WEB ir mobiliųjų aplikacijų projektus, gilinu Full Stack development žinias bei nuolat ieškau naujų būdų, kaip apjungti technologijas, dizainą ir vartotojo patirtį į modernius skaitmeninius produktus.
-                </p>
+                @foreach (__('messages.about.paragraphs') as $paragraph)
+                    <p>{{ $paragraph }}</p>
+                @endforeach
             </article>
 
             <div class="about-page__side-column">
             <section class="about-page__tech-section about-page__tech-panel" aria-labelledby="about-tech-title">
-                <h2 class="about-page__tech-title" id="about-tech-title">Technologies & Creative Tools</h2>
+                <h2 class="about-page__tech-title" id="about-tech-title">{{ __('messages.about.tech') }}</h2>
                 <div class="about-page__tech-grid">
                     @foreach ($aboutTechItems as $item)
                         <a href="#" class="about-page__tech-card about-page__hover-card" aria-label="{{ $item['label'] }}">
@@ -94,8 +79,8 @@
             </section>
 
             <section class="about-page__social-card" aria-label="Social links">
-                <h2 class="about-page__social-title">Professional links</h2>
-                <p class="about-page__social-subtitle">Code repositories and professional profile.</p>
+                <h2 class="about-page__social-title">{{ __('messages.about.links') }}</h2>
+                <p class="about-page__social-subtitle">{{ __('messages.about.links_subtitle') }}</p>
                 <div class="about-page__social-grid">
                     <a href="https://github.com/edenas" class="about-page__social-link about-page__hover-card" target="_blank" rel="noopener noreferrer">
                         <svg class="about-page__social-icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -117,13 +102,13 @@
 
             <div class="about-page__services-column">
             <aside class="about-page__services-panel">
-                <h2 class="about-page__section-title">Paslaugos</h2>
-                <p class="about-page__section-subtitle">Skaitmeniniai sprendimai verslui ir kūrybiniams projektams.</p>
+                <h2 class="about-page__section-title">{{ __('messages.about.services') }}</h2>
+                <p class="about-page__section-subtitle">{{ __('messages.about.services_subtitle') }}</p>
                 <ul class="about-page__services-list">
                     @foreach ($aboutServiceItems as $item)
                         <li class="about-page__hover-card">
                             <i data-lucide="{{ $item['icon'] }}" class="about-page__service-icon" aria-hidden="true"></i>
-                            <span>{{ $item['label'] }}</span>
+                            <span>{{ __('messages.about.service_items.'.$item['key']) }}</span>
                         </li>
                     @endforeach
                 </ul>

@@ -1,24 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
-@php($projectDetails = $portfolioPost->project_details ?? [])
+@php($projectDetails = $portfolioPost->localizedProjectDetails())
 
 <section class="animation-post-page">
     <div class="animation-post-page__container">
-        <a href="{{ route('graphics') }}" class="animation-post-page__back-link">Back to Graphics</a>
+        <a href="{{ route('graphics') }}" class="animation-post-page__back-link">{{ __('messages.common.back_to_graphics') }}</a>
 
         <header class="animation-post-page__hero">
-            <p class="animation-post-page__category">{{ $portfolioPost->category }}</p>
-            <h1 class="animation-post-page__title">{{ $portfolioPost->title }}</h1>
+            <p class="animation-post-page__category">{{ $portfolioPost->localizedCategory() }}</p>
+            <h1 class="animation-post-page__title">{{ $portfolioPost->localizedTitle() }}</h1>
         </header>
 
         @if ($youtubeEmbedUrl = $portfolioPost->youtubeEmbedUrl())
             <section class="animation-post-page__video-card">
-                <h2 class="animation-post-page__video-title">Video</h2>
+                <h2 class="animation-post-page__video-title">{{ __('messages.graphics.video') }}</h2>
                 <div class="animation-post-page__video-frame">
                     <iframe
                         src="{{ $youtubeEmbedUrl }}"
-                        title="{{ $portfolioPost->title }} video"
+                        title="{{ $portfolioPost->localizedTitle() }} video"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen
                     ></iframe>
@@ -29,12 +29,12 @@
         <div class="animation-post-page__details-row {{ $portfolioPost->post_image ? 'animation-post-page__details-row--with-image' : '' }}">
             <article class="animation-post-page__description-card">
                 <div class="animation-post-page__description">
-                    @if ($portfolioPost->content_heading)
-                        <h2>{{ $portfolioPost->content_heading }}</h2>
+                    @if ($portfolioPost->localizedContentHeading())
+                        <h2>{{ $portfolioPost->localizedContentHeading() }}</h2>
                     @endif
 
-                    @if ($portfolioPost->description)
-                        <p>{{ $portfolioPost->description }}</p>
+                    @if ($portfolioPost->localizedDescription())
+                        <p>{{ $portfolioPost->localizedDescription() }}</p>
                     @endif
                 </div>
             </article>
@@ -43,14 +43,14 @@
                 @if ($portfolioPost->post_image)
                     <article class="animation-post-page__image-card">
                         <div class="animation-post-page__image">
-                            <img src="{{ $portfolioPost->postImageUrl() }}" alt="{{ $portfolioPost->title }} project image">
+                            <img src="{{ $portfolioPost->postImageUrl() }}" alt="{{ $portfolioPost->localizedTitle() }} project image">
                         </div>
                     </article>
                 @endif
 
                 @if (! empty($projectDetails))
                     <section class="animation-post-page__details-card">
-                        <h2>Projekto detalės</h2>
+                        <h2>{{ __('messages.graphics.details') }}</h2>
                         <ul>
                             @foreach ($projectDetails as $detail)
                                 <li>

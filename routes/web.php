@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminPortfolioController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PortfolioPostController;
 use App\Models\PortfolioPost;
@@ -27,6 +28,8 @@ Route::get('/web-solutions', function () {
 Route::get('/mobile-apps', function () {
     return view('pages.mobile-apps');
 })->name('mobile-apps');
+
+Route::get('/language/{locale}', [LanguageController::class, 'switch'])->name('language.switch');
 
 Route::get('/graphics', [PortfolioPostController::class, 'index'])->name('graphics');
 Route::get('/graphics/{portfolioPost}', [PortfolioPostController::class, 'show'])->name('graphics.show');

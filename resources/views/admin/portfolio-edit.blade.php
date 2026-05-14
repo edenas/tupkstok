@@ -3,7 +3,7 @@
 @section('content')
 <div class="admin-page admin-page--edit-user">
     <a href="{{ route('admin.portfolio') }}" class="admin-back-link">
-        Back to portfolio
+        {{ __('messages.admin.portfolio') }}
     </a>
 
     <div class="admin-page__header">
@@ -24,7 +24,7 @@
             'portfolioPost' => $portfolioPost,
             'thumbnailRemoveAction' => route('admin.portfolio.thumbnail.destroy', $portfolioPost->id),
             'thumbnailRemoveFormId' => 'remove-portfolio-thumbnail-form-' . $portfolioPost->id,
-            'submitButtonLabel' => 'Save',
+            'submitButtonLabel' => __('messages.admin.save'),
         ])
     </section>
 

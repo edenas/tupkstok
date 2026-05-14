@@ -2,6 +2,10 @@
     <div class="admin-topbar__spacer" aria-hidden="true"></div>
 
     <div class="admin-topbar__user">
+        <div class="admin-topbar__language-switcher" aria-label="Language">
+            <a href="{{ route('language.switch', 'lt') }}" class="admin-language-link {{ app()->getLocale() === 'lt' ? 'admin-language-link--active' : '' }}">LT</a>
+            <a href="{{ route('language.switch', 'en') }}" class="admin-language-link {{ app()->getLocale() === 'en' ? 'admin-language-link--active' : '' }}">EN</a>
+        </div>
         <span class="admin-topbar__user-name">{{ auth()->user()->name }}</span>
         <span class="admin-topbar__dropdown-indicator" aria-hidden="true">
             <svg viewBox="0 0 20 20" focusable="false">

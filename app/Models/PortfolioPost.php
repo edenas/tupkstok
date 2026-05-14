@@ -7,11 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 
 #[Fillable([
     'title',
+    'title_en',
     'category',
+    'category_en',
     'short_description',
+    'short_description_en',
     'content_heading',
+    'content_heading_en',
     'description',
+    'description_en',
     'project_details',
+    'project_details_en',
     'thumbnail',
     'post_image',
     'youtube_url',
@@ -27,7 +33,59 @@ class PortfolioPost extends Model
     protected $casts = [
         'position' => 'integer',
         'project_details' => 'array',
+        'project_details_en' => 'array',
     ];
+
+    public function localized(string $field): mixed
+    {
+        if (app()->getLocale() !== 'en') {
+            return $this->{$field};
+        }
+
+        $englishField = $field.'_en';
+        $englishValue = $this->{$englishField} ?? null;
+
+        if (is_array($englishValue)) {
+            return $englishValue !== [] ? $englishValue : $this->{$field};
+        }
+
+        return filled($englishValue) ? $englishValue : $this->{$field};
+    }
+
+    public function localizedTitle(): string
+    {
+        return (string) $this->localized('title');
+    }
+
+    public function localizedCategory(): string
+    {
+        return (string) $this->localized('category');
+    }
+
+    public function localizedShortDescription(): ?string
+    {
+        return $this->localized('short_description');
+    }
+
+    public function localizedContentHeading(): ?string
+    {
+        return $this->localized('content_heading');
+    }
+
+    public function localizedDescription(): ?string
+    {
+        return $this->localized('description');
+    }
+
+    /**
+     * @return array<int, string>
+     */
+    public function localizedProjectDetails(): array
+    {
+        $details = $this->localized('project_details');
+
+        return is_array($details) ? $details : [];
+    }
 
     /**
      * Get the public URL for the stored thumbnail.

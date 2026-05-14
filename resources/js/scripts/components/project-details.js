@@ -5,19 +5,20 @@ export function initializeProjectDetails() {
         const input = field.querySelector('[data-project-detail-input]');
         const addButton = field.querySelector('[data-project-detail-add]');
         const list = field.querySelector('[data-project-detail-list]');
+        const inputName = field.dataset.projectDetailName || 'project_details[]';
 
         if (!input || !addButton || !list) {
             return;
         }
 
         addButton.addEventListener('click', () => {
-            addProjectDetail(input, list);
+            addProjectDetail(input, list, inputName);
         });
 
         input.addEventListener('keydown', (event) => {
             if (event.key === 'Enter') {
                 event.preventDefault();
-                addProjectDetail(input, list);
+                addProjectDetail(input, list, inputName);
             }
         });
 
@@ -31,26 +32,26 @@ export function initializeProjectDetails() {
     });
 }
 
-function addProjectDetail(input, list) {
+function addProjectDetail(input, list, inputName) {
     const value = input.value.trim();
 
     if (!value) {
         return;
     }
 
-    list.appendChild(createProjectDetailItem(value));
+    list.appendChild(createProjectDetailItem(value, inputName));
     input.value = '';
     input.focus();
 }
 
-function createProjectDetailItem(value) {
+function createProjectDetailItem(value, inputName) {
     const item = document.createElement('div');
     item.className = 'admin-form__project-detail-item';
     item.dataset.projectDetailItem = '';
 
     const hiddenInput = document.createElement('input');
     hiddenInput.type = 'hidden';
-    hiddenInput.name = 'project_details[]';
+    hiddenInput.name = inputName;
     hiddenInput.value = value;
 
     const label = document.createElement('span');

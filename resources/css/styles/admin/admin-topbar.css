@@ -33,6 +33,33 @@
     height: 100%;
 }
 
+.admin-topbar__language-switcher {
+    display: inline-flex;
+    gap: 6px;
+    margin-right: 8px;
+}
+
+.admin-language-link {
+    display: inline-flex;
+    min-width: 32px;
+    min-height: 30px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    border-radius: 6px;
+    background: rgba(15, 23, 42, 0.18);
+    color: #cbd5e1;
+    font-size: 12px;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.admin-language-link:hover,
+.admin-language-link--active {
+    border-color: rgba(56, 189, 248, 0.55);
+    color: #7dd3fc;
+}
+
 @media (max-width: 900px) {
     .admin-topbar {
         padding: 0 22px;

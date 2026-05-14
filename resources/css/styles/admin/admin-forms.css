@@ -13,6 +13,44 @@
     gap: 26px;
 }
 
+.admin-form-tabs {
+    display: inline-flex;
+    width: fit-content;
+    gap: 8px;
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    border-radius: 8px;
+    background: rgba(15, 23, 42, 0.42);
+    padding: 6px;
+}
+
+.admin-form-tabs__button {
+    min-width: 58px;
+    min-height: 38px;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: #94a3b8;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 800;
+    transition: background-color 160ms ease, color 160ms ease;
+}
+
+.admin-form-tabs__button:hover,
+.admin-form-tabs__button--active {
+    background: #0ea5e9;
+    color: #062033;
+}
+
+.admin-form-tabs__panel {
+    display: grid;
+    gap: 26px;
+}
+
+.admin-form-tabs__panel--hidden {
+    display: none;
+}
+
 .admin-form-card {
     display: grid;
     gap: 22px;

@@ -6,3 +6,57 @@
     border-radius: 0.5rem;
     transition: background-color 0.2s ease;
 }
+
+.public-surface {
+    border: 1px solid var(--public-border);
+    border-radius: var(--public-radius);
+    background: var(--public-card);
+    box-shadow: var(--public-shadow);
+}
+
+.public-container {
+    width: min(100%, 1640px);
+    margin-inline: auto;
+}
+
+.public-section-eyebrow {
+    color: var(--public-accent);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.public-card {
+    border: 1px solid var(--public-border);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.72);
+    transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease, background-color 180ms ease;
+}
+
+.public-card:hover {
+    border-color: rgba(0, 92, 255, 0.22);
+    background: #ffffff;
+    box-shadow: var(--public-shadow-hover);
+    transform: translateY(-2px);
+}
+
+.public-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background: var(--public-accent);
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 12px 24px rgba(0, 92, 255, 0.16);
+    transition: background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.public-button:hover,
+.public-button:focus-visible {
+    background: var(--public-accent-dark);
+    box-shadow: 0 16px 30px rgba(0, 92, 255, 0.2);
+    transform: translateY(-1px);
+}

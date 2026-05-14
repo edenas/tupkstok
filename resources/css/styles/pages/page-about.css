@@ -451,3 +451,86 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* Shared modern public visual system overrides for About page. */
+.about-page {
+    background: transparent;
+    padding: 104px 72px 120px;
+}
+
+.about-page__container {
+    width: min(100%, 1640px);
+}
+
+.about-page__eyebrow {
+    color: var(--public-accent);
+}
+
+.about-page__title {
+    color: var(--public-ink);
+    font-size: clamp(48px, 5vw, 76px);
+    font-weight: 800;
+}
+
+.about-page__lead,
+.about-page__section-subtitle,
+.about-page__social-subtitle,
+.about-page__text-panel p {
+    color: var(--public-muted);
+}
+
+.about-page__text-panel,
+.about-page__services-panel,
+.about-page__tech-section,
+.about-page__social-card {
+    border-color: var(--public-border);
+    border-radius: var(--public-radius);
+    background: var(--public-card);
+    box-shadow: var(--public-shadow);
+}
+
+.about-page__services-list li,
+.about-page__tech-card,
+.about-page__social-link {
+    border-color: var(--public-border);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.72);
+    color: var(--public-ink);
+}
+
+.about-page__hover-card:hover,
+.about-page__hover-card:focus-visible,
+.about-page__tech-card:hover,
+.about-page__tech-card:focus-visible,
+.about-page__social-link:hover,
+.about-page__social-link:focus-visible {
+    border-color: rgba(0, 92, 255, 0.22);
+    background: #ffffff;
+    box-shadow: var(--public-shadow-hover);
+    color: var(--public-accent);
+}
+
+.about-page__section-title,
+.about-page__tech-title,
+.about-page__social-title,
+.about-page__tech-label {
+    color: var(--public-ink);
+}
+
+.about-page__service-icon,
+.about-page__tech-icon {
+    color: var(--public-accent);
+    stroke-width: 2;
+}
+
+@media (max-width: 980px) {
+    .about-page {
+        padding: 70px 20px 86px;
+    }
+}
+
+@media (max-width: 640px) {
+    .about-page {
+        padding: 52px 16px 68px;
+    }
+}

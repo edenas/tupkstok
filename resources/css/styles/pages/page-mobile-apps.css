@@ -112,6 +112,40 @@
     padding: 13px 14px;
 }
 
+.mobile-app-page__tag-list li {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.mobile-app-page__feature-grid li {
+    display: flex;
+    min-height: 96px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 12px;
+}
+
+.mobile-app-page__item-icon {
+    display: inline-flex;
+    width: 34px;
+    height: 34px;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0, 92, 255, 0.12);
+    border-radius: 10px;
+    background: rgba(0, 92, 255, 0.08);
+    color: #005cff;
+}
+
+.mobile-app-page__item-icon svg {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2.1;
+}
+
 .mobile-app-page__download {
     display: flex;
     align-items: center;
@@ -223,5 +257,269 @@
     .mobile-app-page__screenshot-placeholder,
     .mobile-app-page__screenshot-placeholder--wide {
         min-height: 260px;
+    }
+}
+
+/* Shared modern public visual system overrides for Mobile Apps page. */
+.mobile-app-page {
+    background: transparent;
+    padding: 104px 72px 120px;
+}
+
+.mobile-app-page__container {
+    width: min(100%, 1640px);
+}
+
+.mobile-app-page__eyebrow {
+    color: var(--public-accent);
+}
+
+.mobile-app-page__title {
+    color: var(--public-ink);
+    font-size: clamp(48px, 5vw, 76px);
+    font-weight: 800;
+}
+
+.mobile-app-page__lead,
+.mobile-app-page__section p,
+.mobile-app-page__download p,
+.mobile-app-page__screenshots p {
+    color: var(--public-muted);
+}
+
+.mobile-app-page__section,
+.mobile-app-page__download,
+.mobile-app-page__screenshots {
+    border-color: var(--public-border);
+    border-radius: var(--public-radius);
+    background: var(--public-card);
+    box-shadow: var(--public-shadow);
+}
+
+.mobile-app-page__section h2,
+.mobile-app-page__download h2,
+.mobile-app-page__screenshots h2 {
+    color: var(--public-ink);
+}
+
+.mobile-app-page__feature-grid li,
+.mobile-app-page__tag-list li,
+.mobile-app-page__screenshot-placeholder {
+    border-color: var(--public-border);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.72);
+    color: var(--public-ink);
+}
+
+.mobile-app-page__feature-grid li,
+.mobile-app-page__tag-list li {
+    transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease, background-color 180ms ease;
+}
+
+.mobile-app-page__feature-grid li:hover,
+.mobile-app-page__tag-list li:hover {
+    border-color: rgba(0, 92, 255, 0.22);
+    background: #ffffff;
+    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
+    transform: translateY(-2px);
+}
+
+.mobile-app-page__feature-grid li:hover .mobile-app-page__item-icon,
+.mobile-app-page__tag-list li:hover .mobile-app-page__item-icon {
+    border-color: rgba(0, 92, 255, 0.2);
+    background: rgba(0, 92, 255, 0.12);
+}
+
+.mobile-app-page__download-button {
+    border-radius: 6px;
+    background: var(--public-accent);
+}
+
+.mobile-app-page__download-button--secondary {
+    background: var(--public-accent-soft);
+    color: var(--public-ink);
+}
+
+.mobile-app-page__screenshot-showcase {
+    display: grid;
+    align-items: start;
+    grid-template-columns: minmax(320px, 0.8fr) minmax(600px, 1.4fr);
+    gap: 24px;
+}
+
+.mobile-app-page__gallery-block {
+    display: flex;
+    align-self: start;
+    flex-direction: column;
+    min-width: 0;
+    border: 1px solid var(--public-border);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.74);
+    box-shadow: 0 16px 38px rgba(15, 23, 42, 0.08);
+    padding: 22px;
+}
+
+.mobile-app-page__gallery-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    color: var(--public-accent);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.mobile-app-page__gallery-heading::before {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--public-accent);
+    box-shadow: 0 0 0 7px rgba(0, 92, 255, 0.09);
+    content: "";
+}
+
+.mobile-app-page__phone-gallery,
+.mobile-app-page__tablet-gallery {
+    display: grid;
+    gap: 16px;
+    min-width: 0;
+    overflow: visible;
+}
+
+.mobile-app-page__phone-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-items: center;
+}
+
+.mobile-app-page__tablet-gallery {
+    grid-template-columns: 1fr;
+}
+
+.mobile-app-page__phone-frame,
+.mobile-app-page__tablet-frame {
+    display: block;
+    width: 100%;
+    border: 1px solid rgba(148, 163, 184, 0.34);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.9)),
+        #ffffff;
+    box-shadow: 0 20px 46px rgba(15, 23, 42, 0.12);
+    text-decoration: none;
+    transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.mobile-app-page__phone-frame:hover,
+.mobile-app-page__tablet-frame:hover {
+    border-color: rgba(0, 92, 255, 0.28);
+    box-shadow: 0 26px 58px rgba(15, 23, 42, 0.16);
+    transform: translateY(-4px);
+}
+
+.mobile-app-page__phone-frame {
+    max-width: clamp(180px, 14vw, 230px);
+    border-radius: 30px;
+    padding: 10px;
+}
+
+.mobile-app-page__phone-frame img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 9 / 19.5;
+    border-radius: 22px;
+    background: #eef6ff;
+    object-fit: contain;
+}
+
+.mobile-app-page__tablet-frame {
+    border-radius: 22px;
+    padding: 8px;
+}
+
+.mobile-app-page__tablet-frame img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+    background: #eef6ff;
+    object-fit: contain;
+}
+
+.mobile-app-page__gallery-empty {
+    display: grid;
+    min-height: 360px;
+    place-items: center;
+    border: 1px dashed rgba(148, 163, 184, 0.6);
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(239, 246, 255, 0.92), rgba(255, 255, 255, 0.82));
+    color: var(--public-muted);
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.mobile-app-page__gallery-empty--wide {
+    min-height: 300px;
+}
+
+@media (max-width: 1100px) {
+    .mobile-app-page {
+        padding: 70px 20px 86px;
+    }
+
+    .mobile-app-page__screenshot-showcase {
+        grid-template-columns: 1fr;
+    }
+
+    .mobile-app-page__phone-frame {
+        max-width: clamp(200px, 30vw, 250px);
+    }
+}
+
+@media (max-width: 640px) {
+    .mobile-app-page {
+        padding: 52px 16px 68px;
+    }
+
+    .mobile-app-page__screenshot-showcase {
+        gap: 28px;
+    }
+
+    .mobile-app-page__gallery-block {
+        padding: 18px;
+    }
+
+    .mobile-app-page__feature-grid li {
+        min-height: auto;
+    }
+
+    .mobile-app-page__phone-gallery {
+        gap: 14px;
+    }
+
+    .mobile-app-page__phone-frame {
+        max-width: min(42vw, 185px);
+        border-radius: 26px;
+    }
+
+    .mobile-app-page__phone-frame img {
+        border-radius: 19px;
+    }
+
+    .mobile-app-page__tablet-frame {
+        border-radius: 18px;
+        padding: 8px;
+    }
+
+    .mobile-app-page__gallery-empty,
+    .mobile-app-page__gallery-empty--wide {
+        min-height: 240px;
+    }
+}
+
+@media (max-width: 420px) {
+    .mobile-app-page__phone-gallery {
+        grid-template-columns: 1fr;
     }
 }

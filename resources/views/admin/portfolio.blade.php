@@ -4,11 +4,11 @@
 <div class="admin-page">
     <div class="admin-page__header">
         <div>
-            <h1 class="admin-page__title">Portfolio</h1>
+            <h1 class="admin-page__title">{{ __('messages.admin.portfolio') }}</h1>
         </div>
 
         <a href="{{ route('admin.portfolio.create') }}" class="admin-button admin-button--primary">
-            Add post
+            {{ __('messages.admin.add_post') }}
         </a>
     </div>
 
@@ -29,11 +29,11 @@
             <table class="admin-table">
                 <thead>
                     <tr>
-                        <th>Title</th>
-                        <th>Category</th>
-                        <th>Date</th>
-                        <th>Position</th>
-                        <th class="admin-table__actions-heading">Actions</th>
+                        <th>{{ __('messages.admin.title') }}</th>
+                        <th>{{ __('messages.admin.category') }}</th>
+                        <th>{{ __('messages.admin.date') }}</th>
+                        <th>{{ __('messages.admin.position') }}</th>
+                        <th class="admin-table__actions-heading">{{ __('messages.admin.actions') }}</th>
                     </tr>
                 </thead>
                 <tbody>
