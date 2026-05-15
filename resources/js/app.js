@@ -1,7 +1,9 @@
 import './scripts/base/base.js';
 import {
     Activity,
+    AlarmClock,
     AppWindow,
+    ArrowRight,
     Bell,
     Blocks,
     Bot,
@@ -15,9 +17,12 @@ import {
     Code,
     createIcons,
     Database,
+    Droplet,
     FileCode,
     FileType,
     Globe,
+    Info,
+    Layers,
     MonitorSmartphone,
     Megaphone,
     Package,
@@ -30,22 +35,27 @@ import {
     Smartphone,
     Sparkles,
     TabletSmartphone,
+    Target,
     Undo2,
 } from 'lucide';
 import { initializeLayoutScripts } from './scripts/layouts/layout-scripts.js';
 import { initializeComponentScripts } from './scripts/components/component-scripts.js';
 import { initializeHeroSectionScripts } from './scripts/sections/section-hero.js';
 import { initializeHomePageScripts } from './scripts/pages/page-home.js';
+import { initializeMobileAppsPageScripts } from './scripts/pages/page-mobile-apps.js';
 
 initializeLayoutScripts();
 initializeComponentScripts();
 initializeHeroSectionScripts();
 initializeHomePageScripts();
+initializeMobileAppsPageScripts();
 
 createIcons({
     icons: {
         Activity,
+        AlarmClock,
         AppWindow,
+        ArrowRight,
         Bell,
         Blocks,
         Bot,
@@ -58,9 +68,12 @@ createIcons({
         Clock,
         Code,
         Database,
+        Droplet,
         FileCode,
         FileType,
         Globe,
+        Info,
+        Layers,
         MonitorSmartphone,
         Megaphone,
         Package,
@@ -73,6 +86,7 @@ createIcons({
         Smartphone,
         Sparkles,
         TabletSmartphone,
+        Target,
         Undo2,
     },
 });

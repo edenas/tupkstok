@@ -31,76 +31,102 @@
             };
 
             $phoneScreenshots = $collectScreenshots(['mobile-apps/drink-water/phone']);
-            $tabletScreenshots = $collectScreenshots([
-                'mobile-apps/drink-water/tablet',
-                'mobile-apps/drink-water/phone/tablet',
-            ]);
-            $phoneScreenshots = array_slice($phoneScreenshots, 0, 4);
+            $tabletScreenshots = $collectScreenshots(['mobile-apps/drink-water/tablet']);
+            $phoneScreenshots = array_slice($phoneScreenshots, 0, 8);
             $tabletScreenshots = array_slice($tabletScreenshots, 0, 2);
+            $googlePlayHeaderUrl = asset('storage/mobile-apps/drink-water/google_play_header.jpg');
             $technologyIcons = ['code', 'package', 'brackets', 'monitor-smartphone', 'tablet-smartphone'];
-            $featureIcons = ['activity', 'sliders-horizontal', 'circle-gauge', 'chart-column', 'bell', 'clock', 'undo-2', 'tablet-smartphone', 'sparkles'];
+            $heroFeatures = app()->getLocale() === 'lt'
+                ? [
+                    ['icon' => 'droplet', 'label' => 'Sekti kiekį'],
+                    ['icon' => 'bell', 'label' => 'Išmanūs priminimai'],
+                    ['icon' => 'chart-column', 'label' => 'Statistika'],
+                    ['icon' => 'target', 'label' => 'Tikslai'],
+                ]
+                : [
+                    ['icon' => 'droplet', 'label' => 'Track Intake'],
+                    ['icon' => 'bell', 'label' => 'Smart Reminders'],
+                    ['icon' => 'chart-column', 'label' => 'View Statistics'],
+                    ['icon' => 'target', 'label' => 'Reach Your Goals'],
+                ];
+            $compactCards = [
+                [
+                    'title' => __('messages.mobile.about'),
+                    'icon' => 'info',
+                    'text' => \Illuminate\Support\Str::limit(__('messages.mobile.about_paragraphs')[0], 185),
+                ],
+                [
+                    'title' => __('messages.mobile.technologies'),
+                    'icon' => 'layers',
+                    'technologies' => __('messages.mobile.tech_items'),
+                ],
+                [
+                    'title' => __('messages.mobile.reminders'),
+                    'icon' => 'bell',
+                    'text' => \Illuminate\Support\Str::limit(__('messages.mobile.reminder_paragraphs')[0], 170),
+                ],
+                [
+                    'title' => app()->getLocale() === 'lt' ? __('messages.mobile.design') : 'Design & UX',
+                    'icon' => 'alarm-clock',
+                    'text' => \Illuminate\Support\Str::limit(__('messages.mobile.design_paragraphs')[0], 170),
+                ],
+            ];
         @endphp
 
         <header class="mobile-app-page__hero">
-            <p class="mobile-app-page__eyebrow">{{ __('messages.mobile.eyebrow') }}</p>
-            <h1 class="mobile-app-page__title">Drink Water</h1>
-            <p class="mobile-app-page__lead">
-                {{ __('messages.mobile.lead') }}
-            </p>
-        </header>
-
-        <div class="mobile-app-page__layout">
-            <article class="mobile-app-page__section mobile-app-page__section--large">
-                <h2>{{ __('messages.mobile.about') }}</h2>
-                @foreach (__('messages.mobile.about_paragraphs') as $paragraph)
-                    <p>{{ $paragraph }}</p>
-                @endforeach
-            </article>
-
-            <aside class="mobile-app-page__section">
-                <h2>{{ __('messages.mobile.technologies') }}</h2>
-                <ul class="mobile-app-page__tag-list">
-                    @foreach (__('messages.mobile.tech_items') as $index => $technology)
+            <div class="mobile-app-page__hero-content">
+                <p class="mobile-app-page__eyebrow">{{ __('messages.mobile.eyebrow') }}</p>
+                <h1 class="mobile-app-page__title">Drink Water</h1>
+                <p class="mobile-app-page__lead">
+                    {{ __('messages.mobile.lead') }}
+                </p>
+                <div class="mobile-app-page__hero-actions">
+                    <button type="button" class="mobile-app-page__download-button" disabled>Google Play</button>
+                    <button type="button" class="mobile-app-page__download-button mobile-app-page__download-button--secondary" disabled>APK version</button>
+                </div>
+                <ul class="mobile-app-page__hero-features" aria-label="{{ __('messages.mobile.features') }}">
+                    @foreach ($heroFeatures as $feature)
                         <li>
-                            <span class="mobile-app-page__item-icon" aria-hidden="true">
-                                <i data-lucide="{{ $technologyIcons[$index] ?? 'code' }}"></i>
+                            <span class="mobile-app-page__hero-feature-icon" aria-hidden="true">
+                                <i data-lucide="{{ $feature['icon'] }}"></i>
                             </span>
-                            <span>{{ $technology }}</span>
+                            <span>{{ $feature['label'] }}</span>
                         </li>
                     @endforeach
                 </ul>
-            </aside>
-        </div>
+            </div>
+            <figure class="mobile-app-page__hero-preview" aria-label="Drink Water Google Play preview">
+                <img src="{{ $googlePlayHeaderUrl }}" alt="Drink Water Google Play header" loading="eager">
+            </figure>
+        </header>
 
-        <section class="mobile-app-page__section">
-            <h2>{{ __('messages.mobile.features') }}</h2>
-            <ul class="mobile-app-page__feature-grid">
-                @foreach (__('messages.mobile.feature_items') as $index => $feature)
-                    <li>
-                        <span class="mobile-app-page__item-icon" aria-hidden="true">
-                            <i data-lucide="{{ $featureIcons[$index] ?? 'sparkles' }}"></i>
+        <section class="mobile-app-page__summary-grid" aria-label="{{ __('messages.mobile.about') }}">
+            @foreach ($compactCards as $card)
+                <article class="mobile-app-page__summary-card">
+                    <div class="mobile-app-page__summary-heading">
+                        <span class="mobile-app-page__summary-icon" aria-hidden="true">
+                            <i data-lucide="{{ $card['icon'] }}"></i>
                         </span>
-                        <span>{{ $feature }}</span>
-                    </li>
-                @endforeach
-            </ul>
+                        <h2>{{ $card['title'] }}</h2>
+                    </div>
+
+                    @if (isset($card['technologies']))
+                        <ul class="mobile-app-page__summary-tech-list">
+                            @foreach ($card['technologies'] as $index => $technology)
+                                <li>
+                                    <span class="mobile-app-page__summary-tech-icon" aria-hidden="true">
+                                        <i data-lucide="{{ $technologyIcons[$index] ?? 'code' }}"></i>
+                                    </span>
+                                    <span>{{ $technology }}</span>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @else
+                        <p>{{ $card['text'] }}</p>
+                    @endif
+                </article>
+            @endforeach
         </section>
-
-        <div class="mobile-app-page__layout">
-            <section class="mobile-app-page__section">
-                <h2>{{ __('messages.mobile.reminders') }}</h2>
-                @foreach (__('messages.mobile.reminder_paragraphs') as $paragraph)
-                    <p>{{ $paragraph }}</p>
-                @endforeach
-            </section>
-
-            <section class="mobile-app-page__section">
-                <h2>{{ __('messages.mobile.design') }}</h2>
-                @foreach (__('messages.mobile.design_paragraphs') as $paragraph)
-                    <p>{{ $paragraph }}</p>
-                @endforeach
-            </section>
-        </div>
 
         <section class="mobile-app-page__download">
             <div>
@@ -113,7 +139,7 @@
             </div>
         </section>
 
-        <section class="mobile-app-page__screenshots">
+        <section class="mobile-app-page__screenshots" id="mobile-app-screenshots">
             <div class="mobile-app-page__screenshots-header">
                 <h2>{{ __('messages.mobile.screenshots') }}</h2>
                 <p>{{ __('messages.mobile.screenshots_note') }}</p>
@@ -131,8 +157,7 @@
                                 <a
                                     href="{{ $screenshot['url'] }}"
                                     class="mobile-app-page__phone-frame"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
+                                    data-mobile-screenshot-lightbox-trigger
                                     aria-label="{{ __('messages.mobile.phone_screenshots') }}: {{ $screenshot['name'] }}"
                                 >
                                     <img src="{{ $screenshot['url'] }}" alt="{{ $screenshot['name'] }}" loading="lazy">
@@ -157,8 +182,7 @@
                                 <a
                                     href="{{ $screenshot['url'] }}"
                                     class="mobile-app-page__tablet-frame"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
+                                    data-mobile-screenshot-lightbox-trigger
                                     aria-label="{{ __('messages.mobile.tablet_screenshots') }}: {{ $screenshot['name'] }}"
                                 >
                                     <img src="{{ $screenshot['url'] }}" alt="{{ $screenshot['name'] }}" loading="lazy">
@@ -173,6 +197,11 @@
                 </div>
             </div>
         </section>
+
+        <div class="mobile-app-page__lightbox" data-mobile-screenshot-lightbox aria-hidden="true" hidden>
+            <button type="button" class="mobile-app-page__lightbox-close" data-mobile-screenshot-lightbox-close aria-label="Close image preview">X</button>
+            <img class="mobile-app-page__lightbox-image" data-mobile-screenshot-lightbox-image src="" alt="">
+        </div>
     </div>
 </section>
 @endsection
