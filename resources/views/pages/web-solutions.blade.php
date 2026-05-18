@@ -60,6 +60,13 @@
             'logo' => 'sleepangel.jpg',
         ],
     ];
+
+    $featureItems = [
+        ['key' => 'modern_design', 'icon' => 'design'],
+        ['key' => 'performance', 'icon' => 'code'],
+        ['key' => 'seo_integration', 'icon' => 'seo'],
+        ['key' => 'ai_solutions', 'icon' => 'ai'],
+    ];
 @endphp
 
 <section class="web-solutions-page">
@@ -79,14 +86,14 @@
                     <p>{{ __('messages.web.services_intro') }}</p>
                 </div>
 
-                <div class="web-solutions-page__services-grid">
+                <div class="web-solutions-page__services-list">
                     @foreach ($webServices as $service)
-                        <article class="web-solutions-page__service-card">
+                        <article class="web-solutions-page__service-row">
                             <span class="web-solutions-page__service-icon" aria-hidden="true">
                                 <svg viewBox="0 0 24 24" focusable="false">
-                                {!! $serviceIcons[$service['icon']] !!}
-                            </svg>
-                        </span>
+                                    {!! $serviceIcons[$service['icon']] !!}
+                                </svg>
+                            </span>
                             <h3>{{ __('messages.web.services.'.$service['key']) }}</h3>
                         </article>
                     @endforeach
@@ -100,9 +107,9 @@
                 <p>{{ __('messages.web.projects_intro') }}</p>
             </div>
 
-            <div class="web-solutions-page__projects-grid">
+            <div class="web-solutions-page__projects-list">
                 @foreach ($projects as $project)
-                    <article class="web-solutions-page__project-card">
+                    <article class="web-solutions-page__project-row">
                         @php($clientTitle = __('messages.web.clients.'.$project['client_key'].'.title'))
                         <div class="web-solutions-page__logo-frame" aria-label="{{ $clientTitle }} logo">
                             <span class="web-solutions-page__logo-fallback">{{ $clientTitle }}</span>
@@ -125,10 +132,31 @@
 
                         <a href="{{ $project['url'] }}" target="_blank" rel="noopener noreferrer" class="web-solutions-page__project-link">
                             {{ __('messages.common.visit_website') }}
+                            <span aria-hidden="true">
+                                <svg viewBox="0 0 24 24" focusable="false">
+                                    <path d="M5 12h14"/><path d="m13 6 6 6-6 6"/>
+                                </svg>
+                            </span>
                         </a>
                     </article>
                 @endforeach
             </div>
+        </section>
+
+        <section class="web-solutions-page__feature-strip" aria-label="{{ __('messages.web.feature_strip_label') }}">
+            @foreach ($featureItems as $feature)
+                <article class="web-solutions-page__feature-item">
+                    <span class="web-solutions-page__feature-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" focusable="false">
+                            {!! $serviceIcons[$feature['icon']] !!}
+                        </svg>
+                    </span>
+                    <div>
+                        <h3>{{ __('messages.web.feature_strip.'.$feature['key'].'.title') }}</h3>
+                        <p>{{ __('messages.web.feature_strip.'.$feature['key'].'.text') }}</p>
+                    </div>
+                </article>
+            @endforeach
         </section>
     </div>
 </section>

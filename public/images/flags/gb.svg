@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-label="English flag">
+  <rect width="24" height="24" rx="6" fill="#012169"/>
+  <path fill="#fff" d="m2.8 0 9.2 6.1L21.2 0H24v3.2l-7.9 5.2L24 13.7V24h-2.8L12 17.9 2.8 24H0v-3.2l7.9-5.2L0 10.3V0h2.8Z"/>
+  <path fill="#c8102e" d="m14.2 9.2 9.8-6.5V0h-.7L12 7.5.7 0H0v2.7l9.8 6.5H0v5.6h9.8L0 21.3V24h.7L12 16.5 23.3 24h.7v-2.7l-9.8-6.5H24V9.2h-9.8Z"/>
+  <path fill="#fff" d="M9 0h6v24H9zM0 9h24v6H0z"/>
+  <path fill="#c8102e" d="M10.2 0h3.6v24h-3.6zM0 10.2h24v3.6H0z"/>
+</svg>

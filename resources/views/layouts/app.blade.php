@@ -24,6 +24,12 @@
             @include('components.site-footer')
         </div>
 
+        <button type="button" class="back-to-top" data-back-to-top aria-label="Back to top">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="m6 15 6-6 6 6"/>
+            </svg>
+        </button>
+
         @stack('scripts')
     </body>
 </html>

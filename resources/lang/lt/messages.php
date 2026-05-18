@@ -14,6 +14,7 @@ return [
         'contact' => 'Kontaktai',
     ],
     'footer' => 'epgalerija',
+    'footer_rights' => 'Visos teisės saugomos.',
     'common' => [
         'services' => 'Paslaugos',
         'completed_projects' => 'Atlikti projektai',
@@ -21,6 +22,96 @@ return [
         'view_project' => 'Peržiūrėti projektą',
         'back_to_graphics' => 'Grįžti į grafiką',
         'send_message' => 'Siųsti žinutę',
+    ],
+    'home' => [
+        'contact_cta' => 'Susisiekti',
+        'learn_more' => 'Plačiau',
+        'services_label' => 'Paslaugos',
+        'hero' => [
+            'eyebrow' => 'Skaitmeniniai sprendimai',
+            'title' => 'Kuriu skaitmeninius sprendimus, kurie kuria vertę',
+            'lead' => 'Kuriu modernias interneto svetaines, web aplikacijas ir skaitmeninius produktus, kuriuose vartotojo patirtis, našumas ir vizualinis identitetas veikia kaip viena sistema.',
+            'services_cta' => 'Žiūrėti paslaugas',
+            'image_alt' => 'EPgalerija skaitmeninių sprendimų peržiūra',
+        ],
+        'services' => [
+            'web_solutions' => [
+                'title' => 'Web sprendimai',
+                'text' => 'Modernios svetainės ir web aplikacijos, pritaikytos jūsų verslo tikslams.',
+            ],
+            'mobile_apps' => [
+                'title' => 'Mobiliosios aplikacijos',
+                'text' => 'iOS ir Android aplikacijos, kurios suteikia puikią vartotojo patirtį.',
+            ],
+            'graphic_design' => [
+                'title' => 'Grafikos dizainas',
+                'text' => 'Prekės ženklų kūrimas, logotipai, reklaminės medžiagos ir daugiau.',
+            ],
+            'seo_optimization' => [
+                'title' => 'SEO ir optimizacija',
+                'text' => 'Tinklalapių našumo didinimas ir geresnis matomumas paieškoje.',
+            ],
+            'technologies' => [
+                'title' => 'Technologijos',
+                'text' => 'Naudoju naujausias technologijas kiekvienam projektui įgyvendinti.',
+            ],
+        ],
+        'about' => [
+            'section_label' => 'Apie mane ir projekto pradžia',
+            'eyebrow' => 'Apie mane',
+            'title' => 'Aš esu Edenas Pocius',
+            'text' => 'Web, mobiliųjų aplikacijų ir skaitmeninių sprendimų kūrėjas, turintis patirties IT, dizaino ir kūrybinių projektų srityse. Padedu verslams augti pasitelkiant technologijas ir kūrybą.',
+            'cta' => 'Daugiau apie mane',
+        ],
+        'project_cta' => [
+            'title' => 'Turite idėją projektui?',
+            'text' => 'Kartu galime sukurti sprendimą, kuris padės jūsų verslui augti.',
+        ],
+        'contact' => [
+            'label' => 'Kontaktinė informacija',
+            'items' => [
+                'location' => [
+                    'label' => 'Vieta',
+                    'value' => 'Lietuva',
+                ],
+                'phone' => [
+                    'label' => 'Telefonas',
+                ],
+                'email' => [
+                    'label' => 'El. paštas',
+                ],
+                'messenger' => [
+                    'label' => 'Rašykite',
+                    'value' => 'Messenger',
+                ],
+            ],
+        ],
+        'principles' => [
+            'eyebrow' => 'Kodėl verta dirbti kartu?',
+            'title' => 'Mano darbo principai',
+            'items' => [
+                'strategic_thinking' => [
+                    'title' => 'Strateginis požiūris',
+                    'text' => 'Kiekvienas sprendimas kuriamas remiantis aiškiais tikslais ir verslo poreikiais.',
+                ],
+                'clean_code' => [
+                    'title' => 'Kokybiškas kodas',
+                    'text' => 'Švarus, greitas ir saugus kodas užtikrina stabilumą ir lengvą vystymą.',
+                ],
+                'user_experience' => [
+                    'title' => 'Vartotojo patirtis',
+                    'text' => 'Intuityvus dizainas ir patogi sąsaja geresniems rezultatams pasiekti.',
+                ],
+                'results' => [
+                    'title' => 'Rezultatai',
+                    'text' => 'Sprendimai, kurie ne tik atrodo gerai, bet ir duoda apčiuopiamą vertę.',
+                ],
+                'innovation' => [
+                    'title' => 'Inovacijos',
+                    'text' => 'Nuolat ieškau modernių technologinių ir kūrybinių sprendimų efektyvesniems rezultatams.',
+                ],
+            ],
+        ],
     ],
     'graphics' => [
         'eyebrow' => 'Animacijos ir video portfolio',
@@ -36,14 +127,33 @@ return [
         'lead' => 'Kuriu modernias interneto svetaines, web aplikacijas ir skaitmeninius produktus, kuriuose vartotojo patirtis, našumas ir vizualinis identitetas veikia kaip viena sistema.',
         'services_intro' => 'Struktūruoti web sprendimai nuo vartotojo sąsajos dizaino iki techninio įgyvendinimo.',
         'projects_intro' => 'Atrinkti klientų projektai su vizualiniu identitetu, svetainių nuorodomis ir portfolio pristatymu.',
+        'feature_strip_label' => 'Web sprendimų privalumai',
+        'feature_strip' => [
+            'modern_design' => [
+                'title' => 'Modernus dizainas',
+                'text' => 'Kuriame estetiškas ir funkcionalias sąsajas, kurios išsiskiria.',
+            ],
+            'performance' => [
+                'title' => 'Našumas',
+                'text' => 'Užtikriname greitį, stabilumą ir sklandų veikimą.',
+            ],
+            'seo_integration' => [
+                'title' => 'SEO integracija',
+                'text' => 'Tinkamai paruošiame svetaines paieškos sistemoms matomumui.',
+            ],
+            'ai_solutions' => [
+                'title' => 'AI sprendimai',
+                'text' => 'Integruojame pažangius AI įrankius jūsų projektams.',
+            ],
+        ],
         'services' => [
             'Website development' => 'Interneto svetainių kūrimas',
             'Web application development' => 'Web aplikacijų kūrimas',
             'Front-End development' => 'Front-End kūrimas',
             'Responsive design' => 'Responsive dizainas',
             'UI/UX design' => 'UI/UX dizainas',
-            'Laravel development' => 'Laravel kūrimas',
-            'WordPress solutions' => 'WordPress sprendimai',
+            'Laravel development' => 'Framework sprendimai',
+            'WordPress solutions' => 'TVS sprendimai',
             'Performance optimization' => 'Našumo optimizacija',
             'SEO basics integration' => 'SEO pagrindų integracija',
             'AI solutions integration in web projects' => 'AI sprendimų integracija web projektuose',
@@ -91,11 +201,22 @@ return [
     ],
     'about' => [
         'eyebrow' => 'Web ir mobiliųjų aplikacijų kūrimas',
+        'hero_eyebrow' => 'Apie mane',
+        'hero_title' => 'Kuriu skaitmeninius sprendimus, kurie kuria vertę',
+        'contact_cta' => 'Susisiekti',
+        'cv_cta' => 'Atsisiųsti CV',
+        'stats_label' => 'Profesinė patirtis',
+        'stats' => [
+            'experience' => 'Metų patirties',
+            'projects' => 'Įgyvendintų projektų',
+            'clients' => 'Patenkintų klientų',
+            'technologies' => 'Technologijų',
+        ],
         'title' => 'Apie mane',
         'lead' => 'Aš esu Edenas Pocius – web, mobiliųjų aplikacijų ir skaitmeninių sprendimų kūrėjas, turintis patirties IT, dizaino ir kūrybinių projektų srityse.',
         'services' => 'Paslaugos',
         'services_subtitle' => 'Skaitmeniniai sprendimai verslui ir kūrybiniams projektams.',
-        'tech' => 'Technologijos ir kūrybiniai įrankiai',
+        'tech' => 'Technologijos ir įrankiai',
         'links' => 'Profesinės nuorodos',
         'links_subtitle' => 'Kodo saugyklos ir profesinis profilis.',
         'paragraphs' => [
@@ -178,9 +299,26 @@ return [
         'name' => 'Vardas',
         'email' => 'El. paštas',
         'phone' => 'Telefonas',
+        'info_labels' => [
+            'name' => 'Vardas',
+            'email' => 'El. paštas',
+            'phone' => 'Telefonas',
+            'messenger' => 'Messenger',
+            'location' => 'Vieta',
+        ],
+        'messenger_value' => 'Rašyti per Messenger',
+        'location_value' => 'Lietuva',
         'your_name' => 'Jūsų vardas',
         'your_email' => 'Jūsų el. paštas',
         'subject' => 'Tema',
         'message' => 'Jūsų žinutė',
+        'placeholders' => [
+            'name' => 'Įveskite vardą',
+            'email' => 'Įveskite el. pašto adresą',
+            'subject' => 'Parašykite temos pavadinimą',
+            'message' => 'Parašykite žinutę',
+        ],
+        'cta_title' => 'Pasiruošęs įgyvendinti idėją?',
+        'cta_text' => 'Susisiekite ir aptarkime, kaip galime kartu sukurti sprendimą, kuris padės jūsų verslui augti ir išsiskirti.',
     ],
 ];

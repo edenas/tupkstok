@@ -463,7 +463,19 @@
 }
 
 .mobile-app-page__container {
-    width: min(100%, 1640px);
+    width: min(100%, 1240px);
+}
+
+.mobile-app-page__hero {
+    gap: 44px;
+}
+
+.mobile-app-page__summary-grid {
+    gap: 20px;
+}
+
+.mobile-app-page__summary-card {
+    padding: 38px 32px;
 }
 
 .mobile-app-page__eyebrow {

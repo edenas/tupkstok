@@ -14,6 +14,7 @@ return [
         'contact' => 'Contact',
     ],
     'footer' => 'epgalerija',
+    'footer_rights' => 'All rights reserved.',
     'common' => [
         'services' => 'Services',
         'completed_projects' => 'Completed Projects',
@@ -21,6 +22,96 @@ return [
         'view_project' => 'View Project',
         'back_to_graphics' => 'Back to Graphics',
         'send_message' => 'Send message',
+    ],
+    'home' => [
+        'contact_cta' => 'Contact me',
+        'learn_more' => 'Learn more',
+        'services_label' => 'Services',
+        'hero' => [
+            'eyebrow' => 'Digital Solutions',
+            'title' => 'I create digital solutions that create value',
+            'lead' => 'I create modern websites, web applications, and digital products where user experience, performance, and visual identity work as one system.',
+            'services_cta' => 'View services',
+            'image_alt' => 'EPgalerija digital solutions preview',
+        ],
+        'services' => [
+            'web_solutions' => [
+                'title' => 'Web Solutions',
+                'text' => 'Modern websites and web applications tailored to your business goals.',
+            ],
+            'mobile_apps' => [
+                'title' => 'Mobile Apps',
+                'text' => 'iOS and Android applications designed for an excellent user experience.',
+            ],
+            'graphic_design' => [
+                'title' => 'Graphic Design',
+                'text' => 'Brand identity, logos, advertising materials, and more.',
+            ],
+            'seo_optimization' => [
+                'title' => 'SEO & Optimization',
+                'text' => 'Website performance improvements and better search visibility.',
+            ],
+            'technologies' => [
+                'title' => 'Technologies',
+                'text' => 'Using modern technologies to build efficient digital solutions.',
+            ],
+        ],
+        'about' => [
+            'section_label' => 'About me and project start',
+            'eyebrow' => 'About me',
+            'title' => 'I am Edenas Pocius',
+            'text' => 'A web, mobile app, and digital solutions developer with experience across IT, design, and creative projects. I help businesses grow through technology and creativity.',
+            'cta' => 'More about me',
+        ],
+        'project_cta' => [
+            'title' => 'Have a project idea?',
+            'text' => 'Together we can create a solution that helps your business grow.',
+        ],
+        'contact' => [
+            'label' => 'Contact information',
+            'items' => [
+                'location' => [
+                    'label' => 'Location',
+                    'value' => 'Lithuania',
+                ],
+                'phone' => [
+                    'label' => 'Phone',
+                ],
+                'email' => [
+                    'label' => 'Email',
+                ],
+                'messenger' => [
+                    'label' => 'Message on',
+                    'value' => 'Messenger',
+                ],
+            ],
+        ],
+        'principles' => [
+            'eyebrow' => 'Why work together?',
+            'title' => 'My Working Principles',
+            'items' => [
+                'strategic_thinking' => [
+                    'title' => 'Strategic Thinking',
+                    'text' => 'Every solution is built around clear goals and business needs.',
+                ],
+                'clean_code' => [
+                    'title' => 'Clean Code',
+                    'text' => 'Clean, fast, and secure code ensures stability and smooth development.',
+                ],
+                'user_experience' => [
+                    'title' => 'User Experience',
+                    'text' => 'Intuitive design and smooth interfaces for better results.',
+                ],
+                'results' => [
+                    'title' => 'Results',
+                    'text' => 'Solutions that not only look good but also deliver real value.',
+                ],
+                'innovation' => [
+                    'title' => 'Innovation',
+                    'text' => 'Constantly exploring modern technological and creative solutions for more effective results.',
+                ],
+            ],
+        ],
     ],
     'graphics' => [
         'eyebrow' => 'Animation & Video Portfolio',
@@ -36,14 +127,33 @@ return [
         'lead' => 'I create modern websites, web applications, and digital products where user experience, performance, and visual identity work as one system.',
         'services_intro' => 'Structured web solutions from user interface design to technical implementation.',
         'projects_intro' => 'Selected client projects with visual identity, website links, and portfolio-ready presentation.',
+        'feature_strip_label' => 'Web solution advantages',
+        'feature_strip' => [
+            'modern_design' => [
+                'title' => 'Modern design',
+                'text' => 'We create aesthetic and functional interfaces that stand out.',
+            ],
+            'performance' => [
+                'title' => 'Performance',
+                'text' => 'We ensure speed, stability, and smooth operation.',
+            ],
+            'seo_integration' => [
+                'title' => 'SEO integration',
+                'text' => 'We properly prepare websites for search engine visibility.',
+            ],
+            'ai_solutions' => [
+                'title' => 'AI solutions',
+                'text' => 'We integrate advanced AI tools into your projects.',
+            ],
+        ],
         'services' => [
             'Website development' => 'Website development',
             'Web application development' => 'Web application development',
             'Front-End development' => 'Front-End development',
             'Responsive design' => 'Responsive design',
             'UI/UX design' => 'UI/UX design',
-            'Laravel development' => 'Laravel development',
-            'WordPress solutions' => 'WordPress solutions',
+            'Laravel development' => 'Framework Solutions',
+            'WordPress solutions' => 'CMS Solutions',
             'Performance optimization' => 'Performance optimization',
             'SEO basics integration' => 'SEO basics integration',
             'AI solutions integration in web projects' => 'AI solutions integration in web projects',
@@ -91,13 +201,24 @@ return [
     ],
     'about' => [
         'eyebrow' => 'Web and mobile app development',
+        'hero_eyebrow' => 'About me',
+        'hero_title' => 'I create digital solutions that create value',
+        'contact_cta' => 'Contact me',
+        'cv_cta' => 'Download CV',
+        'stats_label' => 'Professional experience',
+        'stats' => [
+            'experience' => 'Years of experience',
+            'projects' => 'Completed projects',
+            'clients' => 'Happy clients',
+            'technologies' => 'Technologies',
+        ],
         'title' => 'About me',
         'lead' => 'I am Edenas Pocius, a web, mobile app, and digital solutions developer with experience across IT, design, and creative projects.',
         'services' => 'Services',
         'services_subtitle' => 'Digital solutions for business and creative projects.',
-        'tech' => 'Technologies & Creative Tools',
+        'tech' => 'Technologies and tools',
         'links' => 'Professional links',
-        'links_subtitle' => 'Code repositories and professional profile.',
+        'links_subtitle' => 'Code repository and professional profile.',
         'paragraphs' => [
             'I specialize in the development of websites, user interfaces (UI/UX), mobile applications, and digital visual solutions, combining design, programming, and modern technologies.',
             'I create modern, functional, and visually refined websites and applications focused on user experience, performance, and strong visual identity.',
@@ -171,16 +292,33 @@ return [
     'contact' => [
         'eyebrow' => 'Contact',
         'title' => 'Let’s talk about your next project',
-        'lead' => 'For web solutions, mobile apps, animation, video projects, or creative digital work, send a message or reach out directly.',
+        'lead' => 'For web solutions, mobile applications, animation, video projects, or creative digital work, send a message or contact me directly.',
         'information' => 'Contact information',
         'social' => 'Social links',
         'form_title' => 'Send a message',
         'name' => 'Name',
         'email' => 'Email',
         'phone' => 'Phone',
+        'info_labels' => [
+            'name' => 'Name',
+            'email' => 'Email',
+            'phone' => 'Phone',
+            'messenger' => 'Messenger',
+            'location' => 'Location',
+        ],
+        'messenger_value' => 'Message on Messenger',
+        'location_value' => 'Lithuania',
         'your_name' => 'Your name',
         'your_email' => 'Your email',
         'subject' => 'Subject',
         'message' => 'Your message',
+        'placeholders' => [
+            'name' => 'Enter your name',
+            'email' => 'Enter your email address',
+            'subject' => 'Enter message subject',
+            'message' => 'Write your message',
+        ],
+        'cta_title' => 'Ready to bring your idea to life?',
+        'cta_text' => 'Get in touch and let’s discuss how we can create a solution that helps your business grow and stand out.',
     ],
 ];

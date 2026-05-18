@@ -536,11 +536,11 @@
 }
 
 .animations-page__container {
-    width: min(100%, 1640px);
+    width: min(100%, 1240px);
 }
 
 .animation-post-page__container {
-    width: min(100%, 1300px);
+    width: min(100%, 1240px);
 }
 
 .animations-page__eyebrow,
