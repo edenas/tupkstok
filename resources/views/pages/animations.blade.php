@@ -15,7 +15,7 @@
             <div class="animations-page__grid">
                 @foreach ($portfolioPosts as $post)
                     @php($thumbnailUrl = $post->thumbnailUrl())
-                    <article class="animations-page__card">
+                    <a href="{{ route('graphics.show', $post) }}" class="animations-page__card" aria-label="{{ __('messages.common.view_project') }}: {{ $post->localizedTitle() }}">
                         <div class="animations-page__image">
                             <img src="{{ $thumbnailUrl }}" alt="{{ $post->localizedTitle() }} thumbnail">
                         </div>
@@ -26,8 +26,11 @@
                             <p class="animations-page__description">{{ str($post->localizedShortDescription())->limit(140) }}</p>
                         </div>
 
-                        <a href="{{ route('graphics.show', $post) }}" class="animations-page__button">{{ __('messages.common.view_project') }}</a>
-                    </article>
+                        <span class="animations-page__cta">
+                            {{ __('messages.common.view_project') }}
+                            <span class="animations-page__cta-arrow" aria-hidden="true">&rarr;</span>
+                        </span>
+                    </a>
                 @endforeach
             </div>
 

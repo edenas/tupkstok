@@ -3,7 +3,13 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>{{ $pageTitle ?? config('app.name', 'Laravel') }}</title>
+        <title>{{ $pageTitle ?? 'EPgalerija' }}</title>
+        <link rel="icon" type="image/x-icon" href="/favicon.ico">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
 
         @fonts
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +23,7 @@
         <div id="app" class="public-shell">
             @include('components.site-header')
 
-            <main class="flex-1">
+            <main class="flex-1 public-page-transition" data-public-page-transition>
                 @yield('content')
             </main>
 
@@ -29,6 +35,10 @@
                 <path d="m6 15 6-6 6 6"/>
             </svg>
         </button>
+
+        <div class="public-loading-overlay" data-public-loading-overlay aria-hidden="true">
+            <div class="public-loading-overlay__spinner" role="status" aria-label="Loading"></div>
+        </div>
 
         @stack('scripts')
     </body>

@@ -25,19 +25,33 @@
         ['label' => 'Android Development', 'icon' => 'bot'],
     ];
 
-    $aboutServiceItems = [
-        ['key' => 'website_development', 'icon' => 'globe'],
-        ['key' => 'web_application_development', 'icon' => 'app-window'],
-        ['key' => 'android_mobile_application_development', 'icon' => 'smartphone'],
-        ['key' => 'ui_ux_design', 'icon' => 'pen-tool'],
-        ['key' => 'front_end_development', 'icon' => 'code'],
-        ['key' => 'responsive_design', 'icon' => 'monitor-smartphone'],
-        ['key' => 'animation_production', 'icon' => 'play'],
-        ['key' => 'motion_graphics', 'icon' => 'clapperboard'],
-        ['key' => 'social_media_visual_content', 'icon' => 'share-2'],
-        ['key' => 'advertising_design', 'icon' => 'megaphone'],
-        ['key' => 'brand_visual_identity', 'icon' => 'palette'],
-        ['key' => 'ai_solutions_integration', 'icon' => 'brain-circuit'],
+    $aboutServiceGroups = [
+        [
+            'key' => 'web',
+            'image' => 'images/apie_mus_web_sprendimai.jpg',
+            'image_position' => 'left',
+            'items' => [
+                ['key' => 'website_development', 'icon' => 'globe'],
+                ['key' => 'web_application_development', 'icon' => 'app-window'],
+                ['key' => 'android_mobile_application_development', 'icon' => 'smartphone'],
+                ['key' => 'ui_ux_design', 'icon' => 'pen-tool'],
+                ['key' => 'front_end_development', 'icon' => 'code'],
+                ['key' => 'responsive_design', 'icon' => 'monitor-smartphone'],
+            ],
+        ],
+        [
+            'key' => 'creative',
+            'image' => 'images/apie_mus_kurybiniai_sprendimai.jpg',
+            'image_position' => 'right',
+            'items' => [
+                ['key' => 'animation_production', 'icon' => 'play'],
+                ['key' => 'motion_graphics', 'icon' => 'clapperboard'],
+                ['key' => 'social_media_visual_content', 'icon' => 'share-2'],
+                ['key' => 'advertising_design', 'icon' => 'megaphone'],
+                ['key' => 'brand_visual_identity', 'icon' => 'palette'],
+                ['key' => 'ai_solutions_integration', 'icon' => 'brain-circuit'],
+            ],
+        ],
     ];
 
     $aboutStats = [
@@ -111,20 +125,45 @@
             </section>
         </div>
 
-        <section class="about-page__card about-page__services-panel">
-            <div class="about-page__section-header">
-                <h2 class="about-page__section-title">{{ __('messages.about.services') }}</h2>
-                <p class="about-page__section-subtitle">{{ __('messages.about.services_subtitle') }}</p>
+        <section class="about-page__services-panel" aria-labelledby="about-services-title">
+            <div class="about-page__services-header">
+                <p class="about-page__services-eyebrow">{{ __('messages.about.services') }}</p>
+                <h2 class="about-page__services-title" id="about-services-title">{{ __('messages.about.services_title') }}</h2>
+                <p class="about-page__services-intro">{{ __('messages.about.services_intro') }}</p>
             </div>
 
-            <ul class="about-page__services-list">
-                @foreach ($aboutServiceItems as $item)
-                    <li class="about-page__list-row">
-                        <i data-lucide="{{ $item['icon'] }}" class="about-page__row-icon" aria-hidden="true"></i>
-                        <span>{{ __('messages.about.service_items.'.$item['key']) }}</span>
-                    </li>
+            <div class="about-page__service-blocks">
+                @foreach ($aboutServiceGroups as $group)
+                    <article class="about-page__service-block about-page__service-block--image-{{ $group['image_position'] }}">
+                        <figure class="about-page__service-media">
+                            <img
+                                src="{{ asset($group['image']) }}"
+                                alt="{{ __('messages.about.service_groups.'.$group['key'].'.image_alt') }}"
+                                class="about-page__service-image"
+                            >
+                        </figure>
+
+                        <div class="about-page__service-content">
+                            <h3 class="about-page__service-heading">{{ __('messages.about.service_groups.'.$group['key'].'.title') }}</h3>
+                            <span class="about-page__service-heading-line" aria-hidden="true"></span>
+
+                            <ul class="about-page__service-list">
+                                @foreach ($group['items'] as $item)
+                                    <li class="about-page__service-row">
+                                        <span class="about-page__service-icon" aria-hidden="true">
+                                            <i data-lucide="{{ $item['icon'] }}"></i>
+                                        </span>
+                                        <span class="about-page__service-copy">
+                                            <span class="about-page__service-name">{{ __('messages.about.service_items.'.$item['key']) }}</span>
+                                            <span class="about-page__service-text">{{ __('messages.about.service_descriptions.'.$item['key']) }}</span>
+                                        </span>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </article>
                 @endforeach
-            </ul>
+            </div>
         </section>
 
         <section class="about-page__card about-page__links-card" aria-label="{{ __('messages.about.links') }}">

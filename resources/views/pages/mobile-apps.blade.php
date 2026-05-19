@@ -34,7 +34,8 @@
             $tabletScreenshots = $collectScreenshots(['mobile-apps/drink-water/tablet']);
             $phoneScreenshots = array_slice($phoneScreenshots, 0, 8);
             $tabletScreenshots = array_slice($tabletScreenshots, 0, 2);
-            $googlePlayHeaderUrl = asset('storage/mobile-apps/drink-water/google_play_header.jpg');
+            $apkDownloadUrl = 'https://github.com/edenas/drink-water/releases/download/v1.1/DrinkWater.v1.1.apk';
+            $heroPosterUrl = asset('storage/mobile-apps/drink-water/drinkwater_poster.jpg');
             $technologyIcons = ['code', 'package', 'brackets', 'monitor-smartphone', 'tablet-smartphone'];
             $heroFeatures = app()->getLocale() === 'lt'
                 ? [
@@ -81,8 +82,9 @@
                     {{ __('messages.mobile.lead') }}
                 </p>
                 <div class="mobile-app-page__hero-actions">
-                    <button type="button" class="mobile-app-page__download-button" disabled>Google Play</button>
-                    <button type="button" class="mobile-app-page__download-button mobile-app-page__download-button--secondary" disabled>APK version</button>
+                    <a href="{{ $apkDownloadUrl }}" class="mobile-app-page__download-button">
+                        {{ __('messages.mobile.apk_button') }}
+                    </a>
                 </div>
                 <ul class="mobile-app-page__hero-features" aria-label="{{ __('messages.mobile.features') }}">
                     @foreach ($heroFeatures as $feature)
@@ -95,8 +97,8 @@
                     @endforeach
                 </ul>
             </div>
-            <figure class="mobile-app-page__hero-preview" aria-label="Drink Water Google Play preview">
-                <img src="{{ $googlePlayHeaderUrl }}" alt="Drink Water Google Play header" loading="eager">
+            <figure class="mobile-app-page__hero-preview" aria-label="Drink Water app poster preview">
+                <img src="{{ $heroPosterUrl }}" alt="Drink Water app poster" loading="eager">
             </figure>
         </header>
 
@@ -134,8 +136,9 @@
                 <p>{{ __('messages.mobile.download_note') }}</p>
             </div>
             <div class="mobile-app-page__download-actions">
-                <button type="button" class="mobile-app-page__download-button" disabled>Google Play</button>
-                <button type="button" class="mobile-app-page__download-button mobile-app-page__download-button--secondary" disabled>APK version</button>
+                <a href="{{ $apkDownloadUrl }}" class="mobile-app-page__download-button">
+                    {{ __('messages.mobile.apk_button') }}
+                </a>
             </div>
         </section>
 

@@ -175,21 +175,31 @@
         </section>
 
         <section class="home-page__principles" aria-labelledby="principles-title">
-            <div class="home-page__section-heading">
-                <p class="home-page__eyebrow">{{ __('messages.home.principles.eyebrow') }}</p>
-                <h2 id="principles-title">{{ __('messages.home.principles.title') }}</h2>
-            </div>
+            <div class="home-page__principles-panel">
+                <figure class="home-page__principles-visual">
+                    <img src="{{ asset('images/darbo_principai.jpg') }}" alt="{{ __('messages.home.principles.title') }}">
+                </figure>
 
-            <div class="home-page__principles-strip">
-                @foreach ($principles as $principle)
-                    <article class="home-page__principle-card">
-                        <span class="home-page__icon" aria-hidden="true">
-                            <i data-lucide="{{ $principle['icon'] }}"></i>
-                        </span>
-                        <h3>{{ __('messages.home.principles.items.'.$principle['key'].'.title') }}</h3>
-                        <p>{{ __('messages.home.principles.items.'.$principle['key'].'.text') }}</p>
-                    </article>
-                @endforeach
+                <div class="home-page__principles-content">
+                    <div class="home-page__section-heading">
+                        <p class="home-page__eyebrow">{{ __('messages.home.principles.eyebrow') }}</p>
+                        <h2 id="principles-title">{{ __('messages.home.principles.title') }}</h2>
+                    </div>
+
+                    <div class="home-page__principles-list">
+                        @foreach ($principles as $principle)
+                            <article class="home-page__principle-card">
+                                <span class="home-page__icon" aria-hidden="true">
+                                    <i data-lucide="{{ $principle['icon'] }}"></i>
+                                </span>
+                                <div class="home-page__principle-copy">
+                                    <h3>{{ __('messages.home.principles.items.'.$principle['key'].'.title') }}</h3>
+                                    <p>{{ __('messages.home.principles.items.'.$principle['key'].'.text') }}</p>
+                                </div>
+                            </article>
+                        @endforeach
+                    </div>
+                </div>
             </div>
         </section>
     </div>

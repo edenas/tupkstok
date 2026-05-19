@@ -5,6 +5,88 @@ export function initializeLayoutScripts() {
     const menuToggle = document.querySelector('[data-site-menu-toggle]');
     const menu = document.querySelector('[data-site-menu]');
     const desktopQuery = window.matchMedia('(min-width: 1024px)');
+    const loadingOverlay = document.querySelector('[data-public-loading-overlay]');
+    const loadingDelay = 320;
+    let loadingTimer = null;
+
+    const hidePublicLoader = () => {
+        if (loadingTimer) {
+            window.clearTimeout(loadingTimer);
+            loadingTimer = null;
+        }
+
+        document.body.classList.remove('public-body--page-leaving');
+        loadingOverlay?.classList.remove('public-loading-overlay--visible');
+    };
+
+    const showPublicLoaderAfterDelay = () => {
+        if (!loadingOverlay || loadingTimer) {
+            return;
+        }
+
+        loadingTimer = window.setTimeout(() => {
+            loadingOverlay.classList.add('public-loading-overlay--visible');
+        }, loadingDelay);
+    };
+
+    const isPublicNavigationLink = (link, event) => {
+        if (!link || event.defaultPrevented || event.button !== 0) {
+            return false;
+        }
+
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+            return false;
+        }
+
+        if (link.target && link.target.toLowerCase() !== '_self') {
+            return false;
+        }
+
+        if (link.hasAttribute('download') || link.dataset.noPageTransition !== undefined) {
+            return false;
+        }
+
+        const href = link.getAttribute('href');
+
+        if (!href || href.startsWith('#')) {
+            return false;
+        }
+
+        const url = new URL(link.href, window.location.href);
+
+        if (url.origin !== window.location.origin) {
+            return false;
+        }
+
+        if (['mailto:', 'tel:'].includes(url.protocol)) {
+            return false;
+        }
+
+        if (url.pathname.startsWith('/admin')) {
+            return false;
+        }
+
+        if (url.pathname === window.location.pathname && url.search === window.location.search && url.hash) {
+            return false;
+        }
+
+        return url.href !== window.location.href || url.hash === '';
+    };
+
+    if (document.body.classList.contains('public-body')) {
+        document.addEventListener('click', (event) => {
+            const link = event.target.closest('a');
+
+            if (!isPublicNavigationLink(link, event)) {
+                return;
+            }
+
+            document.body.classList.add('public-body--page-leaving');
+            showPublicLoaderAfterDelay();
+        });
+
+        window.addEventListener('pageshow', hidePublicLoader);
+    }
 
     if (header && menuToggle && menu) {
         const setMenuOpen = (isOpen) => {

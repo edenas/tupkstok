@@ -67,8 +67,6 @@
                 @endif
             </div>
         </div>
-
-        <section class="animation-post-page__future-section" aria-label="Project media"></section>
     </div>
 </section>
 @endsection

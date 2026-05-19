@@ -103,22 +103,26 @@
 
 .mobile-app-page__hero-preview {
     display: block;
+    box-sizing: border-box;
     min-width: 0;
+    aspect-ratio: 3 / 2;
+    height: auto;
     margin: 0;
+    overflow: hidden;
     border: 1px solid #e2e8f0;
     border-radius: 20px;
     background: #ffffff;
     box-shadow: 0 22px 60px rgba(15, 23, 42, 0.12);
-    padding: 12px;
+    padding: clamp(6px, 0.8vw, 10px);
 }
 
 .mobile-app-page__hero-preview img {
     display: block;
     width: 100%;
-    aspect-ratio: 1024 / 500;
+    height: 100%;
     border-radius: 12px;
-    background: #eef6ff;
-    object-fit: contain;
+    object-fit: cover;
+    object-position: center;
 }
 
 .mobile-app-page__summary-grid {
@@ -338,23 +342,20 @@
 
 .mobile-app-page__download-button {
     display: inline-flex;
-    min-height: 44px;
+    min-height: 52px;
     align-items: center;
     justify-content: center;
     border: 0;
-    border-radius: 6px;
+    border-radius: 7px;
     background: #0284c7;
     color: #ffffff;
-    cursor: default;
-    font-size: 15px;
-    font-weight: 600;
-    opacity: 0.7;
-    padding: 0 22px;
-}
-
-.mobile-app-page__download-button--secondary {
-    background: #e2e8f0;
-    color: #334155;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1.2;
+    padding: 0 25px;
+    text-decoration: none;
+    transition: background-color 180ms ease, box-shadow 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
 .mobile-app-page__screenshots {
@@ -427,7 +428,6 @@
 
     .mobile-app-page__hero-preview {
         border-radius: 14px;
-        padding: 8px;
     }
 
     .mobile-app-page__hero-preview img {
@@ -542,13 +542,21 @@
 }
 
 .mobile-app-page__download-button {
-    border-radius: 6px;
     background: var(--public-accent);
+    box-shadow: 0 16px 32px rgba(0, 92, 255, 0.2);
 }
 
-.mobile-app-page__download-button--secondary {
-    background: var(--public-accent-soft);
-    color: var(--public-ink);
+.mobile-app-page__download-button:hover,
+.mobile-app-page__download-button:focus-visible {
+    background: var(--public-accent-dark);
+    color: #ffffff;
+    box-shadow: 0 20px 38px rgba(0, 92, 255, 0.24);
+    transform: translateY(-1px);
+}
+
+.mobile-app-page__download-button:focus-visible {
+    outline: 3px solid rgba(0, 92, 255, 0.22);
+    outline-offset: 3px;
 }
 
 .mobile-app-page__screenshot-showcase {
@@ -759,6 +767,10 @@ body.mobile-app-lightbox-open {
     .mobile-app-page__hero {
         grid-template-columns: 1fr;
     }
+
+    .mobile-app-page__hero-preview {
+        height: auto;
+    }
 }
 
 @media (max-width: 640px) {
@@ -774,6 +786,10 @@ body.mobile-app-lightbox-open {
         gap: 28px;
     }
 
+    .mobile-app-page__hero-preview {
+        height: auto;
+    }
+
     .mobile-app-page__hero-actions {
         margin-top: 28px;
     }
@@ -784,8 +800,26 @@ body.mobile-app-lightbox-open {
     }
 
     .mobile-app-page__hero-features {
-        gap: 18px 14px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 8px;
         margin-top: 34px;
+    }
+
+    .mobile-app-page__hero-features li {
+        gap: 7px;
+        font-size: 12px;
+        line-height: 1.18;
+    }
+
+    .mobile-app-page__hero-feature-icon {
+        width: 42px;
+        height: 42px;
+        flex: 0 0 auto;
+    }
+
+    .mobile-app-page__hero-feature-icon svg {
+        width: 20px;
+        height: 20px;
     }
 
     .mobile-app-page__summary-grid {

@@ -143,20 +143,33 @@
             </div>
         </section>
 
-        <section class="web-solutions-page__feature-strip" aria-label="{{ __('messages.web.feature_strip_label') }}">
-            @foreach ($featureItems as $feature)
-                <article class="web-solutions-page__feature-item">
-                    <span class="web-solutions-page__feature-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" focusable="false">
-                            {!! $serviceIcons[$feature['icon']] !!}
-                        </svg>
-                    </span>
-                    <div>
-                        <h3>{{ __('messages.web.feature_strip.'.$feature['key'].'.title') }}</h3>
-                        <p>{{ __('messages.web.feature_strip.'.$feature['key'].'.text') }}</p>
-                    </div>
-                </article>
-            @endforeach
+        <section class="web-solutions-page__feature-panel" aria-label="{{ __('messages.web.feature_strip_label') }}">
+            <figure class="web-solutions-page__feature-visual">
+                <img src="{{ asset('images/web_services.jpg') }}" alt="{{ __('messages.web.feature_strip_label') }}">
+            </figure>
+
+            <div class="web-solutions-page__feature-content">
+                <div class="web-solutions-page__feature-heading">
+                    <p class="web-solutions-page__eyebrow">{{ app()->getLocale() === 'lt' ? 'KODĖL VERTA DIRBTI KARTU?' : 'WHY WORK TOGETHER?' }}</p>
+                    <h2>{{ app()->getLocale() === 'lt' ? 'Web sprendimai, kurie veikia' : 'Web solutions that work' }}</h2>
+                </div>
+
+                <div class="web-solutions-page__feature-list">
+                    @foreach ($featureItems as $feature)
+                        <article class="web-solutions-page__feature-item">
+                            <span class="web-solutions-page__feature-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" focusable="false">
+                                    {!! $serviceIcons[$feature['icon']] !!}
+                                </svg>
+                            </span>
+                            <div class="web-solutions-page__feature-copy">
+                                <h3>{{ __('messages.web.feature_strip.'.$feature['key'].'.title') }}</h3>
+                                <p>{{ __('messages.web.feature_strip.'.$feature['key'].'.text') }}</p>
+                            </div>
+                        </article>
+                    @endforeach
+                </div>
+            </div>
         </section>
     </div>
 </section>
