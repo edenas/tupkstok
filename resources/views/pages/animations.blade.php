@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@php($url = \App\Support\LocalizedUrl::class)
 <section class="animations-page">
     <div class="animations-page__container">
         <header class="animations-page__hero">
@@ -15,7 +16,7 @@
             <div class="animations-page__grid">
                 @foreach ($portfolioPosts as $post)
                     @php($thumbnailUrl = $post->thumbnailUrl())
-                    <a href="{{ route('graphics.show', $post) }}" class="animations-page__card" aria-label="{{ __('messages.common.view_project') }}: {{ $post->localizedTitle() }}">
+                    <a href="{{ $url::route('graphics.show', $post) }}" class="animations-page__card" aria-label="{{ __('messages.common.view_project') }}: {{ $post->localizedTitle() }}">
                         <div class="animations-page__image">
                             <img src="{{ $thumbnailUrl }}" alt="{{ $post->localizedTitle() }} thumbnail">
                         </div>

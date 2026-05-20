@@ -11,28 +11,62 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('pages.welcome');
-});
+})->name('home');
 
-Route::get('/about-me', function () {
+Route::get('/apie-mane', function () {
     return view('pages.about-me');
 })->name('about-me');
 
-Route::get('/contact', function () {
+Route::get('/kontaktai', function () {
     return view('pages.contact');
 })->name('contact');
 
-Route::get('/web-solutions', function () {
+Route::get('/web-sprendimai', function () {
     return view('pages.web-solutions');
 })->name('web-solutions');
 
-Route::get('/mobile-apps', function () {
+Route::get('/mobiliosios-aplikacijos', function () {
     return view('pages.mobile-apps');
 })->name('mobile-apps');
 
+Route::get('/grafika', [PortfolioPostController::class, 'index'])->name('graphics');
+Route::get('/grafika/{portfolioPost}', [PortfolioPostController::class, 'show'])->name('graphics.show');
+
+Route::prefix('en')->name('en.')->group(function () {
+    Route::get('/', function () {
+        return view('pages.welcome');
+    })->name('home');
+
+    Route::get('/about-me', function () {
+        return view('pages.about-me');
+    })->name('about-me');
+
+    Route::get('/contact', function () {
+        return view('pages.contact');
+    })->name('contact');
+
+    Route::get('/web-solutions', function () {
+        return view('pages.web-solutions');
+    })->name('web-solutions');
+
+    Route::get('/mobile-apps', function () {
+        return view('pages.mobile-apps');
+    })->name('mobile-apps');
+
+    Route::get('/graphics', [PortfolioPostController::class, 'index'])->name('graphics');
+    Route::get('/graphics/{portfolioPost}', [PortfolioPostController::class, 'show'])->name('graphics.show');
+});
+
 Route::get('/language/{locale}', [LanguageController::class, 'switch'])->name('language.switch');
 
-Route::get('/graphics', [PortfolioPostController::class, 'index'])->name('graphics');
-Route::get('/graphics/{portfolioPost}', [PortfolioPostController::class, 'show'])->name('graphics.show');
+Route::redirect('/about-me', '/en/about-me', 301);
+Route::redirect('/contact', '/en/contact', 301);
+Route::redirect('/web-solutions', '/en/web-solutions', 301);
+Route::redirect('/mobile-apps', '/en/mobile-apps', 301);
+Route::redirect('/graphics', '/en/graphics', 301);
+Route::get('/graphics/{portfolioPost}', function (Request $request, PortfolioPost $portfolioPost) {
+    return redirect()->route('en.graphics.show', ['portfolioPost' => $portfolioPost] + $request->query(), 301);
+});
 Route::get('/animations', function (Request $request) {
     return redirect()->route('graphics', $request->query(), 301);
 });
@@ -41,9 +75,11 @@ Route::get('/animations/{portfolioPost}', function (Request $request, PortfolioP
 });
 
 Route::middleware('guest')->group(function () {
-    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-    Route::post('/login', [LoginController::class, 'login']);
+    Route::get('/settings', [LoginController::class, 'showLoginForm'])->name('login');
+    Route::post('/settings', [LoginController::class, 'login']);
 });
+
+Route::redirect('/login', '/', 302);
 
 Route::middleware(['auth', 'administrator'])->group(function () {
     Route::get('/admin', function () {

@@ -2,10 +2,11 @@
 
 @section('content')
 @php($projectDetails = $portfolioPost->localizedProjectDetails())
+@php($url = \App\Support\LocalizedUrl::class)
 
 <section class="animation-post-page">
     <div class="animation-post-page__container">
-        <a href="{{ route('graphics') }}" class="animation-post-page__back-link">{{ __('messages.common.back_to_graphics') }}</a>
+        <a href="{{ $url::route('graphics') }}" class="animation-post-page__back-link">{{ __('messages.common.back_to_graphics') }}</a>
 
         <header class="animation-post-page__hero">
             <p class="animation-post-page__category">{{ $portfolioPost->localizedCategory() }}</p>

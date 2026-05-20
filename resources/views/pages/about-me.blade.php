@@ -2,6 +2,8 @@
 
 @section('content')
 @php
+    $url = \App\Support\LocalizedUrl::class;
+
     $aboutTechItems = [
         ['label' => 'Laravel', 'icon' => 'blocks'],
         ['label' => 'PHP', 'icon' => 'braces'],
@@ -71,7 +73,7 @@
                 <p class="about-page__lead">{{ __('messages.about.lead') }}</p>
 
                 <div class="about-page__hero-actions">
-                    <a href="{{ route('contact') }}" class="about-page__primary-button">
+                    <a href="{{ $url::route('contact') }}" class="about-page__primary-button">
                         {{ __('messages.about.contact_cta') }}
                     </a>
                 </div>
@@ -105,24 +107,27 @@
         </section>
 
         <div class="about-page__main-grid">
-            <article class="about-page__card about-page__text-panel">
-                <h2 class="about-page__section-title">{{ __('messages.about.title') }}</h2>
-                @foreach (__('messages.about.paragraphs') as $paragraph)
-                    <p>{{ $paragraph }}</p>
-                @endforeach
-            </article>
+            <article class="about-page__card about-page__text-panel split-card">
+                <div class="about-page__text-content split-card__content">
+                    <p class="about-page__text-eyebrow">{{ __('messages.about.title') }}</p>
+                    <h2 class="about-page__text-title">{{ __('messages.about.hero_title') }}</h2>
+                    <span class="about-page__text-divider" aria-hidden="true"></span>
 
-            <section class="about-page__card about-page__tech-panel" aria-labelledby="about-tech-title">
-                <h2 class="about-page__section-title" id="about-tech-title">{{ __('messages.about.tech') }}</h2>
-                <div class="about-page__tech-list">
-                    @foreach ($aboutTechItems as $item)
-                        <article class="about-page__list-row">
-                            <i data-lucide="{{ $item['icon'] }}" class="about-page__row-icon" aria-hidden="true"></i>
-                            <span>{{ $item['label'] }}</span>
-                        </article>
-                    @endforeach
+                    <div class="about-page__text-body">
+                        @foreach (__('messages.about.paragraphs') as $paragraph)
+                            <p>{{ $paragraph }}</p>
+                        @endforeach
+                    </div>
                 </div>
-            </section>
+
+                <figure class="about-page__text-media split-card__media">
+                    <img
+                        src="{{ asset('images/apie_mane_info.jpg') }}"
+                        alt="{{ __('messages.about.hero_title') }}"
+                        class="about-page__text-image split-card__image"
+                    >
+                </figure>
+            </article>
         </div>
 
         <section class="about-page__services-panel" aria-labelledby="about-services-title">
@@ -134,16 +139,16 @@
 
             <div class="about-page__service-blocks">
                 @foreach ($aboutServiceGroups as $group)
-                    <article class="about-page__service-block about-page__service-block--image-{{ $group['image_position'] }}">
-                        <figure class="about-page__service-media">
+                    <article class="about-page__service-block about-page__service-block--image-{{ $group['image_position'] }} split-card">
+                        <figure class="about-page__service-media split-card__media">
                             <img
                                 src="{{ asset($group['image']) }}"
                                 alt="{{ __('messages.about.service_groups.'.$group['key'].'.image_alt') }}"
-                                class="about-page__service-image"
+                                class="about-page__service-image split-card__image"
                             >
                         </figure>
 
-                        <div class="about-page__service-content">
+                        <div class="about-page__service-content split-card__content">
                             <h3 class="about-page__service-heading">{{ __('messages.about.service_groups.'.$group['key'].'.title') }}</h3>
                             <span class="about-page__service-heading-line" aria-hidden="true"></span>
 
@@ -186,6 +191,18 @@
                     </svg>
                     <span>LinkedIn</span>
                 </a>
+            </div>
+        </section>
+
+        <section class="about-page__card about-page__tech-panel" aria-labelledby="about-tech-title">
+            <h2 class="about-page__section-title" id="about-tech-title">{{ __('messages.about.tech') }}</h2>
+            <div class="about-page__tech-list">
+                @foreach ($aboutTechItems as $item)
+                    <article class="about-page__list-row">
+                        <i data-lucide="{{ $item['icon'] }}" class="about-page__row-icon" aria-hidden="true"></i>
+                        <span>{{ $item['label'] }}</span>
+                    </article>
+                @endforeach
             </div>
         </section>
     </div>

@@ -2,6 +2,7 @@
 
 @import './styles/base/base.css';
 @import './styles/layouts/layout-base.css';
+@import './styles/auth/auth-login.css';
 @import './styles/admin/admin-layout.css';
 @import './styles/admin/admin-sidebar.css';
 @import './styles/admin/admin-topbar.css';

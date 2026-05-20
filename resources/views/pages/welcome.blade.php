@@ -2,31 +2,33 @@
 
 @section('content')
 @php
+    $url = \App\Support\LocalizedUrl::class;
+
     $services = [
         [
             'key' => 'web_solutions',
             'icon' => 'monitor-smartphone',
-            'url' => route('web-solutions'),
+            'url' => $url::route('web-solutions'),
         ],
         [
             'key' => 'mobile_apps',
             'icon' => 'smartphone',
-            'url' => route('mobile-apps'),
+            'url' => $url::route('mobile-apps'),
         ],
         [
             'key' => 'graphic_design',
             'icon' => 'pen-tool',
-            'url' => route('graphics'),
+            'url' => $url::route('graphics'),
         ],
         [
             'key' => 'seo_optimization',
             'icon' => 'search',
-            'url' => route('web-solutions'),
+            'url' => $url::route('web-solutions'),
         ],
         [
             'key' => 'technologies',
             'icon' => 'code',
-            'url' => route('about-me'),
+            'url' => $url::route('about-me'),
         ],
     ];
 
@@ -95,7 +97,7 @@
                         {{ __('messages.home.hero.services_cta') }}
                         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
                     </a>
-                    <a href="{{ route('contact') }}" class="home-page__button home-page__button--secondary">
+                    <a href="{{ $url::route('contact') }}" class="home-page__button home-page__button--secondary">
                         {{ __('messages.home.contact_cta') }}
                         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/></svg>
                     </a>
@@ -131,7 +133,7 @@
                     <p>
                         {{ __('messages.home.about.text') }}
                     </p>
-                    <a href="{{ route('about-me') }}" class="home-page__text-button">
+                    <a href="{{ $url::route('about-me') }}" class="home-page__text-button">
                         {{ __('messages.home.about.cta') }}
                         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
                     </a>
@@ -142,7 +144,7 @@
                 <div class="home-page__project-copy">
                     <h2>{{ __('messages.home.project_cta.title') }}</h2>
                     <p>{{ __('messages.home.project_cta.text') }}</p>
-                    <a href="{{ route('contact') }}" class="home-page__project-button">
+                    <a href="{{ $url::route('contact') }}" class="home-page__project-button">
                         {{ __('messages.home.contact_cta') }}
                         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
                     </a>

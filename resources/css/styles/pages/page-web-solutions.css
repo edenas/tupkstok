@@ -62,7 +62,8 @@
     padding: 32px;
 }
 
-.web-solutions-page__section + .web-solutions-page__feature-panel {
+.web-solutions-page__section + .web-solutions-page__feature-panel,
+.web-solutions-page__feature-panel + .web-solutions-page__section {
     margin-top: 40px;
 }
 
@@ -178,6 +179,8 @@
     overflow: hidden;
     border-right: 1px solid rgba(204, 216, 231, 0.9);
     padding: 12px 30px 12px 0;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .web-solutions-page__logo-frame img {
@@ -190,6 +193,12 @@
     height: auto;
     object-fit: contain;
     object-position: center;
+    transition: transform 180ms ease;
+}
+
+.web-solutions-page__logo-frame:hover img,
+.web-solutions-page__logo-frame:focus-visible img {
+    transform: scale(1.035);
 }
 
 .web-solutions-page__logo-fallback {
@@ -213,13 +222,22 @@
 }
 
 .web-solutions-page__project-domain {
+    display: inline-block;
     margin: 0 0 8px;
     color: var(--public-accent);
     font-size: 12px;
     font-weight: 800;
     letter-spacing: 0.08em;
     line-height: 1.2;
+    text-decoration: none;
     text-transform: uppercase;
+}
+
+.web-solutions-page__project-domain:hover,
+.web-solutions-page__project-domain:focus-visible {
+    color: var(--public-accent);
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .web-solutions-page__project-description {
@@ -235,24 +253,22 @@
 
 .web-solutions-page__project-link {
     display: inline-flex;
-    min-width: 0;
-    min-height: 44px;
+    width: 42px;
+    height: 42px;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    border-radius: 6px;
-    background: var(--public-accent);
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: 800;
-    padding: 0 24px;
+    justify-self: end;
+    margin-right: 14px;
+    border: 1px solid rgba(0, 92, 255, 0.16);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.86);
+    color: var(--public-accent);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
     text-decoration: none;
-    white-space: nowrap;
-    box-shadow: 0 12px 28px rgba(0, 92, 255, 0.18);
-    transition: background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+    transition: border-color 180ms ease, box-shadow 180ms ease, color 180ms ease, transform 180ms ease, background-color 180ms ease;
 }
 
-.web-solutions-page__project-link svg {
+.web-solutions-page__project-link-arrow {
     width: 18px;
     height: 18px;
     fill: none;
@@ -260,12 +276,20 @@
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-width: 2.4;
+    transition: transform 180ms ease;
 }
 
 .web-solutions-page__project-link:hover {
-    background: var(--public-accent-dark);
-    box-shadow: 0 16px 30px rgba(0, 92, 255, 0.22);
-    transform: translateY(-1px);
+    border-color: rgba(0, 92, 255, 0.34);
+    background: #ffffff;
+    color: var(--public-accent-dark);
+    box-shadow: 0 14px 30px rgba(0, 92, 255, 0.14);
+    transform: translateY(-2px);
+}
+
+.web-solutions-page__project-link:hover .web-solutions-page__project-link-arrow,
+.web-solutions-page__project-link:focus-visible .web-solutions-page__project-link-arrow {
+    transform: translateX(3px);
 }
 
 .web-solutions-page__project-link:focus-visible {
@@ -399,6 +423,7 @@
 
     .web-solutions-page__project-link {
         grid-column: 2;
+        margin-right: 0;
         justify-self: start;
     }
 
@@ -444,20 +469,29 @@
     }
 
     .web-solutions-page__logo-frame {
-        min-height: 92px;
+        width: 100%;
+        min-height: 86px;
         border-right: 0;
         border-bottom: 1px solid rgba(204, 216, 231, 0.9);
-        padding: 6px 0 20px;
+        padding: 4px 0 18px;
+    }
+
+    .web-solutions-page__logo-frame img {
+        width: 82%;
+        max-width: 250px;
+        max-height: 70px;
+        height: auto;
+        margin: 0 auto;
+        object-fit: contain;
     }
 
     .web-solutions-page__logo-fallback {
-        inset: 0 0 20px;
+        inset: 0 0 18px;
     }
 
     .web-solutions-page__project-link {
         grid-column: auto;
-        width: 100%;
-        min-width: 0;
+        justify-self: end;
     }
 
     .web-solutions-page__feature-visual {

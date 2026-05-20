@@ -14,7 +14,15 @@ class SetLocale
 
     public function handle(Request $request, Closure $next): Response
     {
-        $sessionKey = $request->is('admin*') ? 'admin_locale' : 'public_locale';
+        if (! $request->is('admin*')) {
+            $locale = $request->segment(1) === 'en' ? 'en' : self::DEFAULT_LOCALE;
+            $request->session()->put('public_locale', $locale);
+            App::setLocale($locale);
+
+            return $next($request);
+        }
+
+        $sessionKey = 'admin_locale';
         $locale = $request->session()->get($sessionKey, self::DEFAULT_LOCALE);
 
         if (! in_array($locale, self::SUPPORTED_LOCALES, true)) {

@@ -101,48 +101,6 @@
             </section>
         </div>
 
-        <section class="web-solutions-page__section">
-            <div class="web-solutions-page__section-header">
-                <h2>{{ __('messages.common.completed_projects') }}</h2>
-                <p>{{ __('messages.web.projects_intro') }}</p>
-            </div>
-
-            <div class="web-solutions-page__projects-list">
-                @foreach ($projects as $project)
-                    <article class="web-solutions-page__project-row">
-                        @php($clientTitle = __('messages.web.clients.'.$project['client_key'].'.title'))
-                        <div class="web-solutions-page__logo-frame" aria-label="{{ $clientTitle }} logo">
-                            <span class="web-solutions-page__logo-fallback">{{ $clientTitle }}</span>
-                            <img
-                                src="{{ asset('storage/clients/'.$project['logo']) }}"
-                                alt="{{ $clientTitle }} logo"
-                                loading="lazy"
-                                onload="this.previousElementSibling.hidden = true;"
-                                onerror="this.hidden = true;"
-                            >
-                        </div>
-
-                        <div class="web-solutions-page__project-content">
-                            <p class="web-solutions-page__project-domain">{{ $project['domain'] }}</p>
-                            <h3>{{ $clientTitle }}</h3>
-                            <div class="web-solutions-page__project-description">
-                                <p>{{ __('messages.web.clients.'.$project['client_key'].'.description') }}</p>
-                            </div>
-                        </div>
-
-                        <a href="{{ $project['url'] }}" target="_blank" rel="noopener noreferrer" class="web-solutions-page__project-link">
-                            {{ __('messages.common.visit_website') }}
-                            <span aria-hidden="true">
-                                <svg viewBox="0 0 24 24" focusable="false">
-                                    <path d="M5 12h14"/><path d="m13 6 6 6-6 6"/>
-                                </svg>
-                            </span>
-                        </a>
-                    </article>
-                @endforeach
-            </div>
-        </section>
-
         <section class="web-solutions-page__feature-panel" aria-label="{{ __('messages.web.feature_strip_label') }}">
             <figure class="web-solutions-page__feature-visual">
                 <img src="{{ asset('images/web_services.jpg') }}" alt="{{ __('messages.web.feature_strip_label') }}">
@@ -169,6 +127,47 @@
                         </article>
                     @endforeach
                 </div>
+            </div>
+        </section>
+
+        <section class="web-solutions-page__section">
+            <div class="web-solutions-page__section-header">
+                <h2>{{ __('messages.common.completed_projects') }}</h2>
+                <p>{{ __('messages.web.projects_intro') }}</p>
+            </div>
+
+            <div class="web-solutions-page__projects-list">
+                @foreach ($projects as $project)
+                    <article class="web-solutions-page__project-row">
+                        @php($clientTitle = __('messages.web.clients.'.$project['client_key'].'.title'))
+                        <a href="{{ $project['url'] }}" target="_blank" rel="noopener noreferrer" class="web-solutions-page__logo-frame" aria-label="{{ __('messages.common.view_project') }}: {{ $clientTitle }}">
+                            <span class="web-solutions-page__logo-fallback">{{ $clientTitle }}</span>
+                            <img
+                                src="{{ asset('storage/clients/'.$project['logo']) }}"
+                                alt="{{ $clientTitle }} logo"
+                                loading="lazy"
+                                onload="this.previousElementSibling.hidden = true;"
+                                onerror="this.hidden = true;"
+                            >
+                        </a>
+
+                        <div class="web-solutions-page__project-content">
+                            <a href="{{ $project['url'] }}" target="_blank" rel="noopener noreferrer" class="web-solutions-page__project-domain" aria-label="{{ __('messages.common.view_project') }}: {{ $clientTitle }}">
+                                {{ $project['domain'] }}
+                            </a>
+                            <h3>{{ $clientTitle }}</h3>
+                            <div class="web-solutions-page__project-description">
+                                <p>{{ __('messages.web.clients.'.$project['client_key'].'.description') }}</p>
+                            </div>
+                        </div>
+
+                        <a href="{{ $project['url'] }}" target="_blank" rel="noopener noreferrer" class="web-solutions-page__project-link" aria-label="{{ __('messages.common.view_project') }}: {{ $clientTitle }}">
+                            <svg class="web-solutions-page__project-link-arrow" viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                                <path d="M5 12h14"/><path d="m13 6 6 6-6 6"/>
+                            </svg>
+                        </a>
+                    </article>
+                @endforeach
             </div>
         </section>
     </div>

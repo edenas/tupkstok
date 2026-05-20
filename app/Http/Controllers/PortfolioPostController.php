@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PortfolioPost;
+use App\Support\LocalizedUrl;
 
 class PortfolioPostController extends Controller
 {
@@ -15,7 +16,7 @@ class PortfolioPostController extends Controller
             ->orderBy('position')
             ->orderByDesc('created_at')
             ->paginate(12)
-            ->withPath(route('graphics'));
+            ->withPath(LocalizedUrl::route('graphics'));
 
         return view('pages.animations', compact('portfolioPosts'));
     }
