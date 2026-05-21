@@ -10,6 +10,24 @@ use App\Http\Controllers\PortfolioPostController;
 use App\Models\PortfolioPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
+
+Route::get('/storage/{path}', function (string $path) {
+    $path = ltrim(str_replace('\\', '/', $path), '/');
+    $segments = explode('/', $path);
+
+    if ($path === '' || in_array('..', $segments, true)) {
+        abort(404);
+    }
+
+    $disk = Storage::disk('public');
+
+    if (! $disk->fileExists($path)) {
+        abort(404);
+    }
+
+    return $disk->response($path);
+})->where('path', '.*')->name('storage.public');
 
 Route::get('/', function () {
     return view('pages.welcome');
