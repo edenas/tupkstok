@@ -10,7 +10,7 @@ class LanguageController extends Controller
 {
     public function switch(Request $request, string $locale): RedirectResponse
     {
-        if (! in_array($locale, ['lt', 'en'], true)) {
+        if (! in_array($locale, ['lt', 'en', 'ru'], true)) {
             $locale = 'lt';
         }
 
@@ -31,7 +31,7 @@ class LanguageController extends Controller
         $path = trim($previousPath, '/');
         $segments = $path === '' ? [] : explode('/', $path);
 
-        if (($segments[0] ?? null) === 'en') {
+        if (in_array(($segments[0] ?? null), ['en', 'ru'], true)) {
             array_shift($segments);
         }
 

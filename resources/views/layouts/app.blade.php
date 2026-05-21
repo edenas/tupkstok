@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    @php($seo = \App\Support\SeoMeta::current())
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>{{ $pageTitle ?? 'EPgalerija' }}</title>
+        <title>{{ $pageTitle ?? $seo['title'] }}</title>
+        <meta name="description" content="{{ $seo['description'] }}">
+        <meta name="keywords" content="{{ $seo['keywords'] }}">
+        <meta property="og:title" content="{{ $pageTitle ?? $seo['title'] }}">
+        <meta property="og:description" content="{{ $seo['description'] }}">
+        <meta property="og:type" content="{{ $seo['type'] }}">
+        <meta property="og:url" content="{{ $seo['url'] }}">
         <link rel="icon" type="image/x-icon" href="/favicon.ico">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">

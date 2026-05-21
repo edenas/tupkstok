@@ -8,16 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 #[Fillable([
     'title',
     'title_en',
+    'title_ru',
     'category',
     'category_en',
+    'category_ru',
     'short_description',
     'short_description_en',
+    'short_description_ru',
     'content_heading',
     'content_heading_en',
+    'content_heading_ru',
     'description',
     'description_en',
+    'description_ru',
     'project_details',
     'project_details_en',
+    'project_details_ru',
     'thumbnail',
     'post_image',
     'youtube_url',
@@ -34,22 +40,25 @@ class PortfolioPost extends Model
         'position' => 'integer',
         'project_details' => 'array',
         'project_details_en' => 'array',
+        'project_details_ru' => 'array',
     ];
 
     public function localized(string $field): mixed
     {
-        if (app()->getLocale() !== 'en') {
+        $locale = app()->getLocale();
+
+        if (! in_array($locale, ['en', 'ru'], true)) {
             return $this->{$field};
         }
 
-        $englishField = $field.'_en';
-        $englishValue = $this->{$englishField} ?? null;
+        $localizedField = $field.'_'.$locale;
+        $localizedValue = $this->{$localizedField} ?? null;
 
-        if (is_array($englishValue)) {
-            return $englishValue !== [] ? $englishValue : $this->{$field};
+        if (is_array($localizedValue)) {
+            return $localizedValue !== [] ? $localizedValue : $this->{$field};
         }
 
-        return filled($englishValue) ? $englishValue : $this->{$field};
+        return filled($localizedValue) ? $localizedValue : $this->{$field};
     }
 
     public function localizedTitle(): string

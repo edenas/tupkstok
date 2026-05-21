@@ -64,22 +64,44 @@
     outline-offset: 3px;
 }
 
+.admin-table__strong-text {
+    color: #e2e8f0;
+    font-weight: 700;
+}
+
+.admin-table__muted-text {
+    color: #94a3b8;
+}
+
+.admin-table__count {
+    display: inline-flex;
+    min-width: 48px;
+    justify-content: flex-end;
+    color: #bae6fd;
+    font-weight: 800;
+}
+
 .admin-table__actions {
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
-.admin-table__position-controls {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
+.admin-table__position-input {
+    width: 76px;
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    border-radius: 6px;
+    background: rgba(15, 23, 42, 0.32);
+    color: #e2e8f0;
+    padding: 8px 10px;
+    font: inherit;
+    font-weight: 700;
 }
 
-.admin-table__position-number {
-    min-width: 2ch;
-    color: #e2e8f0;
-    font-weight: 700;
+.admin-table__position-input:focus {
+    border-color: #38bdf8;
+    outline: 3px solid rgba(14, 165, 233, 0.22);
+    outline-offset: 1px;
 }
 
 .admin-icon-button {
@@ -116,15 +138,6 @@
 .admin-icon-button--delete:hover {
     background: rgba(248, 113, 113, 0.12);
     color: #fca5a5;
-}
-
-.admin-icon-button--position {
-    color: #93c5fd;
-}
-
-.admin-icon-button--position:hover {
-    background: rgba(59, 130, 246, 0.14);
-    color: #bfdbfe;
 }
 
 .admin-icon-button:disabled {
@@ -184,6 +197,19 @@
     border-color: #38bdf8;
     background: #0ea5e9;
     color: #062033;
+}
+
+.admin-pagination__link--disabled {
+    cursor: default;
+    opacity: 0.42;
+}
+
+.admin-pagination__link--disabled:hover,
+.admin-pagination__link--disabled:focus-visible {
+    border-color: rgba(148, 163, 184, 0.26);
+    background: rgba(15, 23, 42, 0.18);
+    color: #cbd5e1;
+    outline: 0;
 }
 
 .admin-pagination__ellipsis {

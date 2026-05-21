@@ -18,6 +18,8 @@
 @php($projectDetails = is_array($projectDetails) ? $projectDetails : [])
 @php($projectDetailsEn = old('project_details_en', $portfolioPost->project_details_en ?? []))
 @php($projectDetailsEn = is_array($projectDetailsEn) ? $projectDetailsEn : [])
+@php($projectDetailsRu = old('project_details_ru', $portfolioPost->project_details_ru ?? []))
+@php($projectDetailsRu = is_array($projectDetailsRu) ? $projectDetailsRu : [])
 @php($hasThumbnail = isset($portfolioPost) && $portfolioPost->thumbnail)
 @php($hasPostImage = isset($portfolioPost) && $portfolioPost->post_image)
 
@@ -34,6 +36,9 @@
         </button>
         <button type="button" class="admin-form-tabs__button" id="portfolio-tab-en" role="tab" aria-selected="false" aria-controls="portfolio-panel-en" data-language-tab="en">
             EN
+        </button>
+        <button type="button" class="admin-form-tabs__button" id="portfolio-tab-ru" role="tab" aria-selected="false" aria-controls="portfolio-panel-ru" data-language-tab="ru">
+            RU
         </button>
     </div>
 
@@ -323,6 +328,68 @@
                             @continue(trim((string) $detail) === '')
                             <div class="admin-form__project-detail-item" data-project-detail-item>
                                 <input type="hidden" name="project_details_en[]" value="{{ $detail }}">
+                                <span>{{ $detail }}</span>
+                                <button type="button" class="admin-form__project-detail-remove" title="Remove detail" aria-label="Remove {{ $detail }}" data-project-detail-remove>
+                                    <svg viewBox="0 0 20 20" focusable="false" aria-hidden="true">
+                                        <path fill="currentColor" fill-rule="evenodd" d="M5.29 5.29a1 1 0 0 1 1.42 0L10 8.59l3.29-3.3a1 1 0 1 1 1.42 1.42L11.41 10l3.3 3.29a1 1 0 0 1-1.42 1.42L10 11.41l-3.29 3.3a1 1 0 0 1-1.42-1.42L8.59 10l-3.3-3.29a1 1 0 0 1 0-1.42Z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="admin-form-tabs__panel admin-form-tabs__panel--hidden" id="portfolio-panel-ru" role="tabpanel" aria-labelledby="portfolio-tab-ru" data-language-panel="ru" hidden>
+        <section class="admin-form-card">
+            <header class="admin-form-card__header">
+                <h2>Russian translation</h2>
+                <p>Manual Russian translation for public Graphics pages.</p>
+            </header>
+
+            <div class="admin-form-card__body">
+                <div class="admin-form__field">
+                    <label for="title_ru" class="admin-form__label">Title RU</label>
+                    <input type="text" name="title_ru" id="title_ru" value="{{ old('title_ru', $portfolioPost->title_ru ?? '') }}" class="admin-form__input">
+                </div>
+
+                <div class="admin-form__field">
+                    <label for="short_description_ru" class="admin-form__label">Short description RU</label>
+                    <textarea name="short_description_ru" id="short_description_ru" class="admin-form__input admin-form__textarea admin-form__textarea--short">{{ old('short_description_ru', $portfolioPost->short_description_ru ?? '') }}</textarea>
+                </div>
+
+                <div class="admin-form__field">
+                    <label for="category_ru" class="admin-form__label">Category RU</label>
+                    <input type="text" name="category_ru" id="category_ru" value="{{ old('category_ru', $portfolioPost->category_ru ?? '') }}" class="admin-form__input">
+                </div>
+
+                <div class="admin-form__field">
+                    <label for="content_heading_ru" class="admin-form__label">Content heading RU</label>
+                    <input type="text" name="content_heading_ru" id="content_heading_ru" value="{{ old('content_heading_ru', $portfolioPost->content_heading_ru ?? '') }}" class="admin-form__input">
+                </div>
+
+                <div class="admin-form__field">
+                    <label for="description_ru" class="admin-form__label">Description RU</label>
+                    <textarea name="description_ru" id="description_ru" class="admin-form__input admin-form__textarea admin-form__textarea--large">{{ old('description_ru', $portfolioPost->description_ru ?? '') }}</textarea>
+                </div>
+
+                <div class="admin-form__field" data-project-details data-project-detail-name="project_details_ru[]">
+                    <label for="project_detail_input_ru" class="admin-form__label">Project details RU</label>
+                    <div class="admin-form__project-detail-entry">
+                        <input type="text" id="project_detail_input_ru" class="admin-form__input" data-project-detail-input>
+                        <button type="button" class="admin-form__project-detail-add" title="Add detail" aria-label="Add project detail" data-project-detail-add>
+                            <svg viewBox="0 0 20 20" focusable="false" aria-hidden="true">
+                                <path fill="currentColor" fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-8 8a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4L8 12.59l7.3-7.3a1 1 0 0 1 1.4 0Z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="admin-form__project-detail-list" data-project-detail-list>
+                        @foreach ($projectDetailsRu as $detail)
+                            @continue(trim((string) $detail) === '')
+                            <div class="admin-form__project-detail-item" data-project-detail-item>
+                                <input type="hidden" name="project_details_ru[]" value="{{ $detail }}">
                                 <span>{{ $detail }}</span>
                                 <button type="button" class="admin-form__project-detail-remove" title="Remove detail" aria-label="Remove {{ $detail }}" data-project-detail-remove>
                                     <svg viewBox="0 0 20 20" focusable="false" aria-hidden="true">

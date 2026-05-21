@@ -4,31 +4,23 @@
 <div class="admin-page">
     <div class="admin-page__header">
         <div>
-            <h1 class="admin-page__title">{{ __('messages.admin.dashboard') }}</h1>
+            <h1 class="admin-page__title">{{ __('messages.admin.statistics.title') }}</h1>
         </div>
     </div>
 
-    <section class="admin-dashboard-summary" aria-label="{{ __('messages.admin.dashboard_summary') }}">
-        <article class="admin-dashboard-card">
-            <p class="admin-dashboard-card__label">{{ __('messages.admin.created_pages') }}</p>
-            <strong class="admin-dashboard-card__value">{{ number_format($totalPages) }}</strong>
-        </article>
-
-        <article class="admin-dashboard-card">
-            <p class="admin-dashboard-card__label">{{ __('messages.admin.portfolio_posts') }}</p>
-            <strong class="admin-dashboard-card__value">{{ number_format($totalPortfolioPosts) }}</strong>
-        </article>
-
-        <article class="admin-dashboard-card">
-            <p class="admin-dashboard-card__label">{{ __('messages.admin.today_visits') }}</p>
-            <strong class="admin-dashboard-card__value">{{ number_format($todayVisits) }}</strong>
-        </article>
+    <section class="admin-statistics-grid" aria-label="{{ __('messages.admin.statistics.summary_label') }}">
+        @foreach ($summaryCards as $card)
+            <article class="admin-stat-card">
+                <p class="admin-stat-card__label">{{ __($card['label_key']) }}</p>
+                <strong class="admin-stat-card__value">{{ number_format($card['value']) }}</strong>
+            </article>
+        @endforeach
     </section>
 
-    <section class="admin-panel admin-dashboard-popular">
+    <section class="admin-panel admin-statistics-section">
         <div class="admin-table-header">
             <div>
-                <h2 class="admin-table-header__title">{{ __('messages.admin.statistics.top_pages') }}</h2>
+                <h2 class="admin-table-header__title">{{ __('messages.admin.statistics.all_pages') }}</h2>
             </div>
         </div>
 
@@ -42,7 +34,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($popularPages as $page)
+                    @forelse ($allPages as $page)
                         <tr>
                             <td>
                                 <span class="admin-table__strong-text">{{ $page->title ?: $page->path }}</span>
@@ -62,6 +54,8 @@
                 </tbody>
             </table>
         </div>
+
+        {{ $allPages->onEachSide(1)->links('pagination.admin') }}
     </section>
 </div>
 @endsection

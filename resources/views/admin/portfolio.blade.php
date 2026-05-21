@@ -51,41 +51,22 @@
                                 </time>
                             </td>
                             <td>
-                                <div class="admin-table__position-controls">
-                                    <span class="admin-table__position-number">{{ $portfolioPost->position }}</span>
-
-                                    <form method="POST" action="{{ route('admin.portfolio.move-up', $portfolioPost->id) }}">
-                                        @csrf
-                                        @method('PATCH')
-                                        <button
-                                            type="submit"
-                                            title="Move up"
-                                            aria-label="Move {{ $portfolioPost->title }} up"
-                                            class="admin-icon-button admin-icon-button--position"
-                                            @if ($portfolioPost->position === $minPosition) disabled @endif
-                                        >
-                                            <svg viewBox="0 0 20 20" focusable="false">
-                                                <path fill="currentColor" fill-rule="evenodd" d="M10 4.5a1 1 0 0 1 .71.29l5 5a1 1 0 1 1-1.42 1.42L11 7.91V15a1 1 0 1 1-2 0V7.91l-3.29 3.3a1 1 0 0 1-1.42-1.42l5-5A1 1 0 0 1 10 4.5Z" clip-rule="evenodd" />
-                                            </svg>
-                                        </button>
-                                    </form>
-
-                                    <form method="POST" action="{{ route('admin.portfolio.move-down', $portfolioPost->id) }}">
-                                        @csrf
-                                        @method('PATCH')
-                                        <button
-                                            type="submit"
-                                            title="Move down"
-                                            aria-label="Move {{ $portfolioPost->title }} down"
-                                            class="admin-icon-button admin-icon-button--position"
-                                            @if ($portfolioPost->position === $maxPosition) disabled @endif
-                                        >
-                                            <svg viewBox="0 0 20 20" focusable="false">
-                                                <path fill="currentColor" fill-rule="evenodd" d="M10 15.5a1 1 0 0 1-.71-.29l-5-5a1 1 0 1 1 1.42-1.42L9 12.09V5a1 1 0 1 1 2 0v7.09l3.29-3.3a1 1 0 0 1 1.42 1.42l-5 5a1 1 0 0 1-.71.29Z" clip-rule="evenodd" />
-                                            </svg>
-                                        </button>
-                                    </form>
-                                </div>
+                                <form method="POST" action="{{ route('admin.portfolio.position.update', $portfolioPost->id) }}">
+                                    @csrf
+                                    @method('PATCH')
+                                    <input type="hidden" name="redirect_to" value="{{ request()->fullUrl() }}">
+                                    <input
+                                        type="number"
+                                        name="position"
+                                        value="{{ $portfolioPost->position }}"
+                                        min="1"
+                                        step="1"
+                                        aria-label="Position for {{ $portfolioPost->title }}"
+                                        class="admin-table__position-input"
+                                        onchange="this.form.submit()"
+                                        required
+                                    >
+                                </form>
                             </td>
                             <td>
                                 <div class="admin-table__actions">

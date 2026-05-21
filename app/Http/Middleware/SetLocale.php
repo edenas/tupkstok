@@ -10,12 +10,14 @@ use Symfony\Component\HttpFoundation\Response;
 class SetLocale
 {
     private const DEFAULT_LOCALE = 'lt';
-    private const SUPPORTED_LOCALES = ['lt', 'en'];
+    private const SUPPORTED_LOCALES = ['lt', 'en', 'ru'];
 
     public function handle(Request $request, Closure $next): Response
     {
         if (! $request->is('admin*')) {
-            $locale = $request->segment(1) === 'en' ? 'en' : self::DEFAULT_LOCALE;
+            $locale = in_array($request->segment(1), self::SUPPORTED_LOCALES, true)
+                ? $request->segment(1)
+                : self::DEFAULT_LOCALE;
             $request->session()->put('public_locale', $locale);
             App::setLocale($locale);
 

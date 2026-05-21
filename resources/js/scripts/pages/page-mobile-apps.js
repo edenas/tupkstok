@@ -9,6 +9,22 @@ export function initializeMobileAppsPageScripts() {
     }
 
     let activeTrigger = null;
+    const originalParent = lightbox.parentNode;
+    const originalNextSibling = lightbox.nextSibling;
+
+    const attachLightboxToBody = () => {
+        if (lightbox.parentNode !== document.body) {
+            document.body.appendChild(lightbox);
+        }
+    };
+
+    const restoreLightboxPosition = () => {
+        if (!originalParent || lightbox.parentNode === originalParent) {
+            return;
+        }
+
+        originalParent.insertBefore(lightbox, originalNextSibling);
+    };
 
     const openLightbox = (trigger) => {
         const image = trigger.querySelector('img');
@@ -19,10 +35,12 @@ export function initializeMobileAppsPageScripts() {
         }
 
         activeTrigger = trigger;
+        attachLightboxToBody();
         lightboxImage.src = imageUrl;
         lightboxImage.alt = image?.alt || trigger.getAttribute('aria-label') || '';
         lightbox.hidden = false;
         lightbox.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('lightbox-open');
         document.body.classList.add('mobile-app-lightbox-open');
         closeButton.focus({ preventScroll: true });
     };
@@ -36,7 +54,9 @@ export function initializeMobileAppsPageScripts() {
         lightbox.setAttribute('aria-hidden', 'true');
         lightboxImage.src = '';
         lightboxImage.alt = '';
+        document.body.classList.remove('lightbox-open');
         document.body.classList.remove('mobile-app-lightbox-open');
+        restoreLightboxPosition();
         activeTrigger?.focus({ preventScroll: true });
         activeTrigger = null;
     };

@@ -3,14 +3,16 @@
 
     <div class="admin-topbar__user">
         <div class="admin-topbar__language-switcher" aria-label="Language">
-            <a href="{{ route('language.switch', 'lt') }}" class="admin-language-link {{ app()->getLocale() === 'lt' ? 'admin-language-link--active' : '' }}">LT</a>
-            <a href="{{ route('language.switch', 'en') }}" class="admin-language-link {{ app()->getLocale() === 'en' ? 'admin-language-link--active' : '' }}">EN</a>
+            <a href="{{ route('language.switch', 'lt') }}" class="admin-language-link {{ app()->getLocale() === 'lt' ? 'admin-language-link--active' : '' }}" aria-label="Lithuanian" title="{{ __('messages.languages.lt') }}">
+                <img src="{{ asset('images/flags/lt.svg') }}" alt="Lithuanian" class="admin-language-link__flag">
+            </a>
+            <a href="{{ route('language.switch', 'en') }}" class="admin-language-link {{ app()->getLocale() === 'en' ? 'admin-language-link--active' : '' }}" aria-label="English" title="{{ __('messages.languages.en') }}">
+                <img src="{{ asset('images/flags/gb.svg') }}" alt="English" class="admin-language-link__flag">
+            </a>
+            <a href="{{ route('language.switch', 'ru') }}" class="admin-language-link {{ app()->getLocale() === 'ru' ? 'admin-language-link--active' : '' }}" aria-label="Russian" title="{{ __('messages.languages.ru') }}">
+                <img src="{{ asset('images/flags/ru.svg') }}" alt="Russian" class="admin-language-link__flag">
+            </a>
         </div>
         <span class="admin-topbar__user-name">{{ auth()->user()->name }}</span>
-        <span class="admin-topbar__dropdown-indicator" aria-hidden="true">
-            <svg viewBox="0 0 20 20" focusable="false">
-                <path fill="currentColor" d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.17l3.71-3.94a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06Z" />
-            </svg>
-        </span>
     </div>
 </header>

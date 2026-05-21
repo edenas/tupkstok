@@ -21,13 +21,14 @@
             @csrf
 
             <div class="auth-login__field">
-                <label for="login_identifier">Email or username</label>
+                <label for="username">Username</label>
                 <input
                     type="text"
-                    name="login_identifier"
-                    id="login_identifier"
-                    value="{{ old('login_identifier') }}"
+                    name="username"
+                    id="username"
+                    value="{{ old('username') }}"
                     autocomplete="username"
+                    placeholder="Enter username"
                     required
                 >
             </div>

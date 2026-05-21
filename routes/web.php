@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminPortfolioController;
+use App\Http\Controllers\AdminSeoController;
+use App\Http\Controllers\AdminStatisticsController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\LoginController;
@@ -57,6 +59,31 @@ Route::prefix('en')->name('en.')->group(function () {
     Route::get('/graphics/{portfolioPost}', [PortfolioPostController::class, 'show'])->name('graphics.show');
 });
 
+Route::prefix('ru')->name('ru.')->group(function () {
+    Route::get('/', function () {
+        return view('pages.welcome');
+    })->name('home');
+
+    Route::get('/apie-mane', function () {
+        return view('pages.about-me');
+    })->name('about-me');
+
+    Route::get('/kontaktai', function () {
+        return view('pages.contact');
+    })->name('contact');
+
+    Route::get('/web-sprendimai', function () {
+        return view('pages.web-solutions');
+    })->name('web-solutions');
+
+    Route::get('/mobiliosios-aplikacijos', function () {
+        return view('pages.mobile-apps');
+    })->name('mobile-apps');
+
+    Route::get('/grafika', [PortfolioPostController::class, 'index'])->name('graphics');
+    Route::get('/grafika/{portfolioPost}', [PortfolioPostController::class, 'show'])->name('graphics.show');
+});
+
 Route::get('/language/{locale}', [LanguageController::class, 'switch'])->name('language.switch');
 
 Route::redirect('/about-me', '/en/about-me', 301);
@@ -74,25 +101,23 @@ Route::get('/animations/{portfolioPost}', function (Request $request, PortfolioP
     return redirect()->route('graphics.show', ['portfolioPost' => $portfolioPost] + $request->query(), 301);
 });
 
-Route::middleware('guest')->group(function () {
-    Route::get('/settings', [LoginController::class, 'showLoginForm'])->name('login');
-    Route::post('/settings', [LoginController::class, 'login']);
-});
+Route::get('/admin', [LoginController::class, 'adminEntry'])->name('admin.dashboard');
+Route::post('/admin', [LoginController::class, 'login'])->middleware('guest')->name('login');
 
 Route::redirect('/login', '/', 302);
 
 Route::middleware(['auth', 'administrator'])->group(function () {
-    Route::get('/admin', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
+    Route::get('/admin/statistics', [AdminStatisticsController::class, 'index'])->name('admin.statistics');
+
+    Route::get('/admin/seo', [AdminSeoController::class, 'edit'])->name('admin.seo.edit');
+    Route::put('/admin/seo', [AdminSeoController::class, 'update'])->name('admin.seo.update');
 
     Route::get('/admin/portfolio', [AdminPortfolioController::class, 'index'])->name('admin.portfolio');
     Route::get('/admin/portfolio/create', [AdminPortfolioController::class, 'showCreateForm'])->name('admin.portfolio.create');
     Route::post('/admin/portfolio', [AdminPortfolioController::class, 'store'])->name('admin.portfolio.store');
     Route::get('/admin/portfolio/{portfolioPost}/edit', [AdminPortfolioController::class, 'showEditForm'])->name('admin.portfolio.edit');
     Route::put('/admin/portfolio/{portfolioPost}', [AdminPortfolioController::class, 'update'])->name('admin.portfolio.update');
-    Route::patch('/admin/portfolio/{portfolioPost}/move-up', [AdminPortfolioController::class, 'moveUp'])->name('admin.portfolio.move-up');
-    Route::patch('/admin/portfolio/{portfolioPost}/move-down', [AdminPortfolioController::class, 'moveDown'])->name('admin.portfolio.move-down');
+    Route::patch('/admin/portfolio/{portfolioPost}/position', [AdminPortfolioController::class, 'updatePosition'])->name('admin.portfolio.position.update');
     Route::delete('/admin/portfolio/{portfolioPost}/thumbnail', [AdminPortfolioController::class, 'destroyThumbnail'])->name('admin.portfolio.thumbnail.destroy');
     Route::delete('/admin/portfolio/{portfolioPost}/post-image', [AdminPortfolioController::class, 'destroyPostImage'])->name('admin.portfolio.post-image.destroy');
     Route::delete('/admin/portfolio/{portfolioPost}', [AdminPortfolioController::class, 'destroy'])->name('admin.portfolio.destroy');

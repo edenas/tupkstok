@@ -45,11 +45,23 @@
                     ['icon' => 'target', 'label' => 'Tikslai'],
                 ]
                 : [
-                    ['icon' => 'droplet', 'label' => 'Track Intake'],
-                    ['icon' => 'bell', 'label' => 'Smart Reminders'],
-                    ['icon' => 'chart-column', 'label' => 'View Statistics'],
-                    ['icon' => 'target', 'label' => 'Reach Your Goals'],
+                    ['icon' => 'droplet', 'label' => __('messages.mobile.hero_features.track_intake')],
+                    ['icon' => 'bell', 'label' => __('messages.mobile.hero_features.smart_reminders')],
+                    ['icon' => 'chart-column', 'label' => __('messages.mobile.hero_features.statistics')],
+                    ['icon' => 'target', 'label' => __('messages.mobile.hero_features.goals')],
                 ];
+            $heroFeatures = collect(__('messages.mobile.hero_features'))
+                ->map(fn ($label, $key) => [
+                    'icon' => [
+                        'track_intake' => 'droplet',
+                        'smart_reminders' => 'bell',
+                        'statistics' => 'chart-column',
+                        'goals' => 'target',
+                    ][$key] ?? 'check',
+                    'label' => $label,
+                ])
+                ->values()
+                ->all();
             $compactCards = [
                 [
                     'title' => __('messages.mobile.about'),
@@ -67,7 +79,7 @@
                     'text' => \Illuminate\Support\Str::limit(__('messages.mobile.reminder_paragraphs')[0], 170),
                 ],
                 [
-                    'title' => app()->getLocale() === 'lt' ? __('messages.mobile.design') : 'Design & UX',
+                    'title' => __('messages.mobile.design'),
                     'icon' => 'alarm-clock',
                     'text' => \Illuminate\Support\Str::limit(__('messages.mobile.design_paragraphs')[0], 170),
                 ],
@@ -97,8 +109,8 @@
                     @endforeach
                 </ul>
             </div>
-            <figure class="mobile-app-page__hero-preview" aria-label="Drink Water app poster preview">
-                <img src="{{ $heroPosterUrl }}" alt="Drink Water app poster" loading="eager">
+            <figure class="mobile-app-page__hero-preview" aria-label="{{ __('messages.mobile.poster_preview_alt') }}">
+                <img src="{{ $heroPosterUrl }}" alt="{{ __('messages.mobile.poster_alt') }}" loading="eager">
             </figure>
         </header>
 
@@ -202,7 +214,7 @@
         </section>
 
         <div class="mobile-app-page__lightbox" data-mobile-screenshot-lightbox aria-hidden="true" hidden>
-            <button type="button" class="mobile-app-page__lightbox-close" data-mobile-screenshot-lightbox-close aria-label="Close image preview">X</button>
+            <button type="button" class="mobile-app-page__lightbox-close" data-mobile-screenshot-lightbox-close aria-label="{{ __('messages.mobile.close_preview') }}">X</button>
             <img class="mobile-app-page__lightbox-image" data-mobile-screenshot-lightbox-image src="" alt="">
         </div>
     </div>

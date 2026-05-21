@@ -33,7 +33,7 @@ class LocalizedUrl
             return self::route('home', [], true, $locale);
         }
 
-        $baseName = str_starts_with($name, 'en.') ? substr($name, 3) : $name;
+        $baseName = preg_replace('/^(en|ru)\./', '', $name);
 
         if (! in_array($baseName, self::PUBLIC_ROUTES, true)) {
             return url('/');
@@ -46,13 +46,22 @@ class LocalizedUrl
     {
         $current = Route::currentRouteName();
 
-        return $current === $name || $current === 'en.'.$name || str_starts_with((string) $current, $name.'.') || str_starts_with((string) $current, 'en.'.$name.'.');
+        return $current === $name
+            || $current === 'en.'.$name
+            || $current === 'ru.'.$name
+            || str_starts_with((string) $current, $name.'.')
+            || str_starts_with((string) $current, 'en.'.$name.'.')
+            || str_starts_with((string) $current, 'ru.'.$name.'.');
     }
 
     private static function localizedRouteName(string $name, string $locale): string
     {
         if ($locale === 'en' && in_array($name, self::PUBLIC_ROUTES, true)) {
             return 'en.'.$name;
+        }
+
+        if ($locale === 'ru' && in_array($name, self::PUBLIC_ROUTES, true)) {
+            return 'ru.'.$name;
         }
 
         return $name;

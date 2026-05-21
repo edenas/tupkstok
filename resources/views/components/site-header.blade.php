@@ -32,6 +32,9 @@
             <a href="{{ $url::current('en') }}" class="language-flag {{ app()->getLocale() === 'en' ? 'language-flag--active' : '' }}" title="{{ __('messages.languages.en') }}" aria-label="English">
                 <img src="{{ asset('images/flags/gb.svg') }}" alt="English" class="language-flag__image">
             </a>
+            <a href="{{ $url::current('ru') }}" class="language-flag {{ app()->getLocale() === 'ru' ? 'language-flag--active' : '' }}" title="{{ __('messages.languages.ru') }}" aria-label="Russian">
+                <img src="{{ asset('images/flags/ru.svg') }}" alt="Russian" class="language-flag__image">
+            </a>
         </div>
         <button
             type="button"

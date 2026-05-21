@@ -12,14 +12,15 @@
 }
 
 .admin-sidebar__brand {
-    padding: 28px 24px 34px;
+    display: flex;
+    align-items: center;
+    padding: 24px 24px 30px;
 }
 
-.admin-sidebar__title {
-    margin: 0;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 1.2;
+.admin-sidebar__logo {
+    display: block;
+    width: min(100%, 162px);
+    height: auto;
 }
 
 .admin-sidebar__navigation {
@@ -90,6 +91,10 @@
 
     .admin-sidebar__brand {
         padding: 22px 20px 18px;
+    }
+
+    .admin-sidebar__logo {
+        width: min(100%, 140px);
     }
 
     .admin-sidebar__footer {

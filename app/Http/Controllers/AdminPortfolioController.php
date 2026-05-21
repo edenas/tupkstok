@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PortfolioPost;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -18,13 +19,12 @@ class AdminPortfolioController extends Controller
     public function index()
     {
         $portfolioPosts = PortfolioPost::query()
+            ->orderBy('position')
             ->orderByDesc('created_at')
             ->paginate(12)
             ->withPath(route('admin.portfolio'));
 
         return view('admin.portfolio', [
-            'maxPosition' => (int) PortfolioPost::max('position'),
-            'minPosition' => (int) PortfolioPost::min('position'),
             'portfolioPosts' => $portfolioPosts,
         ]);
     }
@@ -45,6 +45,7 @@ class AdminPortfolioController extends Controller
         $validated = $request->validate($this->validationRules());
         $validated['project_details'] = $this->normalizeProjectDetails($validated['project_details'] ?? []);
         $validated['project_details_en'] = $this->normalizeProjectDetails($validated['project_details_en'] ?? []);
+        $validated['project_details_ru'] = $this->normalizeProjectDetails($validated['project_details_ru'] ?? []);
         $validated['thumbnail'] = $this->storeThumbnail($request);
         $validated['position'] = ((int) PortfolioPost::max('position')) + 1;
 
@@ -73,6 +74,7 @@ class AdminPortfolioController extends Controller
         $validated = $request->validate($this->validationRules(false));
         $validated['project_details'] = $this->normalizeProjectDetails($validated['project_details'] ?? []);
         $validated['project_details_en'] = $this->normalizeProjectDetails($validated['project_details_en'] ?? []);
+        $validated['project_details_ru'] = $this->normalizeProjectDetails($validated['project_details_ru'] ?? []);
 
         if ($request->hasFile('thumbnail')) {
             if ($portfolioPost->thumbnail) {
@@ -96,43 +98,42 @@ class AdminPortfolioController extends Controller
     }
 
     /**
-     * Move the specified portfolio post one position higher.
+     * Update a portfolio post position, swapping with an existing post if needed.
      */
-    public function moveUp(PortfolioPost $portfolioPost)
+    public function updatePosition(Request $request, PortfolioPost $portfolioPost)
     {
-        $this->normalizePortfolioPositions();
-        $portfolioPost->refresh();
+        $validated = $request->validate([
+            'position' => 'required|integer|min:1',
+        ]);
 
-        $previousPost = PortfolioPost::query()
-            ->where('position', '<', $portfolioPost->position)
-            ->orderByDesc('position')
-            ->first();
+        DB::transaction(function () use ($portfolioPost, $validated): void {
+            $currentPost = PortfolioPost::query()
+                ->whereKey($portfolioPost->id)
+                ->lockForUpdate()
+                ->firstOrFail();
 
-        if ($previousPost) {
-            $this->swapPortfolioPositions($portfolioPost, $previousPost);
-        }
+            $oldPosition = $currentPost->position;
+            $newPosition = (int) $validated['position'];
 
-        return redirect()->route('admin.portfolio')->with('success', 'Portfolio order updated successfully.');
-    }
+            if ($oldPosition === $newPosition) {
+                return;
+            }
 
-    /**
-     * Move the specified portfolio post one position lower.
-     */
-    public function moveDown(PortfolioPost $portfolioPost)
-    {
-        $this->normalizePortfolioPositions();
-        $portfolioPost->refresh();
+            $conflictingPost = PortfolioPost::query()
+                ->whereKeyNot($currentPost->id)
+                ->where('position', $newPosition)
+                ->lockForUpdate()
+                ->first();
 
-        $nextPost = PortfolioPost::query()
-            ->where('position', '>', $portfolioPost->position)
-            ->orderBy('position')
-            ->first();
+            if ($conflictingPost) {
+                $conflictingPost->update(['position' => $oldPosition]);
+            }
 
-        if ($nextPost) {
-            $this->swapPortfolioPositions($portfolioPost, $nextPost);
-        }
+            $currentPost->update(['position' => $newPosition]);
+        });
 
-        return redirect()->route('admin.portfolio')->with('success', 'Portfolio order updated successfully.');
+        return redirect($this->portfolioPositionRedirectUrl($request))
+            ->with('success', 'Portfolio order updated successfully.');
     }
 
     /**
@@ -194,18 +195,25 @@ class AdminPortfolioController extends Controller
         return [
             'title' => 'required|string|max:255',
             'title_en' => 'nullable|string|max:255',
+            'title_ru' => 'nullable|string|max:255',
             'category' => 'required|string|max:120',
             'category_en' => 'nullable|string|max:120',
+            'category_ru' => 'nullable|string|max:120',
             'short_description' => 'nullable|string|max:1000',
             'short_description_en' => 'nullable|string|max:1000',
+            'short_description_ru' => 'nullable|string|max:1000',
             'content_heading' => 'nullable|string|max:255',
             'content_heading_en' => 'nullable|string|max:255',
+            'content_heading_ru' => 'nullable|string|max:255',
             'description' => 'nullable|string|max:10000',
             'description_en' => 'nullable|string|max:10000',
+            'description_ru' => 'nullable|string|max:10000',
             'project_details' => 'nullable|array',
             'project_details.*' => 'nullable|string|max:255',
             'project_details_en' => 'nullable|array',
             'project_details_en.*' => 'nullable|string|max:255',
+            'project_details_ru' => 'nullable|array',
+            'project_details_ru.*' => 'nullable|string|max:255',
             'thumbnail' => [
                 $isThumbnailRequired ? 'required' : 'nullable',
                 'image',
@@ -302,14 +310,27 @@ class AdminPortfolioController extends Controller
     }
 
     /**
-     * Swap the order positions for two portfolio posts.
+     * Get a safe redirect target for position updates.
      */
-    private function swapPortfolioPositions(PortfolioPost $firstPost, PortfolioPost $secondPost): void
+    private function portfolioPositionRedirectUrl(Request $request): string
     {
-        $firstPosition = $firstPost->position;
+        $fallback = route('admin.portfolio');
+        $redirectTo = $request->input('redirect_to');
 
-        $firstPost->update(['position' => $secondPost->position]);
-        $secondPost->update(['position' => $firstPosition]);
+        if (! is_string($redirectTo) || $redirectTo === '') {
+            return $fallback;
+        }
+
+        $adminPortfolioUrl = route('admin.portfolio');
+        $adminPortfolioPath = parse_url($adminPortfolioUrl, PHP_URL_PATH) ?: '/admin/portfolio';
+        $redirectPath = parse_url($redirectTo, PHP_URL_PATH);
+        $redirectHost = parse_url($redirectTo, PHP_URL_HOST);
+
+        if ($redirectHost && $redirectHost !== $request->getHost()) {
+            return $fallback;
+        }
+
+        return $redirectPath === $adminPortfolioPath ? $redirectTo : $fallback;
     }
 
     /**

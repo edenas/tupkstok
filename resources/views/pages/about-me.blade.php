@@ -5,26 +5,26 @@
     $url = \App\Support\LocalizedUrl::class;
 
     $aboutTechItems = [
-        ['label' => 'Laravel', 'icon' => 'blocks'],
-        ['label' => 'PHP', 'icon' => 'braces'],
-        ['label' => 'JavaScript', 'icon' => 'code'],
-        ['label' => 'TypeScript', 'icon' => 'file-type'],
-        ['label' => 'WooCommerce', 'icon' => 'package'],
-        ['label' => 'CSS', 'icon' => 'braces'],
-        ['label' => 'HTML5', 'icon' => 'brackets'],
-        ['label' => 'Photoshop', 'icon' => 'palette'],
-        ['label' => 'React Native', 'icon' => 'smartphone'],
-        ['label' => 'Django', 'icon' => 'file-code'],
-        ['label' => 'Python', 'icon' => 'code'],
-        ['label' => 'Database', 'icon' => 'database'],
-        ['label' => 'WordPress', 'icon' => 'globe'],
-        ['label' => 'UI/UX', 'icon' => 'pen-tool'],
-        ['label' => 'Motion Graphics', 'icon' => 'clapperboard'],
-        ['label' => 'Animation', 'icon' => 'play'],
-        ['label' => 'Responsive Design', 'icon' => 'monitor-smartphone'],
-        ['label' => 'SEO', 'icon' => 'search'],
-        ['label' => 'AI Integration', 'icon' => 'brain-circuit'],
-        ['label' => 'Android Development', 'icon' => 'bot'],
+        ['key' => 'laravel', 'icon' => 'blocks'],
+        ['key' => 'php', 'icon' => 'braces'],
+        ['key' => 'javascript', 'icon' => 'code'],
+        ['key' => 'typescript', 'icon' => 'file-type'],
+        ['key' => 'woocommerce', 'icon' => 'package'],
+        ['key' => 'css', 'icon' => 'braces'],
+        ['key' => 'html5', 'icon' => 'brackets'],
+        ['key' => 'photoshop', 'icon' => 'palette'],
+        ['key' => 'react_native', 'icon' => 'smartphone'],
+        ['key' => 'django', 'icon' => 'file-code'],
+        ['key' => 'python', 'icon' => 'code'],
+        ['key' => 'database', 'icon' => 'database'],
+        ['key' => 'wordpress', 'icon' => 'globe'],
+        ['key' => 'ui_ux', 'icon' => 'pen-tool'],
+        ['key' => 'motion_graphics', 'icon' => 'clapperboard'],
+        ['key' => 'animation', 'icon' => 'play'],
+        ['key' => 'responsive_design', 'icon' => 'monitor-smartphone'],
+        ['key' => 'seo', 'icon' => 'search'],
+        ['key' => 'ai_integration', 'icon' => 'brain-circuit'],
+        ['key' => 'android_development', 'icon' => 'bot'],
     ];
 
     $aboutServiceGroups = [
@@ -200,7 +200,7 @@
                 @foreach ($aboutTechItems as $item)
                     <article class="about-page__list-row">
                         <i data-lucide="{{ $item['icon'] }}" class="about-page__row-icon" aria-hidden="true"></i>
-                        <span>{{ $item['label'] }}</span>
+                        <span>{{ __('messages.about.tech_items.'.$item['key']) }}</span>
                     </article>
                 @endforeach
             </div>
