@@ -130,6 +130,8 @@ return [
         'lead' => 'Kuriu modernias interneto svetaines, web aplikacijas ir skaitmeninius produktus, kuriuose vartotojo patirtis, našumas ir vizualinis identitetas veikia kaip viena sistema.',
         'services_intro' => 'Struktūruoti web sprendimai nuo vartotojo sąsajos dizaino iki techninio įgyvendinimo.',
         'projects_intro' => 'Atrinkti klientų projektai su vizualiniu identitetu, svetainių nuorodomis ir portfolio pristatymu.',
+        'feature_heading_eyebrow' => 'KODĖL VERTA DIRBTI KARTU?',
+        'feature_heading_title' => 'Web sprendimai, kurie veikia',
         'feature_strip_label' => 'Web sprendimų privalumai',
         'feature_strip' => [
             'modern_design' => [

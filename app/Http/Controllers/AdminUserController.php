@@ -73,6 +73,14 @@ class AdminUserController extends Controller
     {
         $validated = $request->validate($this->updateValidationRules($user), $this->passwordValidationMessages());
 
+        if ($request->user()->is($user) && $user->role === 'administrator' && $validated['role'] !== 'administrator') {
+            return redirect()->route('admin.users')->with('error', 'You cannot remove your own administrator role.');
+        }
+
+        if ($this->wouldRemoveLastAdministrator($user, $validated['role'])) {
+            return redirect()->route('admin.users')->with('error', 'You cannot remove the last administrator account.');
+        }
+
         $user->name = $validated['name'];
         $user->email = $validated['email'];
         $user->role = $validated['role'];
@@ -93,6 +101,10 @@ class AdminUserController extends Controller
     {
         if ($request->user()->is($user)) {
             return redirect()->route('admin.users')->with('error', 'You cannot delete your own account.');
+        }
+
+        if ($user->role === 'administrator' && $this->administratorCount() <= 1) {
+            return redirect()->route('admin.users')->with('error', 'You cannot delete the last administrator account.');
         }
 
         $user->delete();
@@ -160,5 +172,17 @@ class AdminUserController extends Controller
             'password_confirmation.required' => 'Password confirmation is required.',
             'password.confirmed' => 'Password and confirmation password must match.',
         ];
+    }
+
+    private function wouldRemoveLastAdministrator(User $user, string $newRole): bool
+    {
+        return $user->role === 'administrator'
+            && $newRole !== 'administrator'
+            && $this->administratorCount() <= 1;
+    }
+
+    private function administratorCount(): int
+    {
+        return User::query()->where('role', 'administrator')->count();
     }
 }

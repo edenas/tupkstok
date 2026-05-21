@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use RuntimeException;
 
 class AdminSeeder extends Seeder
 {
@@ -16,10 +17,16 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
+        $password = env('ADMIN_PASSWORD');
+
+        if (! is_string($password) || strlen($password) < 12) {
+            throw new RuntimeException('Set ADMIN_PASSWORD to at least 12 characters before running the admin seeder.');
+        }
+
         User::create([
-            'name' => 'Admin',
-            'email' => 'admin@epgalerija.lt',
-            'password' => Hash::make('password'),
+            'name' => env('ADMIN_NAME', 'Admin'),
+            'email' => env('ADMIN_EMAIL', 'admin@epgalerija.lt'),
+            'password' => Hash::make($password),
             'role' => 'administrator',
         ]);
     }

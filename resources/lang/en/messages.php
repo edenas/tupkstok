@@ -130,6 +130,8 @@ return [
         'lead' => 'I create modern websites, web applications, and digital products where user experience, performance, and visual identity work as one system.',
         'services_intro' => 'Structured web solutions from user interface design to technical implementation.',
         'projects_intro' => 'Selected client projects with visual identity, website links, and portfolio-ready presentation.',
+        'feature_heading_eyebrow' => 'WHY WORK TOGETHER?',
+        'feature_heading_title' => 'Web solutions that work',
         'feature_strip_label' => 'Web solution advantages',
         'feature_strip' => [
             'modern_design' => [

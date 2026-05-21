@@ -203,7 +203,7 @@
 .site-header__logo {
     display: block;
     width: auto;
-    height: 46px;
+    height: 37px;
 }
 
 .site-header nav {
@@ -450,7 +450,7 @@
     }
 
     .site-header__logo {
-        height: 34px;
+        height: 27px;
     }
 
     .site-header__nav-list {
@@ -516,7 +516,7 @@
     }
 
     .site-header__logo {
-        height: 34px;
+        height: 27px;
     }
 
     .site-header__nav-list {
@@ -557,7 +557,7 @@
     }
 
     .site-header__logo {
-        height: 38px;
+        height: 30px;
     }
 
     .site-header__language-switcher {
@@ -732,7 +732,7 @@
     }
 
     .site-header__logo {
-        height: 34px;
+        height: 27px;
     }
 
     .language-flag {

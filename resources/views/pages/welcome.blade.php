@@ -125,7 +125,7 @@
         <section class="home-page__about-cta" aria-label="{{ __('messages.home.about.section_label') }}">
             <article class="home-page__about-card">
                 <figure class="home-page__profile">
-                    <img src="{{ asset('images/profile/edenas-pocius.jpg') }}" alt="Edenas Pocius">
+                    <img src="{{ asset('images/profile/edenas-pocius.jpg') }}" alt="Edenas Pocius" loading="lazy">
                 </figure>
                 <div class="home-page__about-copy">
                     <p class="home-page__small-label">{{ __('messages.home.about.eyebrow') }}</p>
@@ -179,7 +179,7 @@
         <section class="home-page__principles" aria-labelledby="principles-title">
             <div class="home-page__principles-panel">
                 <figure class="home-page__principles-visual">
-                    <img src="{{ asset('images/darbo_principai.jpg') }}" alt="{{ __('messages.home.principles.title') }}">
+                    <img src="{{ asset('images/darbo_principai.jpg') }}" alt="{{ __('messages.home.principles.title') }}" loading="lazy">
                 </figure>
 
                 <div class="home-page__principles-content">

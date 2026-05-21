@@ -134,7 +134,7 @@
             <section class="contact-page__form-panel">
                 <h2>{{ __('messages.contact.form_title') }}</h2>
 
-                <form class="contact-page__form" method="POST" action="#">
+                <form class="contact-page__form" action="#" onsubmit="return false;">
                     <div class="contact-page__field">
                         <label for="contact-name">{{ __('messages.contact.your_name') }}</label>
                         <input id="contact-name" name="name" type="text" autocomplete="name" placeholder="{{ __('messages.contact.placeholders.name') }}">

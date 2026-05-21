@@ -7,10 +7,16 @@
         <title>{{ $pageTitle ?? $seo['title'] }}</title>
         <meta name="description" content="{{ $seo['description'] }}">
         <meta name="keywords" content="{{ $seo['keywords'] }}">
+        <link rel="canonical" href="{{ $seo['url'] }}">
         <meta property="og:title" content="{{ $pageTitle ?? $seo['title'] }}">
         <meta property="og:description" content="{{ $seo['description'] }}">
         <meta property="og:type" content="{{ $seo['type'] }}">
         <meta property="og:url" content="{{ $seo['url'] }}">
+        <meta property="og:image" content="{{ $seo['image'] }}">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="{{ $pageTitle ?? $seo['title'] }}">
+        <meta name="twitter:description" content="{{ $seo['description'] }}">
+        <meta name="twitter:image" content="{{ $seo['image'] }}">
         <link rel="icon" type="image/x-icon" href="/favicon.ico">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">

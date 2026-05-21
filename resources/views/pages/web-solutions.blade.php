@@ -103,13 +103,13 @@
 
         <section class="web-solutions-page__feature-panel" aria-label="{{ __('messages.web.feature_strip_label') }}">
             <figure class="web-solutions-page__feature-visual">
-                <img src="{{ asset('images/web_services.jpg') }}" alt="{{ __('messages.web.feature_strip_label') }}">
+                <img src="{{ asset('images/web_services.jpg') }}" alt="{{ __('messages.web.feature_strip_label') }}" loading="lazy">
             </figure>
 
             <div class="web-solutions-page__feature-content">
                 <div class="web-solutions-page__feature-heading">
-                    <p class="web-solutions-page__eyebrow">{{ app()->getLocale() === 'lt' ? 'KODĖL VERTA DIRBTI KARTU?' : 'WHY WORK TOGETHER?' }}</p>
-                    <h2>{{ app()->getLocale() === 'lt' ? 'Web sprendimai, kurie veikia' : 'Web solutions that work' }}</h2>
+                    <p class="web-solutions-page__eyebrow">{{ __('messages.web.feature_heading_eyebrow') }}</p>
+                    <h2>{{ __('messages.web.feature_heading_title') }}</h2>
                 </div>
 
                 <div class="web-solutions-page__feature-list">

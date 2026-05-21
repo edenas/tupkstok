@@ -11,7 +11,7 @@ class SeoMeta
     /**
      * Resolve SEO metadata for the current public route.
      *
-     * @return array{title: string, description: string, keywords: string, url: string, type: string}
+     * @return array{title: string, description: string, keywords: string, url: string, image: string, type: string}
      */
     public static function current(): array
     {
@@ -46,13 +46,14 @@ class SeoMeta
             'title' => $title,
             'description' => $description,
             'keywords' => $keywords,
-            'url' => request()->fullUrl(),
+            'url' => request()->url(),
+            'image' => asset('images/hero.png'),
             'type' => 'website',
         ];
     }
 
     /**
-     * @return array{title: string, description: string, keywords: string, url: string, type: string}
+     * @return array{title: string, description: string, keywords: string, url: string, image: string, type: string}
      */
     private static function fallback(): array
     {
@@ -60,7 +61,8 @@ class SeoMeta
             'title' => 'EPgalerija',
             'description' => '',
             'keywords' => '',
-            'url' => request()->fullUrl(),
+            'url' => request()->url(),
+            'image' => asset('images/hero.png'),
             'type' => 'website',
         ];
     }
@@ -69,6 +71,7 @@ class SeoMeta
     {
         $routeName = (string) Route::currentRouteName();
         $routeName = str_starts_with($routeName, 'en.') ? substr($routeName, 3) : $routeName;
+        $routeName = str_starts_with($routeName, 'ru.') ? substr($routeName, 3) : $routeName;
 
         return match (true) {
             $routeName === 'home' => 'home',

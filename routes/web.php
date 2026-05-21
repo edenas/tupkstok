@@ -86,11 +86,56 @@ Route::prefix('ru')->name('ru.')->group(function () {
 
 Route::get('/language/{locale}', [LanguageController::class, 'switch'])->name('language.switch');
 
-Route::redirect('/about-me', '/en/about-me', 301);
-Route::redirect('/contact', '/en/contact', 301);
-Route::redirect('/web-solutions', '/en/web-solutions', 301);
-Route::redirect('/mobile-apps', '/en/mobile-apps', 301);
-Route::redirect('/graphics', '/en/graphics', 301);
+Route::get('/sitemap.xml', function () {
+    $paths = [
+        '/',
+        '/apie-mane',
+        '/kontaktai',
+        '/web-sprendimai',
+        '/mobiliosios-aplikacijos',
+        '/grafika',
+        '/en',
+        '/en/about-me',
+        '/en/contact',
+        '/en/web-solutions',
+        '/en/mobile-apps',
+        '/en/graphics',
+        '/ru',
+        '/ru/apie-mane',
+        '/ru/kontaktai',
+        '/ru/web-sprendimai',
+        '/ru/mobiliosios-aplikacijos',
+        '/ru/grafika',
+    ];
+
+    $portfolioPosts = PortfolioPost::query()
+        ->orderBy('position')
+        ->orderByDesc('created_at')
+        ->get();
+
+    foreach ($portfolioPosts as $portfolioPost) {
+        $paths[] = route('graphics.show', $portfolioPost, false);
+        $paths[] = route('en.graphics.show', $portfolioPost, false);
+        $paths[] = route('ru.graphics.show', $portfolioPost, false);
+    }
+
+    $urls = collect($paths)
+        ->unique()
+        ->map(fn (string $path) => [
+            'loc' => url($path),
+            'lastmod' => now()->toDateString(),
+        ]);
+
+    return response()
+        ->view('sitemap', ['urls' => $urls])
+        ->header('Content-Type', 'application/xml');
+})->name('sitemap');
+
+Route::get('/about-me', fn () => redirect('/en/about-me', 301));
+Route::get('/contact', fn () => redirect('/en/contact', 301));
+Route::get('/web-solutions', fn () => redirect('/en/web-solutions', 301));
+Route::get('/mobile-apps', fn () => redirect('/en/mobile-apps', 301));
+Route::get('/graphics', fn () => redirect('/en/graphics', 301));
 Route::get('/graphics/{portfolioPost}', function (Request $request, PortfolioPost $portfolioPost) {
     return redirect()->route('en.graphics.show', ['portfolioPost' => $portfolioPost] + $request->query(), 301);
 });
@@ -104,7 +149,7 @@ Route::get('/animations/{portfolioPost}', function (Request $request, PortfolioP
 Route::get('/admin', [LoginController::class, 'adminEntry'])->name('admin.dashboard');
 Route::post('/admin', [LoginController::class, 'login'])->middleware('guest')->name('login');
 
-Route::redirect('/login', '/', 302);
+Route::get('/login', fn () => redirect('/', 302));
 
 Route::middleware(['auth', 'administrator'])->group(function () {
     Route::get('/admin/statistics', [AdminStatisticsController::class, 'index'])->name('admin.statistics');

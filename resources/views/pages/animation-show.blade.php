@@ -44,7 +44,7 @@
                 @if ($portfolioPost->post_image)
                     <article class="animation-post-page__image-card">
                         <div class="animation-post-page__image">
-                            <img src="{{ $portfolioPost->postImageUrl() }}" alt="{{ $portfolioPost->localizedTitle() }} project image">
+                            <img src="{{ $portfolioPost->postImageUrl() }}" alt="{{ $portfolioPost->localizedTitle() }} project image" loading="lazy">
                         </div>
                     </article>
                 @endif

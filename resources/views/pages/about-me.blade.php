@@ -125,6 +125,7 @@
                         src="{{ asset('images/apie_mane_info.jpg') }}"
                         alt="{{ __('messages.about.hero_title') }}"
                         class="about-page__text-image split-card__image"
+                        loading="lazy"
                     >
                 </figure>
             </article>
@@ -145,6 +146,7 @@
                                 src="{{ asset($group['image']) }}"
                                 alt="{{ __('messages.about.service_groups.'.$group['key'].'.image_alt') }}"
                                 class="about-page__service-image split-card__image"
+                                loading="lazy"
                             >
                         </figure>
 

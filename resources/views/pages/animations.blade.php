@@ -18,7 +18,7 @@
                     @php($thumbnailUrl = $post->thumbnailUrl())
                     <a href="{{ $url::route('graphics.show', $post) }}" class="animations-page__card" aria-label="{{ __('messages.common.view_project') }}: {{ $post->localizedTitle() }}">
                         <div class="animations-page__image">
-                            <img src="{{ $thumbnailUrl }}" alt="{{ $post->localizedTitle() }} thumbnail">
+                            <img src="{{ $thumbnailUrl }}" alt="{{ $post->localizedTitle() }} thumbnail" loading="lazy">
                         </div>
 
                         <div class="animations-page__card-body">

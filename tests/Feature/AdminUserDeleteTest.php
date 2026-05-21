@@ -52,6 +52,36 @@ class AdminUserDeleteTest extends TestCase
         ]);
     }
 
+    public function test_administrator_cannot_delete_the_last_administrator_account(): void
+    {
+        $administrator = User::factory()->create([
+            'role' => 'administrator',
+        ]);
+
+        $otherUser = User::factory()->create([
+            'role' => 'user',
+        ]);
+
+        $response = $this
+            ->actingAs($otherUser)
+            ->delete(route('admin.users.destroy', $administrator));
+
+        $response->assertForbidden();
+
+        $response = $this
+            ->actingAs($administrator)
+            ->delete(route('admin.users.destroy', $administrator));
+
+        $response
+            ->assertRedirect(route('admin.users'))
+            ->assertSessionHas('error', 'You cannot delete your own account.');
+
+        $this->assertDatabaseHas('users', [
+            'id' => $administrator->id,
+            'role' => 'administrator',
+        ]);
+    }
+
     public function test_non_administrator_cannot_delete_user(): void
     {
         $editor = User::factory()->create([
