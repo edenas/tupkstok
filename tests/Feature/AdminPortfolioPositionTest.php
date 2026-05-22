@@ -22,7 +22,7 @@ class AdminPortfolioPositionTest extends TestCase
 
         $response = $this
             ->actingAs($administrator)
-            ->patch(route('admin.portfolio.position.update', $firstPost), [
+            ->patch(route('admin.portfolio.position.update', $firstPost->id), [
                 'position' => 14,
             ]);
 
@@ -51,7 +51,7 @@ class AdminPortfolioPositionTest extends TestCase
 
         $response = $this
             ->actingAs($administrator)
-            ->patch(route('admin.portfolio.position.update', $portfolioPost), [
+            ->patch(route('admin.portfolio.position.update', $portfolioPost->id), [
                 'position' => 30,
             ]);
 
@@ -80,7 +80,7 @@ class AdminPortfolioPositionTest extends TestCase
 
         $response = $this
             ->actingAs($administrator)
-            ->patch(route('admin.portfolio.position.update', $portfolioPost), [
+            ->patch(route('admin.portfolio.position.update', $portfolioPost->id), [
                 'position' => 30,
                 'redirect_to' => $redirectTo,
             ]);

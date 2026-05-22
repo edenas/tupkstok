@@ -10,6 +10,7 @@ class LocalizedUrl
         'home',
         'about-me',
         'contact',
+        'contact.submit',
         'web-solutions',
         'mobile-apps',
         'graphics',

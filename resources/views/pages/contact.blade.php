@@ -134,28 +134,53 @@
             <section class="contact-page__form-panel">
                 <h2>{{ __('messages.contact.form_title') }}</h2>
 
-                <form class="contact-page__form" action="#" onsubmit="return false;">
+                @if (session('contact_status'))
+                    <div class="contact-page__alert contact-page__alert--success" role="status">
+                        {{ session('contact_status') }}
+                    </div>
+                @endif
+
+                @if (session('contact_error'))
+                    <div class="contact-page__alert contact-page__alert--error" role="alert">
+                        {{ session('contact_error') }}
+                    </div>
+                @endif
+
+                <form class="contact-page__form" action="{{ \App\Support\LocalizedUrl::route('contact.submit') }}" method="POST" data-contact-form>
+                    @csrf
                     <div class="contact-page__field">
                         <label for="contact-name">{{ __('messages.contact.your_name') }}</label>
-                        <input id="contact-name" name="name" type="text" autocomplete="name" placeholder="{{ __('messages.contact.placeholders.name') }}">
+                        <input id="contact-name" name="name" type="text" autocomplete="name" placeholder="{{ __('messages.contact.placeholders.name') }}" value="{{ old('name') }}" required @error('name') aria-invalid="true" aria-describedby="contact-name-error" @enderror>
+                        @error('name')
+                            <p id="contact-name-error" class="contact-page__error">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="contact-page__field">
                         <label for="contact-email">{{ __('messages.contact.your_email') }}</label>
-                        <input id="contact-email" name="email" type="email" autocomplete="email" placeholder="{{ __('messages.contact.placeholders.email') }}">
+                        <input id="contact-email" name="email" type="email" autocomplete="email" placeholder="{{ __('messages.contact.placeholders.email') }}" value="{{ old('email') }}" required @error('email') aria-invalid="true" aria-describedby="contact-email-error" @enderror>
+                        @error('email')
+                            <p id="contact-email-error" class="contact-page__error">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="contact-page__field">
                         <label for="contact-subject">{{ __('messages.contact.subject') }}</label>
-                        <input id="contact-subject" name="subject" type="text" placeholder="{{ __('messages.contact.placeholders.subject') }}">
+                        <input id="contact-subject" name="subject" type="text" placeholder="{{ __('messages.contact.placeholders.subject') }}" value="{{ old('subject') }}" required @error('subject') aria-invalid="true" aria-describedby="contact-subject-error" @enderror>
+                        @error('subject')
+                            <p id="contact-subject-error" class="contact-page__error">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="contact-page__field">
                         <label for="contact-message">{{ __('messages.contact.message') }}</label>
-                        <textarea id="contact-message" name="message" rows="7" placeholder="{{ __('messages.contact.placeholders.message') }}"></textarea>
+                        <textarea id="contact-message" name="message" rows="7" placeholder="{{ __('messages.contact.placeholders.message') }}" required @error('message') aria-invalid="true" aria-describedby="contact-message-error" @enderror>{{ old('message') }}</textarea>
+                        @error('message')
+                            <p id="contact-message-error" class="contact-page__error">{{ $message }}</p>
+                        @enderror
                     </div>
 
-                    <button type="button" class="contact-page__submit">
+                    <button type="submit" class="contact-page__submit" data-contact-submit>
                         {{ __('messages.common.send_message') }}
                         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                             <path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>
@@ -187,3 +212,15 @@
     </div>
 </section>
 @endsection
+
+@push('scripts')
+    <script>
+        document.querySelector('[data-contact-form]')?.addEventListener('submit', (event) => {
+            if (!event.currentTarget.checkValidity()) {
+                return;
+            }
+
+            event.currentTarget.querySelector('[data-contact-submit]')?.setAttribute('disabled', 'disabled');
+        });
+    </script>
+@endpush

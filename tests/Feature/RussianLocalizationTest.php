@@ -89,7 +89,7 @@ class RussianLocalizationTest extends TestCase
             'position' => 1,
         ]);
 
-        $response = $this->get('/ru/grafika/'.$portfolioPost->id);
+        $response = $this->get('/ru/grafika/'.$portfolioPost->slug);
 
         $response
             ->assertOk()

@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 #[Fillable([
     'title',
+    'slug',
     'title_en',
     'title_ru',
     'category',
@@ -42,6 +44,40 @@ class PortfolioPost extends Model
         'project_details_en' => 'array',
         'project_details_ru' => 'array',
     ];
+
+    protected static function booted(): void
+    {
+        static::saving(function (PortfolioPost $portfolioPost): void {
+            if (! $portfolioPost->exists || $portfolioPost->isDirty('title')) {
+                $portfolioPost->slug = static::uniqueSlug($portfolioPost->title, $portfolioPost->id);
+            }
+        });
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
+    public static function uniqueSlug(string $title, ?int $ignoreId = null): string
+    {
+        $baseSlug = Str::slug($title);
+        $baseSlug = $baseSlug !== '' ? $baseSlug : 'portfolio-post';
+        $baseSlug = Str::substr($baseSlug, 0, 255);
+        $slug = $baseSlug;
+        $suffix = 1;
+
+        while (static::query()
+            ->where('slug', $slug)
+            ->when($ignoreId, fn ($query) => $query->whereKeyNot($ignoreId))
+            ->exists()) {
+            $suffixText = '-'.$suffix;
+            $slug = Str::substr($baseSlug, 0, 255 - strlen($suffixText)).$suffixText;
+            $suffix++;
+        }
+
+        return $slug;
+    }
 
     public function localized(string $field): mixed
     {
