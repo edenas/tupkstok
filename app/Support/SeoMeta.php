@@ -15,7 +15,6 @@ class SeoMeta
      */
     public static function current(): array
     {
-        $locale = in_array(app()->getLocale(), ['en', 'ru'], true) ? app()->getLocale() : 'lt';
         $pageKey = self::pageKeyForCurrentRoute();
 
         try {
@@ -30,16 +29,16 @@ class SeoMeta
         $pageSetting = $settings->get($pageKey);
         $globalSetting = $settings->get('global');
 
-        $title = self::value($pageSetting, 'meta_title_'.$locale)
-            ?? self::value($globalSetting, 'meta_title_'.$locale)
-            ?? 'EPgalerija';
+        $title = self::value($pageSetting, 'meta_title_lt')
+            ?? self::value($globalSetting, 'meta_title_lt')
+            ?? 'Tupk Stok';
 
-        $description = self::value($pageSetting, 'meta_description_'.$locale)
-            ?? self::value($globalSetting, 'meta_description_'.$locale)
+        $description = self::value($pageSetting, 'meta_description_lt')
+            ?? self::value($globalSetting, 'meta_description_lt')
             ?? '';
 
-        $keywords = self::value($pageSetting, 'keywords_'.$locale)
-            ?? self::value($globalSetting, 'keywords_'.$locale)
+        $keywords = self::value($pageSetting, 'keywords_lt')
+            ?? self::value($globalSetting, 'keywords_lt')
             ?? '';
 
         return [
@@ -47,7 +46,7 @@ class SeoMeta
             'description' => $description,
             'keywords' => $keywords,
             'url' => request()->url(),
-            'image' => asset('images/hero.png'),
+            'image' => asset('storage/logo.png'),
             'type' => 'website',
         ];
     }
@@ -58,11 +57,11 @@ class SeoMeta
     private static function fallback(): array
     {
         return [
-            'title' => 'EPgalerija',
-            'description' => '',
-            'keywords' => '',
+            'title' => 'Tupk Stok',
+            'description' => 'Tupk Stok',
+            'keywords' => 'Tupk Stok',
             'url' => request()->url(),
-            'image' => asset('images/hero.png'),
+            'image' => asset('storage/logo.png'),
             'type' => 'website',
         ];
     }
@@ -70,15 +69,9 @@ class SeoMeta
     private static function pageKeyForCurrentRoute(): string
     {
         $routeName = (string) Route::currentRouteName();
-        $routeName = str_starts_with($routeName, 'en.') ? substr($routeName, 3) : $routeName;
-        $routeName = str_starts_with($routeName, 'ru.') ? substr($routeName, 3) : $routeName;
-
         return match (true) {
             $routeName === 'home' => 'home',
-            $routeName === 'about-me' => 'about',
-            $routeName === 'web-solutions' => 'web_solutions',
-            $routeName === 'mobile-apps' => 'mobile_apps',
-            str_starts_with($routeName, 'graphics') => 'graphics',
+            str_starts_with($routeName, 'blog') => 'blog',
             $routeName === 'contact' => 'contact',
             default => 'global',
         };

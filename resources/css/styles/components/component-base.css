@@ -35,7 +35,7 @@
 }
 
 .public-card:hover {
-    border-color: rgba(0, 92, 255, 0.22);
+    border-color: rgba(255, 153, 153, 0.34);
     background: #ffffff;
     box-shadow: var(--public-shadow-hover);
     transform: translateY(-2px);
@@ -50,13 +50,13 @@
     color: #ffffff;
     font-weight: 700;
     text-decoration: none;
-    box-shadow: 0 12px 24px rgba(0, 92, 255, 0.16);
+    box-shadow: 0 12px 24px rgba(255, 153, 153, 0.2);
     transition: background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 }
 
 .public-button:hover,
 .public-button:focus-visible {
     background: var(--public-accent-dark);
-    box-shadow: 0 16px 30px rgba(0, 92, 255, 0.2);
+    box-shadow: 0 16px 30px rgba(255, 133, 133, 0.24);
     transform: translateY(-1px);
 }

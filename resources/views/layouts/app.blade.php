@@ -17,10 +17,6 @@
         <meta name="twitter:title" content="{{ $pageTitle ?? $seo['title'] }}">
         <meta name="twitter:description" content="{{ $seo['description'] }}">
         <meta name="twitter:image" content="{{ $seo['image'] }}">
-        @foreach (['lt', 'en', 'ru'] as $alternateLocale)
-            <link rel="alternate" hreflang="{{ $alternateLocale }}" href="{{ \App\Support\LocalizedUrl::current($alternateLocale) }}">
-        @endforeach
-        <link rel="alternate" hreflang="x-default" href="{{ \App\Support\LocalizedUrl::current('lt') }}">
         <link rel="icon" type="image/x-icon" href="/favicon.ico">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -47,14 +43,14 @@
             @include('components.site-footer')
         </div>
 
-        <button type="button" class="back-to-top" data-back-to-top aria-label="Back to top">
+        <button type="button" class="back-to-top" data-back-to-top aria-label="Grįžti į viršų">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 <path d="m6 15 6-6 6 6"/>
             </svg>
         </button>
 
         <div class="public-loading-overlay" data-public-loading-overlay aria-hidden="true">
-            <div class="public-loading-overlay__spinner" role="status" aria-label="Loading"></div>
+            <div class="public-loading-overlay__spinner" role="status" aria-label="Įkeliama"></div>
         </div>
 
         @stack('scripts')

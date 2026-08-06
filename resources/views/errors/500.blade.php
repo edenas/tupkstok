@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex">
-    <title>Serverio klaida | EPgalerija</title>
+    <title>Serverio klaida | Tupk Stok</title>
     <style>
         body {
             margin: 0;
@@ -57,7 +57,7 @@
 </head>
 <body>
     <main>
-        <img src="{{ asset('images/logo.png') }}" alt="EPgalerija">
+        <img src="{{ asset('storage/logo.png') }}" alt="Tupk Stok">
         <h1>500</h1>
         <p>Įvyko serverio klaida. Bandykite dar kartą vėliau.</p>
         <a href="{{ url('/') }}">Grįžti į pradžią</a>

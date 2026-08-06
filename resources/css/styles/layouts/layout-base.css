@@ -1,8 +1,8 @@
 /* Public layout styling for headers, footers and page wrappers. */
 .public-body {
-    --public-accent: #005cff;
-    --public-accent-dark: #0047cf;
-    --public-accent-soft: #edf5ff;
+    --public-accent: #ff9999;
+    --public-accent-dark: #ff8585;
+    --public-accent-soft: #fff1f1;
     --public-border: rgba(204, 216, 231, 0.82);
     --public-card: rgba(255, 255, 255, 0.9);
     --public-ink: #061126;
@@ -13,10 +13,7 @@
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
-    background:
-        radial-gradient(980px 520px at -8% -18%, rgba(147, 197, 253, 0.42), transparent 68%),
-        radial-gradient(760px 420px at 86% 10%, rgba(219, 234, 254, 0.5), transparent 72%),
-        linear-gradient(180deg, #f8fbff 0%, #f3f7fc 48%, #ffffff 100%);
+    background: #ffffff;
     color: var(--public-ink);
     font-family: 'Manrope', var(--font-sans, ui-sans-serif, system-ui, sans-serif);
     line-height: 1.6;
@@ -24,31 +21,16 @@
 
 .public-body::before,
 .public-body::after {
-    position: fixed;
-    z-index: -1;
-    pointer-events: none;
-    content: "";
+    display: none;
+    content: none;
 }
 
 .public-body::before {
-    top: -250px;
-    left: -210px;
-    width: 760px;
-    height: 470px;
-    border-radius: 0 0 100% 0;
-    background:
-        repeating-radial-gradient(ellipse at 28% 22%, rgba(0, 92, 255, 0.08) 0 1px, transparent 1px 9px),
-        radial-gradient(ellipse at 34% 20%, rgba(147, 197, 253, 0.48), rgba(219, 234, 254, 0.18) 46%, transparent 72%);
-    opacity: 0.9;
+    background: none;
 }
 
 .public-body::after {
-    right: -240px;
-    bottom: 18%;
-    width: 560px;
-    height: 560px;
-    border-radius: 999px;
-    background: radial-gradient(circle, rgba(191, 219, 254, 0.28), transparent 68%);
+    background: none;
 }
 
 .public-shell {
@@ -85,7 +67,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(248, 251, 255, 0.72);
+    background: rgba(255, 255, 255, 0.78);
     opacity: 0;
     pointer-events: none;
     transition: opacity 180ms ease, visibility 180ms ease;
@@ -100,10 +82,10 @@
 .public-loading-overlay__spinner {
     width: 34px;
     height: 34px;
-    border: 3px solid rgba(0, 92, 255, 0.14);
+    border: 3px solid rgba(255, 153, 153, 0.22);
     border-top-color: var(--public-accent);
     border-radius: 999px;
-    box-shadow: 0 14px 36px rgba(0, 92, 255, 0.14);
+    box-shadow: 0 14px 36px rgba(255, 153, 153, 0.16);
     animation: public-loader-spin 760ms linear infinite;
 }
 
@@ -186,7 +168,7 @@
     justify-content: space-between;
     gap: 42px;
     margin: 0 auto;
-    padding: 24px 72px;
+    padding: 14px 72px;
 }
 
 .site-header__brand {
@@ -202,8 +184,9 @@
 
 .site-header__logo {
     display: block;
-    width: auto;
-    height: 37px;
+    width: 144px;
+    height: 64px;
+    object-fit: contain;
 }
 
 .site-header nav {
@@ -238,7 +221,7 @@
 .site-header__nav-list a:hover,
 .site-header__nav-list a:focus-visible,
 .site-header__nav-list a.site-header__nav-link--active {
-    color: var(--public-accent);
+    color: #ff9999;
 }
 
 .site-header__nav-list a::after {
@@ -248,7 +231,7 @@
     left: 0;
     height: 2px;
     border-radius: 999px;
-    background: currentColor;
+    background: #ff9999;
     content: "";
     opacity: 0;
     transform: scaleX(0.55);
@@ -256,7 +239,11 @@
 }
 
 .site-header__nav-list a:hover::after,
-.site-header__nav-list a:focus-visible::after,
+.site-header__nav-list a:focus-visible::after {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
 .site-header__nav-list a.site-header__nav-link--active::after {
     opacity: 1;
     transform: scaleX(1);
@@ -264,7 +251,7 @@
 
 .site-header__nav-list a:focus-visible {
     border-radius: 4px;
-    outline: 3px solid rgba(0, 92, 255, 0.18);
+    outline: 3px solid rgba(255, 153, 153, 0.28);
     outline-offset: 4px;
 }
 
@@ -295,14 +282,14 @@
 
 .site-header__menu-toggle:hover,
 .site-header__menu-toggle:focus-visible {
-    border-color: rgba(0, 92, 255, 0.28);
+    border-color: rgba(255, 153, 153, 0.42);
     background: #ffffff;
-    box-shadow: 0 12px 28px rgba(0, 92, 255, 0.12);
+    box-shadow: 0 12px 28px rgba(255, 153, 153, 0.16);
     transform: translateY(-1px);
 }
 
 .site-header__menu-toggle:focus-visible {
-    outline: 3px solid rgba(0, 92, 255, 0.18);
+    outline: 3px solid rgba(255, 153, 153, 0.28);
     outline-offset: 3px;
 }
 
@@ -360,8 +347,8 @@
 
 .language-flag:hover,
 .language-flag--active {
-    border-color: rgba(0, 92, 255, 0.35);
-    box-shadow: 0 8px 20px rgba(0, 92, 255, 0.12);
+    border-color: rgba(255, 153, 153, 0.5);
+    box-shadow: 0 8px 20px rgba(255, 153, 153, 0.16);
     transform: translateY(-1px);
 }
 
@@ -404,12 +391,12 @@
     justify-content: center;
     border: 1px solid rgba(255, 255, 255, 0.42);
     border-radius: 999px;
-    background: linear-gradient(180deg, var(--public-accent), var(--public-accent-dark));
+    background: var(--public-accent);
     color: #ffffff;
     cursor: pointer;
     opacity: 0;
     pointer-events: none;
-    box-shadow: 0 18px 38px rgba(0, 92, 255, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+    box-shadow: 0 18px 38px rgba(255, 153, 153, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.28);
     transform: translateY(14px) scale(0.94);
     transition: opacity 180ms ease, transform 180ms ease, box-shadow 180ms ease, bottom 180ms ease;
 }
@@ -422,12 +409,13 @@
 
 .back-to-top:hover,
 .back-to-top:focus-visible {
-    box-shadow: 0 22px 44px rgba(0, 92, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.32);
+    background: var(--public-accent-dark);
+    box-shadow: 0 22px 44px rgba(255, 133, 133, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.32);
     transform: translateY(-2px) scale(1.02);
 }
 
 .back-to-top:focus-visible {
-    outline: 3px solid rgba(0, 92, 255, 0.22);
+    outline: 3px solid rgba(255, 153, 153, 0.32);
     outline-offset: 4px;
 }
 
@@ -450,7 +438,8 @@
     }
 
     .site-header__logo {
-        height: 27px;
+        width: 116px;
+        height: 50px;
     }
 
     .site-header__nav-list {
@@ -516,7 +505,8 @@
     }
 
     .site-header__logo {
-        height: 27px;
+        width: 116px;
+        height: 50px;
     }
 
     .site-header__nav-list {
@@ -557,7 +547,8 @@
     }
 
     .site-header__logo {
-        height: 30px;
+        width: 124px;
+        height: 54px;
     }
 
     .site-header__language-switcher {
@@ -583,10 +574,7 @@
         justify-content: flex-start;
         margin: 0;
         padding: clamp(160px, 27vh, 260px) 32px 56px;
-        background:
-            radial-gradient(720px 420px at 86% 8%, rgba(219, 234, 254, 0.42), transparent 70%),
-            radial-gradient(560px 380px at 96% 88%, rgba(147, 197, 253, 0.24), transparent 72%),
-            linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+        background: #ffffff;
         max-width: none;
         overflow-y: auto;
         opacity: 0;
@@ -651,7 +639,7 @@
         display: block;
         width: 42px;
         height: 2px;
-        background: var(--public-accent);
+        background: #ff9999;
         opacity: 0;
         transform: scaleX(0.8);
         transform-origin: left center;
@@ -660,11 +648,15 @@
     .site-header__nav-list a:hover,
     .site-header__nav-list a:focus-visible,
     .site-header__nav-list a.site-header__nav-link--active {
-        color: var(--public-accent);
+        color: #ff9999;
     }
 
     .site-header__nav-list a:hover::after,
-    .site-header__nav-list a:focus-visible::after,
+    .site-header__nav-list a:focus-visible::after {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+
     .site-header__nav-list a.site-header__nav-link--active::after {
         opacity: 1;
         transform: scaleX(1);
@@ -697,14 +689,14 @@
 
     .site-header__mobile-socials a:hover,
     .site-header__mobile-socials a:focus-visible {
-        border-color: rgba(0, 92, 255, 0.24);
+        border-color: rgba(255, 153, 153, 0.42);
         color: var(--public-accent);
-        box-shadow: 0 20px 44px rgba(0, 92, 255, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.92);
+        box-shadow: 0 20px 44px rgba(255, 153, 153, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.92);
         transform: translateY(-2px);
     }
 
     .site-header__mobile-socials a:focus-visible {
-        outline: 3px solid rgba(0, 92, 255, 0.16);
+        outline: 3px solid rgba(255, 153, 153, 0.26);
         outline-offset: 4px;
     }
 
@@ -732,7 +724,8 @@
     }
 
     .site-header__logo {
-        height: 27px;
+        width: 112px;
+        height: 48px;
     }
 
     .language-flag {

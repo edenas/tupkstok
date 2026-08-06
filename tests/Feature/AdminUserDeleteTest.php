@@ -26,7 +26,7 @@ class AdminUserDeleteTest extends TestCase
 
         $response
             ->assertRedirect(route('admin.users'))
-            ->assertSessionHas('success', 'User deleted successfully.');
+            ->assertSessionHas('success', 'Vartotojas ištrintas sėkmingai.');
 
         $this->assertDatabaseMissing('users', [
             'id' => $user->id,
@@ -45,7 +45,7 @@ class AdminUserDeleteTest extends TestCase
 
         $response
             ->assertRedirect(route('admin.users'))
-            ->assertSessionHas('error', 'You cannot delete your own account.');
+            ->assertSessionHas('error', 'Negalite ištrinti savo paskyros.');
 
         $this->assertDatabaseHas('users', [
             'id' => $administrator->id,
@@ -74,7 +74,7 @@ class AdminUserDeleteTest extends TestCase
 
         $response
             ->assertRedirect(route('admin.users'))
-            ->assertSessionHas('error', 'You cannot delete your own account.');
+            ->assertSessionHas('error', 'Negalite ištrinti savo paskyros.');
 
         $this->assertDatabaseHas('users', [
             'id' => $administrator->id,
@@ -103,3 +103,5 @@ class AdminUserDeleteTest extends TestCase
         ]);
     }
 }
+
+

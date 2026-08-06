@@ -10,9 +10,9 @@ class PublicStorageRouteTest extends TestCase
     public function test_it_serves_existing_public_disk_files(): void
     {
         Storage::fake('public');
-        Storage::disk('public')->put('portfolio-thumbnails/example.jpg', 'image-bytes');
+        Storage::disk('public')->put('media-library/example.jpg', 'image-bytes');
 
-        $response = $this->get('/storage/portfolio-thumbnails/example.jpg');
+        $response = $this->get('/storage/media-library/example.jpg');
 
         $response
             ->assertOk()
@@ -24,7 +24,7 @@ class PublicStorageRouteTest extends TestCase
     {
         Storage::fake('public');
 
-        $this->get('/storage/portfolio-thumbnails/missing.jpg')->assertNotFound();
+        $this->get('/storage/media-library/missing.jpg')->assertNotFound();
     }
 
     public function test_it_rejects_directory_traversal_paths(): void
@@ -32,6 +32,8 @@ class PublicStorageRouteTest extends TestCase
         Storage::fake('public');
         Storage::disk('public')->put('private.txt', 'secret');
 
-        $this->get('/storage/portfolio-thumbnails/../private.txt')->assertNotFound();
+        $this->get('/storage/media-library/../private.txt')->assertNotFound();
     }
 }
+
+

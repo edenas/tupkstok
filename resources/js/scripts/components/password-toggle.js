@@ -24,8 +24,8 @@ export function initializePasswordToggle() {
 }
 
 function updatePasswordToggleState(toggleButton, hiddenPasswordIcon, visiblePasswordIcon, isPasswordVisible) {
-    toggleButton.setAttribute('aria-label', isPasswordVisible ? 'Hide password' : 'Show password');
-    toggleButton.setAttribute('title', isPasswordVisible ? 'Hide password' : 'Show password');
+    toggleButton.setAttribute('aria-label', isPasswordVisible ? 'Slėpti slaptažodį' : 'Rodyti slaptažodį');
+    toggleButton.setAttribute('title', isPasswordVisible ? 'Slėpti slaptažodį' : 'Rodyti slaptažodį');
     toggleButton.setAttribute('aria-pressed', isPasswordVisible ? 'true' : 'false');
 
     if (hiddenPasswordIcon && visiblePasswordIcon) {

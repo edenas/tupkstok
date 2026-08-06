@@ -1,5 +1,10 @@
 @php
     $selectedRole = old('role', $user->role ?? 'user');
+    $roleLabels = [
+        'administrator' => 'Administratorius',
+        'editor' => 'Redaktorius',
+        'user' => 'Vartotojas',
+    ];
 @endphp
 
 @if ($errors->any())
@@ -20,28 +25,28 @@
     @endisset
 
     <div class="admin-form__field">
-        <label for="name" class="admin-form__label">Name</label>
+        <label for="name" class="admin-form__label">Vardas</label>
         <input type="text" name="name" id="name" value="{{ old('name', $user->name ?? '') }}" required class="admin-form__input">
     </div>
 
     <div class="admin-form__field">
-        <label for="email" class="admin-form__label">Email address</label>
+        <label for="email" class="admin-form__label">El. pašto adresas</label>
         <input type="email" name="email" id="email" value="{{ old('email', $user->email ?? '') }}" required class="admin-form__input">
     </div>
 
     <div class="admin-form__field">
-        <label for="role" class="admin-form__label">Role</label>
+        <label for="role" class="admin-form__label">Rolė</label>
         <select name="role" id="role" required class="admin-form__input admin-form__select">
             @foreach ($availableRoles as $availableRole)
                 <option value="{{ $availableRole }}" @selected($selectedRole === $availableRole)>
-                    {{ ucfirst($availableRole) }}
+                    {{ $roleLabels[$availableRole] ?? $availableRole }}
                 </option>
             @endforeach
         </select>
     </div>
 
     <div class="admin-form__field">
-        <label for="password" class="admin-form__label">Password</label>
+        <label for="password" class="admin-form__label">Slaptažodis</label>
         <div class="admin-password-field">
             <input
                 type="password"
@@ -57,7 +62,7 @@
     </div>
 
     <div class="admin-form__field">
-        <label for="password_confirmation" class="admin-form__label">Confirm password</label>
+        <label for="password_confirmation" class="admin-form__label">Pakartokite slaptažodį</label>
         <div class="admin-password-field">
             <input
                 type="password"
@@ -79,7 +84,7 @@
                 {{ $submitButtonLabel }}
             </button>
             <a href="{{ route('admin.users') }}" class="admin-button admin-button--secondary">
-                Cancel
+                Atšaukti
             </a>
         </div>
 
@@ -90,7 +95,7 @@
                 data-delete-confirmation-trigger
                 data-delete-form-id="{{ $deleteFormId }}"
             >
-                Delete user
+                Ištrinti vartotoją
             </button>
         @endisset
     </div>

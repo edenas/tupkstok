@@ -35,8 +35,8 @@ class TrackWebsiteVisit
                 'user_agent' => $request->userAgent(),
                 'visited_at' => now(),
             ]);
-        } catch (QueryException) {
-            report('Website visit tracking failed.');
+        } catch (QueryException $exception) {
+            report($exception);
         }
     }
 
@@ -50,7 +50,7 @@ class TrackWebsiteVisit
             return false;
         }
 
-        if ($request->is('admin*') || $request->is('login') || $request->is('language*')) {
+        if ($request->is('admin*') || $request->is('login')) {
             return false;
         }
 

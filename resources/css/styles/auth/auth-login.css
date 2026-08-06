@@ -1,10 +1,7 @@
 .auth-body {
     min-height: 100vh;
     margin: 0;
-    background:
-        radial-gradient(circle at 12% 18%, rgba(0, 92, 255, 0.13), transparent 30%),
-        radial-gradient(circle at 86% 18%, rgba(14, 165, 233, 0.13), transparent 28%),
-        linear-gradient(135deg, #f8fbff 0%, #eef6ff 48%, #ffffff 100%);
+    background: #ffffff;
     color: var(--public-ink);
     font-family: var(--font-sans);
 }
@@ -20,30 +17,16 @@
 
 .auth-shell::before,
 .auth-shell::after {
-    position: absolute;
-    pointer-events: none;
-    content: "";
+    display: none;
+    content: none;
 }
 
 .auth-shell::before {
-    top: 12%;
-    left: max(24px, calc(50% - 470px));
-    width: 230px;
-    height: 230px;
-    border-radius: 999px;
-    background: repeating-radial-gradient(circle, rgba(0, 92, 255, 0.13) 0 1px, transparent 1px 11px);
-    opacity: 0.65;
+    background: none;
 }
 
 .auth-shell::after {
-    right: max(18px, calc(50% - 560px));
-    bottom: 11%;
-    width: 300px;
-    height: 180px;
-    background: radial-gradient(circle, rgba(0, 92, 255, 0.13) 1.2px, transparent 1.2px);
-    background-size: 20px 20px;
-    opacity: 0.5;
-    transform: rotate(-8deg);
+    background: none;
 }
 
 .auth-login {
@@ -64,13 +47,14 @@
 .auth-login__header {
     display: flex;
     justify-content: center;
-    margin-bottom: 34px;
+    margin-bottom: 28px;
 }
 
 .auth-login__logo {
     display: block;
-    width: min(100%, 190px);
-    height: auto;
+    width: 168px;
+    height: 124px;
+    object-fit: contain;
 }
 
 .auth-login__errors {
@@ -113,7 +97,7 @@
 .auth-login__field input {
     width: 100%;
     min-height: 48px;
-    border: 1px solid rgba(37, 99, 235, 0.12);
+    border: 1px solid rgba(255, 153, 153, 0.26);
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.85);
     color: var(--public-ink);
@@ -126,10 +110,35 @@
 }
 
 .auth-login__field input:focus {
-    border-color: rgba(37, 99, 235, 0.35);
+    border-color: rgba(255, 153, 153, 0.58);
     background: #ffffff;
-    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08), 0 10px 24px rgba(15, 23, 42, 0.045);
+    box-shadow: 0 0 0 4px rgba(255, 153, 153, 0.14), 0 10px 24px rgba(15, 23, 42, 0.045);
     outline: 0;
+}
+
+.auth-login__password-field input {
+    padding-right: 58px;
+}
+
+.auth-login__password-field .admin-password-field__button {
+    right: 7px;
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(255, 153, 153, 0.2);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.72);
+    color: var(--public-muted);
+}
+
+.auth-login__password-field .admin-password-field__button:hover {
+    border-color: rgba(255, 153, 153, 0.36);
+    background: #ffffff;
+    color: var(--public-ink);
+}
+
+.auth-login__password-field .admin-password-field__button:focus-visible {
+    outline: 3px solid rgba(255, 153, 153, 0.24);
+    outline-offset: 2px;
 }
 
 .auth-login__remember {
@@ -153,30 +162,28 @@
     min-height: 50px;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(0, 92, 255, 0.88);
+    border: 1px solid #ff9999;
     border-radius: 8px;
-    background-color: var(--public-accent);
-    background-image: linear-gradient(135deg, #005cff 0%, #0047c7 100%);
+    background: #ff9999;
     color: #ffffff;
     cursor: pointer;
     font-size: 15px;
     font-weight: 800;
     padding: 0 26px;
-    box-shadow: 0 18px 36px rgba(0, 92, 255, 0.28);
-    text-shadow: 0 1px 1px rgba(0, 42, 120, 0.18);
+    box-shadow: 0 18px 36px rgba(255, 153, 153, 0.28);
+    text-shadow: 0 1px 1px rgba(120, 0, 0, 0.12);
     transition: background-color 180ms ease, background-image 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 }
 
 .auth-login__submit:hover,
 .auth-login__submit:focus-visible {
-    background-color: var(--public-accent-dark);
-    background-image: linear-gradient(135deg, #004fe0 0%, #003da8 100%);
-    box-shadow: 0 24px 46px rgba(0, 92, 255, 0.34);
+    background: #ff8585;
+    box-shadow: 0 24px 46px rgba(255, 133, 133, 0.34);
     transform: translateY(-2px);
 }
 
 .auth-login__submit:focus-visible {
-    outline: 3px solid rgba(0, 92, 255, 0.22);
+    outline: 3px solid rgba(255, 153, 153, 0.32);
     outline-offset: 3px;
 }
 

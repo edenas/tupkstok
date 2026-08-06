@@ -2,19 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SaveUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rule;
 
 class AdminUserController extends Controller
 {
-    private const AVAILABLE_ROLES = [
-        'administrator',
-        'editor',
-        'user',
-    ];
-
     /**
      * Display a listing of the users.
      */
@@ -34,16 +28,16 @@ class AdminUserController extends Controller
     public function showCreateForm()
     {
         return view('admin.users-create', [
-            'availableRoles' => self::AVAILABLE_ROLES,
+            'availableRoles' => User::AVAILABLE_ROLES,
         ]);
     }
 
     /**
      * Store a newly created user.
      */
-    public function store(Request $request)
+    public function store(SaveUserRequest $request)
     {
-        $validated = $request->validate($this->createValidationRules(), $this->passwordValidationMessages());
+        $validated = $request->validated();
 
         User::create([
             'name' => $validated['name'],
@@ -52,7 +46,7 @@ class AdminUserController extends Controller
             'role' => $validated['role'],
         ]);
 
-        return redirect()->route('admin.users')->with('success', 'User created successfully.');
+        return redirect()->route('admin.users')->with('success', 'Vartotojas sukurtas sėkmingai.');
     }
 
     /**
@@ -61,7 +55,7 @@ class AdminUserController extends Controller
     public function showEditForm(User $user)
     {
         return view('admin.users-edit', [
-            'availableRoles' => self::AVAILABLE_ROLES,
+            'availableRoles' => User::AVAILABLE_ROLES,
             'user' => $user,
         ]);
     }
@@ -69,16 +63,16 @@ class AdminUserController extends Controller
     /**
      * Update the specified user in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(SaveUserRequest $request, User $user)
     {
-        $validated = $request->validate($this->updateValidationRules($user), $this->passwordValidationMessages());
+        $validated = $request->validated();
 
         if ($request->user()->is($user) && $user->role === 'administrator' && $validated['role'] !== 'administrator') {
-            return redirect()->route('admin.users')->with('error', 'You cannot remove your own administrator role.');
+            return redirect()->route('admin.users')->with('error', 'Negalite pašalinti savo administratoriaus rolės.');
         }
 
         if ($this->wouldRemoveLastAdministrator($user, $validated['role'])) {
-            return redirect()->route('admin.users')->with('error', 'You cannot remove the last administrator account.');
+            return redirect()->route('admin.users')->with('error', 'Negalite pašalinti paskutinės administratoriaus paskyros.');
         }
 
         $user->name = $validated['name'];
@@ -91,7 +85,7 @@ class AdminUserController extends Controller
 
         $user->save();
 
-        return redirect()->route('admin.users')->with('success', 'User updated successfully.');
+        return redirect()->route('admin.users')->with('success', 'Vartotojas atnaujintas sėkmingai.');
     }
 
     /**
@@ -100,78 +94,16 @@ class AdminUserController extends Controller
     public function destroy(Request $request, User $user)
     {
         if ($request->user()->is($user)) {
-            return redirect()->route('admin.users')->with('error', 'You cannot delete your own account.');
+            return redirect()->route('admin.users')->with('error', 'Negalite ištrinti savo paskyros.');
         }
 
         if ($user->role === 'administrator' && $this->administratorCount() <= 1) {
-            return redirect()->route('admin.users')->with('error', 'You cannot delete the last administrator account.');
+            return redirect()->route('admin.users')->with('error', 'Negalite ištrinti paskutinės administratoriaus paskyros.');
         }
 
         $user->delete();
 
-        return redirect()->route('admin.users')->with('success', 'User deleted successfully.');
-    }
-
-    /**
-     * Get validation rules for creating a user.
-     *
-     * @return array<string, mixed>
-     */
-    private function createValidationRules(): array
-    {
-        return [
-            'name' => 'required|string|max:255',
-            'email' => [
-                'required',
-                'email',
-                Rule::unique('users', 'email'),
-            ],
-            'password' => 'required|string|min:8|confirmed',
-            'password_confirmation' => 'required|string',
-            'role' => [
-                'required',
-                Rule::in(self::AVAILABLE_ROLES),
-            ],
-        ];
-    }
-
-    /**
-     * Get validation rules for updating a user.
-     *
-     * @return array<string, mixed>
-     */
-    private function updateValidationRules(User $user): array
-    {
-        return [
-            'name' => 'required|string|max:255',
-            'email' => [
-                'required',
-                'email',
-                Rule::unique('users', 'email')->ignore($user->id),
-            ],
-            'password' => 'nullable|string|min:8|confirmed',
-            'password_confirmation' => 'nullable|string|required_with:password',
-            'role' => [
-                'required',
-                Rule::in(self::AVAILABLE_ROLES),
-            ],
-        ];
-    }
-
-    /**
-     * Get validation messages for password confirmation.
-     *
-     * @return array<string, string>
-     */
-    private function passwordValidationMessages(): array
-    {
-        return [
-            'password.required_with' => 'Password and confirmation password must match.',
-            'password.required' => 'Password is required.',
-            'password_confirmation.required_with' => 'Password and confirmation password must match.',
-            'password_confirmation.required' => 'Password confirmation is required.',
-            'password.confirmed' => 'Password and confirmation password must match.',
-        ];
+        return redirect()->route('admin.users')->with('success', 'Vartotojas ištrintas sėkmingai.');
     }
 
     private function wouldRemoveLastAdministrator(User $user, string $newRole): bool

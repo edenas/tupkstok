@@ -3,12 +3,12 @@
 @section('content')
 <div class="admin-page admin-page--edit-user">
     <a href="{{ route('admin.users') }}" class="admin-back-link">
-        Back to users
+        Grįžti į vartotojus
     </a>
 
     <div class="admin-page__header">
         <div>
-            <h1 class="admin-page__title">Create user</h1>
+            <h1 class="admin-page__title">Sukurti vartotoją</h1>
         </div>
     </div>
 
@@ -17,9 +17,9 @@
             'availableRoles' => $availableRoles,
             'formAction' => route('admin.users.store'),
             'isPasswordRequired' => true,
-            'passwordHelpText' => 'Password and confirmation are required. Passwords must be at least 8 characters.',
-            'passwordPlaceholder' => 'Enter a password',
-            'submitButtonLabel' => 'Create User',
+            'passwordHelpText' => 'Slaptažodis ir jo patvirtinimas yra privalomi. Slaptažodis turi būti bent 8 simbolių.',
+            'passwordPlaceholder' => 'Įveskite slaptažodį',
+            'submitButtonLabel' => 'Sukurti vartotoją',
         ])
     </section>
 </div>

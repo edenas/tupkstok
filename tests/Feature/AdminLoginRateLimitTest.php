@@ -14,8 +14,6 @@ class AdminLoginRateLimitTest extends TestCase
 
     public function test_admin_login_blocks_ip_after_three_failed_attempts(): void
     {
-        session(['admin_locale' => 'en']);
-
         for ($attempt = 0; $attempt < 3; $attempt++) {
             $this
                 ->from('/admin')
@@ -37,7 +35,7 @@ class AdminLoginRateLimitTest extends TestCase
         $response
             ->assertRedirect('/admin')
             ->assertSessionHasErrors([
-                'username' => 'Login is temporarily blocked because the username or password was entered incorrectly 3 times in a row. Please try again in 10 minutes.',
+                'username' => 'Prisijungimas laikinai užblokuotas, nes 3 kartus iš eilės buvo neteisingai įvestas vartotojo vardas arba slaptažodis. Bandykite dar kartą po 10 minučių.',
             ]);
     }
 
@@ -96,3 +94,5 @@ class AdminLoginRateLimitTest extends TestCase
         parent::tearDown();
     }
 }
+
+

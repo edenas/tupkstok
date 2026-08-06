@@ -17,6 +17,8 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
+    public const AVAILABLE_ROLES = ['administrator', 'editor', 'user'];
+
     /**
      * Get the attributes that should be cast.
      *

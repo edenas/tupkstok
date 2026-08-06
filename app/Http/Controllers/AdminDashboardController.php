@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PortfolioPost;
+use App\Models\BlogPost;
 use App\Models\WebsiteVisit;
 use Illuminate\Support\Facades\DB;
 
@@ -14,22 +14,26 @@ class AdminDashboardController extends Controller
     public function index()
     {
         $totalPages = 6;
-        $totalPortfolioPosts = PortfolioPost::count();
-        $todayVisits = WebsiteVisit::where('visited_at', '>=', now()->startOfDay())->count();
+        $totalBlogPosts = BlogPost::count();
+        $todayStart = now()->startOfDay();
+        $todayEnd = now()->endOfDay();
+
+        $todayVisits = WebsiteVisit::whereBetween('visited_at', [$todayStart, $todayEnd])->count();
 
         $popularPages = WebsiteVisit::query()
             ->select('path', DB::raw('MAX(title) as title'), DB::raw('COUNT(*) as visits_count'))
+            ->whereBetween('visited_at', [$todayStart, $todayEnd])
             ->groupBy('path')
             ->orderByDesc('visits_count')
             ->orderBy('path')
-            ->limit(10)
-            ->get();
+            ->paginate(10, ['*'], 'pages')
+            ->withQueryString();
 
         return view('admin.dashboard', compact(
             'popularPages',
             'todayVisits',
             'totalPages',
-            'totalPortfolioPosts',
+            'totalBlogPosts',
         ));
     }
 }

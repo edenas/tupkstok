@@ -1,6 +1,14 @@
 @extends('layouts.admin')
 
 @section('content')
+@php
+    $roleLabels = [
+        'administrator' => 'Administratorius',
+        'editor' => 'Redaktorius',
+        'user' => 'Vartotojas',
+    ];
+@endphp
+
 <div class="admin-page">
     <div class="admin-page__header">
         <div>
@@ -30,8 +38,8 @@
                 <thead>
                     <tr>
                         <th>{{ __('messages.admin.title') }}</th>
-                        <th>Email address</th>
-                        <th>Role</th>
+                        <th>El. pašto adresas</th>
+                        <th>Rolė</th>
                         <th>{{ __('messages.admin.date') }}</th>
                         <th class="admin-table__actions-heading">{{ __('messages.admin.actions') }}</th>
                     </tr>
@@ -45,7 +53,7 @@
                                 </a>
                             </td>
                             <td>{{ $user->email }}</td>
-                            <td>{{ ucfirst($user->role) }}</td>
+                            <td>{{ $roleLabels[$user->role] ?? $user->role }}</td>
                             <td>
                                 <time data-local-timestamp="{{ $user->created_at->toIso8601String() }}" datetime="{{ $user->created_at->toIso8601String() }}">
                                     {{ $user->created_at->format('Y-m-d H:i') }}
@@ -53,15 +61,15 @@
                             </td>
                             <td>
                                 <div class="admin-table__actions">
-                                    <a href="{{ route('admin.users.edit', $user->id) }}" title="Edit user" aria-label="Edit {{ $user->name }}" class="admin-icon-button admin-icon-button--edit">
+                                    <a href="{{ route('admin.users.edit', $user->id) }}" title="Redaguoti vartotoją" aria-label="Redaguoti {{ $user->name }}" class="admin-icon-button admin-icon-button--edit">
                                         <svg viewBox="0 0 20 20" focusable="false">
                                             <path fill="currentColor" d="M13.59 3.59a2 2 0 0 1 2.82 2.82l-.79.8-2.83-2.83.8-.79ZM11.38 5.79 3 14.17V17h2.83l8.38-8.38-2.83-2.83Z" />
                                         </svg>
                                     </a>
                                     <button
                                         type="button"
-                                        title="Delete user"
-                                        aria-label="Delete {{ $user->name }}"
+                                        title="Ištrinti vartotoją"
+                                        aria-label="Ištrinti {{ $user->name }}"
                                         class="admin-icon-button admin-icon-button--delete"
                                         data-delete-confirmation-trigger
                                         data-delete-form-id="delete-user-form-{{ $user->id }}"

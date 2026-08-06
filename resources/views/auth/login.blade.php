@@ -1,10 +1,10 @@
 @extends('layouts.auth')
 
 @section('content')
-<section class="auth-login" aria-label="Admin login">
+<section class="auth-login" aria-label="Administratoriaus prisijungimas">
     <article class="auth-login__card">
         <div class="auth-login__header">
-            <img src="{{ asset('images/logo.png') }}" alt="EPgalerija" class="auth-login__logo">
+            <img src="{{ asset('storage/logo.png') }}" alt="Tupk Stok" class="auth-login__logo">
         </div>
 
         @if ($errors->any())
@@ -21,36 +21,39 @@
             @csrf
 
             <div class="auth-login__field">
-                <label for="username">Username</label>
+                <label for="username">Vartotojo vardas</label>
                 <input
                     type="text"
                     name="username"
                     id="username"
                     value="{{ old('username') }}"
                     autocomplete="username"
-                    placeholder="Enter username"
+                    placeholder="Įveskite vartotojo vardą"
                     required
                 >
             </div>
 
             <div class="auth-login__field">
-                <label for="password">Password</label>
-                <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    autocomplete="current-password"
-                    required
-                >
+                <label for="password">Slaptažodis</label>
+                <div class="admin-password-field auth-login__password-field">
+                    <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        autocomplete="current-password"
+                        required
+                    >
+                    <x-admin-password-toggle-button target="#password" />
+                </div>
             </div>
 
             <label class="auth-login__remember">
                 <input type="checkbox" name="remember">
-                <span>Remember me</span>
+                <span>Prisiminti mane</span>
             </label>
 
             <button type="submit" class="auth-login__submit">
-                Log in
+                Prisijungti
             </button>
         </form>
     </article>

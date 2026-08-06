@@ -41,6 +41,46 @@ php artisan boost:install
 
 Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
 
+## WordPress migration queue
+
+WordPress migration analysis always runs as a queued job. The application is configured to use Laravel's database queue:
+
+```dotenv
+QUEUE_CONNECTION=database
+```
+
+Run the database migrations once so the `jobs`, `job_batches`, and `failed_jobs` tables exist:
+
+```bash
+php artisan migrate
+```
+
+Start a worker while migrations are being analyzed:
+
+```bash
+php artisan queue:work
+```
+
+The real WordPress import uses the same database queue and the focused tracking migration `2026_08_06_000000_create_wordpress_import_tracking_tables.php`. Apply pending migrations manually before opening the import stage:
+
+```bash
+php artisan migrate
+```
+
+For imports, use a worker timeout longer than the 300-second media/post chunk timeout:
+
+```bash
+php artisan queue:work --tries=3 --timeout=360
+```
+
+Dry runs remain in private session storage and never write Blog, media, or redirect records. A real import is dispatched only after the administrator confirms the current dry run with the required phrase. The local/testing-only limit of three or five posts uses the same queued pipeline. Failed runs can be retried from their stored item mappings; completed items are skipped.
+
+In production, run `queue:work` under a process monitor such as Supervisor or systemd so it restarts automatically. After deployments, use `php artisan queue:restart` to let long-lived workers reload application code.
+
+The administrator page warns when an analysis remains queued without starting for more than 120 seconds. This threshold can be changed with `WORDPRESS_MIGRATION_QUEUE_STALE_AFTER_SECONDS`.
+
+Laravel Horizon is not installed in this project and is not required for the database queue. If Horizon is adopted later, change the queue connection to Redis, install and configure Horizon, and run `php artisan horizon` under a process monitor instead of `queue:work`.
+
 ## Contributing
 
 Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).

@@ -18,12 +18,10 @@ class AdminStatisticsTest extends TestCase
         ]);
 
         WebsiteVisit::create([
-            'path' => '/grafika',
-            'title' => 'Graphics',
+            'path' => '/blogas',
+            'title' => 'blog',
             'visited_at' => now(),
         ]);
-
-        session(['admin_locale' => 'en']);
 
         $response = $this
             ->actingAs($administrator)
@@ -31,10 +29,10 @@ class AdminStatisticsTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Statistics')
-            ->assertSee('Total website visits')
-            ->assertSee('All page visits')
-            ->assertSee('/grafika');
+            ->assertSee('Statistika')
+            ->assertSee('Iš viso apsilankymų')
+            ->assertSee('Visi puslapių apsilankymai')
+            ->assertSee('/blogas');
     }
 
     public function test_administrator_can_paginate_all_tracked_pages(): void
@@ -53,13 +51,11 @@ class AdminStatisticsTest extends TestCase
             }
         }
 
-        session(['admin_locale' => 'en']);
-
         $this
             ->actingAs($administrator)
             ->get(route('admin.statistics'))
             ->assertOk()
-            ->assertSee('All page visits')
+            ->assertSee('Visi puslapių apsilankymai')
             ->assertSee('/page-25')
             ->assertSee('/page-16')
             ->assertDontSee('/page-15');
@@ -68,7 +64,7 @@ class AdminStatisticsTest extends TestCase
             ->actingAs($administrator)
             ->get(route('admin.statistics', ['pages' => 2]))
             ->assertOk()
-            ->assertSee('All page visits')
+            ->assertSee('Visi puslapių apsilankymai')
             ->assertSee('/page-15')
             ->assertSee('/page-06')
             ->assertDontSee('/page-16')
@@ -80,8 +76,6 @@ class AdminStatisticsTest extends TestCase
         $administrator = User::factory()->create([
             'role' => 'administrator',
         ]);
-
-        session(['admin_locale' => 'lt']);
 
         $response = $this
             ->actingAs($administrator)
@@ -107,7 +101,7 @@ class AdminStatisticsTest extends TestCase
 
         $this->assertDatabaseHas('website_visits', [
             'path' => '/',
-            'title' => 'EPgalerija',
+            'title' => 'Tupk Stok',
         ]);
     }
 
@@ -125,3 +119,5 @@ class AdminStatisticsTest extends TestCase
         $this->assertDatabaseCount('website_visits', 0);
     }
 }
+
+

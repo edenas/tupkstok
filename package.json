@@ -14,6 +14,7 @@
         "vite": "^8.0.0"
     },
     "dependencies": {
-        "lucide": "^1.14.0"
+        "lucide": "^1.14.0",
+        "tinymce": "^6.8.5"
     }
 }

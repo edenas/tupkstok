@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex">
-    <title>Puslapis nerastas | EPgalerija</title>
+    <title>Puslapis nerastas | Tupk Stok</title>
     <style>
         body {
             margin: 0;
@@ -57,7 +57,7 @@
 </head>
 <body>
     <main>
-        <img src="{{ asset('images/logo.png') }}" alt="EPgalerija">
+        <img src="{{ asset('storage/logo.png') }}" alt="Tupk Stok">
         <h1>404</h1>
         <p>Puslapis nerastas arba nuoroda nebegalioja.</p>
         <a href="{{ url('/') }}">Grįžti į pradžią</a>

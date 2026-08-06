@@ -14,13 +14,15 @@
 .admin-sidebar__brand {
     display: flex;
     align-items: center;
-    padding: 24px 24px 30px;
+    justify-content: center;
+    padding: 32px 24px;
 }
 
 .admin-sidebar__logo {
     display: block;
-    width: min(100%, 162px);
-    height: auto;
+    width: 128px;
+    height: 94px;
+    object-fit: contain;
 }
 
 .admin-sidebar__navigation {
@@ -90,11 +92,12 @@
     }
 
     .admin-sidebar__brand {
-        padding: 22px 20px 18px;
+        padding: 26px 20px;
     }
 
     .admin-sidebar__logo {
-        width: min(100%, 140px);
+        width: 112px;
+        height: 82px;
     }
 
     .admin-sidebar__footer {

@@ -15,8 +15,8 @@
         </article>
 
         <article class="admin-dashboard-card">
-            <p class="admin-dashboard-card__label">{{ __('messages.admin.portfolio_posts') }}</p>
-            <strong class="admin-dashboard-card__value">{{ number_format($totalPortfolioPosts) }}</strong>
+            <p class="admin-dashboard-card__label">{{ __('messages.admin.blog_posts') }}</p>
+            <strong class="admin-dashboard-card__value">{{ number_format($totalBlogPosts) }}</strong>
         </article>
 
         <article class="admin-dashboard-card">
@@ -28,7 +28,7 @@
     <section class="admin-panel admin-dashboard-popular">
         <div class="admin-table-header">
             <div>
-                <h2 class="admin-table-header__title">{{ __('messages.admin.statistics.top_pages') }}</h2>
+                <h2 class="admin-table-header__title">{{ __('messages.admin.statistics.today_title') }}</h2>
             </div>
         </div>
 
@@ -56,12 +56,15 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="3">{{ __('messages.admin.statistics.empty') }}</td>
+                            <td colspan="3">{{ __('messages.admin.statistics.today_empty') }}</td>
                         </tr>
                     @endforelse
                 </tbody>
             </table>
         </div>
+
+        {{ $popularPages->onEachSide(1)->links('pagination.admin') }}
     </section>
 </div>
 @endsection
+

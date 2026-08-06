@@ -36,12 +36,6 @@ class AdminSeoController extends Controller
             'meta_title_lt' => 'nullable|string|max:255',
             'meta_description_lt' => 'nullable|string|max:1000',
             'keywords_lt' => 'nullable|string|max:1000',
-            'meta_title_en' => 'nullable|string|max:255',
-            'meta_description_en' => 'nullable|string|max:1000',
-            'keywords_en' => 'nullable|string|max:1000',
-            'meta_title_ru' => 'nullable|string|max:255',
-            'meta_description_ru' => 'nullable|string|max:1000',
-            'keywords_ru' => 'nullable|string|max:1000',
         ]);
 
         $pageKey = $validated['page_key'];
@@ -65,10 +59,7 @@ class AdminSeoController extends Controller
         return [
             ['key' => 'global', 'title_key' => 'messages.admin.seo.cards.global', 'description_key' => 'messages.admin.seo.card_descriptions.global'],
             ['key' => 'home', 'title_key' => 'messages.admin.seo.cards.home', 'description_key' => null],
-            ['key' => 'about', 'title_key' => 'messages.admin.seo.cards.about', 'description_key' => null],
-            ['key' => 'web_solutions', 'title_key' => 'messages.admin.seo.cards.web_solutions', 'description_key' => null],
-            ['key' => 'mobile_apps', 'title_key' => 'messages.admin.seo.cards.mobile_apps', 'description_key' => null],
-            ['key' => 'graphics', 'title_key' => 'messages.admin.seo.cards.graphics', 'description_key' => null],
+            ['key' => 'blog', 'title_key' => 'messages.admin.seo.cards.blog', 'description_key' => null],
             ['key' => 'contact', 'title_key' => 'messages.admin.seo.cards.contact', 'description_key' => null],
         ];
     }
@@ -103,12 +94,6 @@ class AdminSeoController extends Controller
             'meta_title_lt',
             'meta_description_lt',
             'keywords_lt',
-            'meta_title_en',
-            'meta_description_en',
-            'keywords_en',
-            'meta_title_ru',
-            'meta_description_ru',
-            'keywords_ru',
         ];
 
         $normalized = [];

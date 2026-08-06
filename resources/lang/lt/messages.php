@@ -1,19 +1,15 @@
 <?php
 
 return [
-    'languages' => [
-        'lt' => 'Lietuvių',
-        'en' => 'English',
-    ],
     'nav' => [
         'home' => 'Pradžia',
         'about' => 'Apie mane',
         'web_solutions' => 'Web sprendimai',
         'mobile_apps' => 'Mobiliosios aplikacijos',
-        'graphics' => 'Grafika',
+        'blog' => 'Blog\'as',
         'contact' => 'Kontaktai',
     ],
-    'footer' => 'epgalerija',
+    'footer' => 'Tupk Stok',
     'footer_rights' => 'Visos teisės saugomos.',
     'auth' => [
         'login_locked' => 'Prisijungimas laikinai užblokuotas, nes 3 kartus iš eilės buvo neteisingai įvestas vartotojo vardas arba slaptažodis. Bandykite dar kartą po 10 minučių.',
@@ -23,7 +19,7 @@ return [
         'completed_projects' => 'Atlikti projektai',
         'visit_website' => 'Aplankyti svetainę',
         'view_project' => 'Peržiūrėti projektą',
-        'back_to_graphics' => 'Grįžti į grafiką',
+        'back_to_blog' => 'Grįžti į Blog\'ą',
         'send_message' => 'Siųsti žinutę',
     ],
     'home' => [
@@ -35,7 +31,7 @@ return [
             'title' => 'Kuriu skaitmeninius sprendimus, kurie kuria vertę',
             'lead' => 'Kuriu modernias interneto svetaines, web aplikacijas ir skaitmeninius produktus, kuriuose vartotojo patirtis, našumas ir vizualinis identitetas veikia kaip viena sistema.',
             'services_cta' => 'Žiūrėti paslaugas',
-            'image_alt' => 'EPgalerija skaitmeninių sprendimų peržiūra',
+            'image_alt' => 'Tupk Stok skaitmeninių sprendimų peržiūra',
         ],
         'services' => [
             'web_solutions' => [
@@ -116,12 +112,11 @@ return [
             ],
         ],
     ],
-    'graphics' => [
-        'eyebrow' => 'Animacijos ir video portfolio',
-        'title' => 'Animacijos, motion graphics ir video projektai',
-        'lead' => 'Atrinkti animacijos, muzikinių klipų, subtitrų, reklamų ir vizualinio pasakojimo projektai menininkams, prekių ženklams ir skaitmeninėms kampanijoms.',
-        'empty' => 'Portfolio įrašai netrukus bus rodomi čia.',
-        'details' => 'Projekto detalės',
+    'blog' => [
+        'eyebrow' => 'Blog\'as',
+        'title' => 'Blog\'as',
+        'lead' => '',
+        'empty' => 'Straipsniai netrukus bus rodomi čia.',
         'video' => 'Video',
     ],
     'web' => [
@@ -129,7 +124,7 @@ return [
         'title' => 'Profesionalus web kūrimas ir skaitmeniniai sprendimai',
         'lead' => 'Kuriu modernias interneto svetaines, web aplikacijas ir skaitmeninius produktus, kuriuose vartotojo patirtis, našumas ir vizualinis identitetas veikia kaip viena sistema.',
         'services_intro' => 'Struktūruoti web sprendimai nuo vartotojo sąsajos dizaino iki techninio įgyvendinimo.',
-        'projects_intro' => 'Atrinkti klientų projektai su vizualiniu identitetu, svetainių nuorodomis ir portfolio pristatymu.',
+        'projects_intro' => 'Atrinkti klientų projektai su vizualiniu identitetu ir svetainių nuorodomis.',
         'feature_heading_eyebrow' => 'KODĖL VERTA DIRBTI KARTU?',
         'feature_heading_title' => 'Web sprendimai, kurie veikia',
         'feature_strip_label' => 'Web sprendimų privalumai',
@@ -191,14 +186,14 @@ return [
         'dashboard' => 'Skydelis',
         'dashboard_summary' => 'Administravimo skydelio suvestinė',
         'created_pages' => 'Sukurti puslapiai',
-        'portfolio_posts' => 'Portfolio įrašai',
+        'blog_posts' => 'Blog\'o straipsniai',
         'today_visits' => 'Šiandienos apsilankymai',
         'popular_pages' => 'Populiariausi puslapiai',
         'no_data' => 'Duomenų dar nėra.',
         'users' => 'Vartotojai',
-        'portfolio' => 'Portfolio',
+        'blog' => 'Blog\'as',
         'create_user' => 'Sukurti vartotoją',
-        'add_post' => 'Pridėti įrašą',
+        'add_post' => 'Kurti straipsnį',
         'title' => 'Pavadinimas',
         'category' => 'Kategorija',
         'date' => 'Sukurta',
@@ -208,7 +203,6 @@ return [
         'save' => 'Išsaugoti',
         'cancel' => 'Atšaukti',
         'delete_post' => 'Ištrinti įrašą',
-        'english_translation' => 'Angliškas vertimas',
         'statistics' => [
             'nav' => 'Statistika',
             'title' => 'Statistika',
@@ -221,6 +215,7 @@ return [
                 'today' => 'Apsilankymai šiandien',
             ],
             'top_pages' => '10 populiariausių puslapių',
+            'today_title' => 'Šiandienos statistika',
             'all_pages' => 'Visi puslapių apsilankymai',
             'columns' => [
                 'page' => 'Puslapis',
@@ -228,6 +223,7 @@ return [
                 'visits' => 'Apsilankymai',
             ],
             'empty' => 'Apsilankymų dar nėra.',
+            'today_empty' => 'Šiandien apsilankymų dar neužfiksuota.',
         ],
         'seo' => [
             'nav' => 'SEO',
@@ -235,7 +231,6 @@ return [
             'save' => 'Išsaugoti SEO nustatymus',
             'save_card' => 'Išsaugoti',
             'saved' => 'SEO nustatymai išsaugoti.',
-            'language_tabs' => 'SEO kalbos laukai',
             'keywords_placeholder' => 'raktažodis, kitas raktažodis',
             'cards' => [
                 'global' => 'Pagrindiniai SEO nustatymai',
@@ -243,7 +238,7 @@ return [
                 'about' => 'Apie mane',
                 'web_solutions' => 'Web sprendimai',
                 'mobile_apps' => 'Mobiliosios aplikacijos',
-                'graphics' => 'Grafika',
+                'blog' => 'Blog\'as',
                 'contact' => 'Kontaktai',
             ],
             'card_descriptions' => [
@@ -253,12 +248,6 @@ return [
                 'meta_title_lt' => 'Meta pavadinimas',
                 'meta_description_lt' => 'Meta aprašymas',
                 'keywords_lt' => 'Raktažodžiai',
-                'meta_title_en' => 'Meta Title',
-                'meta_description_en' => 'Meta Description',
-                'keywords_en' => 'Keywords',
-                'meta_title_ru' => 'Meta Title RU',
-                'meta_description_ru' => 'Meta Description RU',
-                'keywords_ru' => 'Keywords RU',
             ],
             'current' => [
                 'meta_title' => 'Dabartinis Meta pavadinimas',
@@ -458,3 +447,5 @@ return [
         'cta_text' => 'Susisiekite ir aptarkime, kaip galime kartu sukurti sprendimą, kuris padės jūsų verslui augti ir išsiskirti.',
     ],
 ];
+
+

@@ -1,6 +1,6 @@
 @props([
-    'title' => 'Delete user',
-    'message' => 'Are you sure you want to delete this user?',
+    'title' => 'Ištrinti vartotoją',
+    'message' => 'Ar tikrai norite ištrinti šį vartotoją?',
 ])
 
 <div class="admin-modal" data-delete-confirmation-modal aria-hidden="true" hidden>
@@ -12,10 +12,10 @@
 
         <div class="admin-modal__actions">
             <button type="button" class="admin-button admin-button--danger" data-delete-confirmation-submit>
-                Yes, delete
+                Taip, ištrinti
             </button>
             <button type="button" class="admin-button admin-button--secondary" data-delete-confirmation-cancel>
-                No, cancel
+                Ne, atšaukti
             </button>
         </div>
     </section>

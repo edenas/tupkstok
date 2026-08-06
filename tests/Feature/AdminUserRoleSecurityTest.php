@@ -26,7 +26,7 @@ class AdminUserRoleSecurityTest extends TestCase
 
         $response
             ->assertRedirect(route('admin.users'))
-            ->assertSessionHas('error', 'You cannot remove your own administrator role.');
+            ->assertSessionHas('error', 'Negalite pašalinti savo administratoriaus rolės.');
 
         $this->assertDatabaseHas('users', [
             'id' => $administrator->id,
@@ -54,7 +54,7 @@ class AdminUserRoleSecurityTest extends TestCase
 
         $response
             ->assertRedirect(route('admin.users'))
-            ->assertSessionHas('error', 'You cannot remove your own administrator role.');
+            ->assertSessionHas('error', 'Negalite pašalinti savo administratoriaus rolės.');
 
         $this->assertDatabaseHas('users', [
             'id' => $administrator->id,
@@ -71,7 +71,7 @@ class AdminUserRoleSecurityTest extends TestCase
 
         $response
             ->assertRedirect(route('admin.users'))
-            ->assertSessionHas('success', 'User updated successfully.');
+            ->assertSessionHas('success', 'Vartotojas atnaujintas sėkmingai.');
     }
 
     public function test_administrator_can_update_another_administrator_when_one_administrator_remains(): void
@@ -94,7 +94,7 @@ class AdminUserRoleSecurityTest extends TestCase
 
         $response
             ->assertRedirect(route('admin.users'))
-            ->assertSessionHas('success', 'User updated successfully.');
+            ->assertSessionHas('success', 'Vartotojas atnaujintas sėkmingai.');
 
         $this->assertDatabaseHas('users', [
             'id' => $secondAdministrator->id,
@@ -104,3 +104,5 @@ class AdminUserRoleSecurityTest extends TestCase
         $this->assertSame(1, User::query()->where('role', 'administrator')->count());
     }
 }
+
+

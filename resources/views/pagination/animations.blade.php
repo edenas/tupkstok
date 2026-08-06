@@ -1,5 +1,5 @@
 @if ($paginator->hasPages())
-    <nav class="animations-page__pagination" role="navigation" aria-label="Graphics pagination">
+    <nav class="animations-page__pagination" role="navigation" aria-label="Grafikos puslapiavimas">
         @foreach ($elements as $element)
             @if (is_string($element))
                 <span class="animations-page__pagination-ellipsis" aria-hidden="true">{{ $element }}</span>
@@ -10,7 +10,7 @@
                     @if ($page == $paginator->currentPage())
                         <span class="animations-page__pagination-link animations-page__pagination-link--active" aria-current="page">{{ $page }}</span>
                     @else
-                        <a class="animations-page__pagination-link" href="{{ $url }}" aria-label="Open page {{ $page }}">{{ $page }}</a>
+                        <a class="animations-page__pagination-link" href="{{ $url }}" aria-label="Atidaryti puslapį {{ $page }}">{{ $page }}</a>
                     @endif
                 @endforeach
             @endif
